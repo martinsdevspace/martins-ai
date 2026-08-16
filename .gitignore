@@ -1,0 +1,10 @@
+node_modules/
+.next/
+payload.db*
+.env
+.DS_Store
+dist/
+build/
+tsconfig.tsbuildinfo
+node_modules
+public/media/

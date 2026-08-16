@@ -1,0 +1,359 @@
+@import 'tailwindcss';
+/* Vendored from node_modules/tw-animate-css/dist/tw-animate.css (v1.4.0).
+   The package only exposes a `style` export condition, which Turbopack's
+   CSS `@import` resolver doesn't respect (bare `@import 'tw-animate-css'`
+   and the deep path `tw-animate-css/dist/tw-animate.css` both fail to
+   resolve under `next build`). Vendoring a local copy sidesteps the
+   bundler-specific export-condition gap entirely. Re-copy this file if
+   the package is upgraded: cp node_modules/tw-animate-css/dist/tw-animate.css ./vendor/ */
+@import "./animate.css";
+
+@config '../../../tailwind.config.mjs';
+
+@custom-variant dark (&:is([data-theme='dark'] *));
+@custom-variant sm (@media (width >=theme(--breakpoint-sm)));
+@custom-variant md (@media (width >=theme(--breakpoint-md)));
+@custom-variant lg (@media (width >=theme(--breakpoint-lg)));
+@custom-variant xl (@media (width >=theme(--breakpoint-xl)));
+@custom-variant 2xl (@media (width >=theme(--breakpoint-2xl)));
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: unset;
+    font-size: unset;
+  }
+}
+
+@plugin "@tailwindcss/typography";
+
+@source inline("lg:col-span-4");
+@source inline("lg:col-span-6");
+@source inline("lg:col-span-8");
+@source inline("lg:col-span-12");
+@source inline("border-border");
+@source inline("bg-card");
+@source inline("border-error");
+@source inline("bg-error/30");
+@source inline("border-success");
+@source inline("bg-success/30");
+@source inline("border-warning");
+@source inline("bg-warning/30");
+
+@theme {
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 86rem;
+  --font-sans: 'Hanken Grotesk Variable',
+  ui-sans-serif,
+  system-ui,
+  sans-serif;
+  --font-body: 'Hanken Grotesk Variable',
+  ui-sans-serif,
+  system-ui,
+  sans-serif;
+  --font-heading: 'Newsreader Variable',
+  ui-serif,
+  Georgia,
+  serif;
+  --font-display: 'Newsreader Variable',
+  ui-serif,
+  Georgia,
+  serif;
+  --font-mono: 'JetBrains Mono Variable',
+  ui-monospace,
+  SFMono-Regular,
+  Menlo,
+  monospace;
+}
+
+@layer utilities {
+  .container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @variant sm {
+    .container {
+      max-width: var(--breakpoint-sm);
+    }
+  }
+
+  @variant md {
+    .container {
+      max-width: var(--breakpoint-md);
+      padding-inline: 2rem;
+    }
+  }
+
+  @variant lg {
+    .container {
+      max-width: var(--breakpoint-lg);
+    }
+  }
+
+  @variant xl {
+    .container {
+      max-width: var(--breakpoint-xl);
+    }
+  }
+
+  @variant 2xl {
+    .container {
+      max-width: var(--breakpoint-2xl);
+    }
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+    font-optical-sizing: auto;
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .font-mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+:root {
+  --background: 60 20% 97%;
+  --foreground: 0 0% 4%;
+  --card: 60 10% 94%;
+  --card-foreground: 0 0% 4%;
+  --popover: 60 20% 97%;
+  --popover-foreground: 0 0% 4%;
+  --primary: 220 100% 50%;
+  --primary-foreground: 60 20% 97%;
+  --secondary: 60 10% 90%;
+  --secondary-foreground: 0 0% 4%;
+  --muted: 60 10% 92%;
+  --muted-foreground: 0 0% 38%;
+  --accent: 220 100% 50%;
+  --accent-foreground: 60 20% 97%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 60 20% 97%;
+  --border: 60 10% 86%;
+  --input: 60 10% 86%;
+  --ring: 220 100% 50%;
+  --paper: 60 20% 97%;
+  --carbon: 0 0% 4%;
+  --synthesis: 220 100% 50%;
+  --concrete: 60 10% 86%;
+  --chart-1: 220 100% 50%;
+  --chart-2: 142 71% 45%;
+  --chart-3: 38 92% 50%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 0 72% 51%;
+  --sidebar: 60 10% 94%;
+  --sidebar-foreground: 0 0% 4%;
+  --sidebar-primary: 220 100% 50%;
+  --sidebar-primary-foreground: 60 20% 97%;
+  --sidebar-accent: 60 10% 90%;
+  --sidebar-accent-foreground: 0 0% 4%;
+  --sidebar-border: 60 10% 86%;
+  --sidebar-ring: 220 100% 50%;
+  --success: 160 45% 60%;
+  --warning: 42 80% 70%;
+  --error: 10 70% 65%;
+  --radius: 0px;
+
+  color-scheme: light;
+
+  --font-sans: 'Hanken Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Newsreader Variable', ui-serif, Georgia, serif;
+  --font-display: 'Newsreader Variable', ui-serif, Georgia, serif;
+  --font-body: 'Hanken Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+[data-theme='dark'] {
+  --background: 0 0% 7%;
+  --foreground: 60 15% 95%;
+  --card: 0 0% 10%;
+  --card-foreground: 60 15% 95%;
+  --popover: 0 0% 7%;
+  --popover-foreground: 60 15% 95%;
+  --primary: 217 100% 58%;
+  --primary-foreground: 0 0% 7%;
+  --secondary: 0 0% 14%;
+  --secondary-foreground: 60 15% 95%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 58%;
+  --accent: 217 100% 58%;
+  --accent-foreground: 0 0% 7%;
+  --destructive: 0 62% 55%;
+  --destructive-foreground: 60 15% 95%;
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  --ring: 217 100% 58%;
+  --paper: 0 0% 7%;
+  --carbon: 60 15% 95%;
+  --synthesis: 217 100% 58%;
+  --concrete: 0 0% 18%;
+  --chart-1: 217 100% 58%;
+  --chart-2: 142 71% 45%;
+  --chart-3: 38 92% 50%;
+  --chart-4: 280 65% 65%;
+  --chart-5: 0 62% 55%;
+  --sidebar: 0 0% 10%;
+  --sidebar-foreground: 60 15% 95%;
+  --sidebar-primary: 217 100% 58%;
+  --sidebar-primary-foreground: 0 0% 7%;
+  --sidebar-accent: 0 0% 14%;
+  --sidebar-accent-foreground: 60 15% 95%;
+  --sidebar-border: 0 0% 18%;
+  --sidebar-ring: 217 100% 58%;
+  --success: 160 25% 30%;
+  --warning: 40 50% 40%;
+  --error: 10 45% 50%;
+  --radius: 0px;
+
+  color-scheme: dark;
+}
+
+.force-light {
+  --background: 60 20% 97%;
+  --foreground: 0 0% 4%;
+  --card: 60 10% 94%;
+  --card-foreground: 0 0% 4%;
+  --primary: 220 100% 50%;
+  --primary-foreground: 60 20% 97%;
+  --secondary: 60 10% 90%;
+  --secondary-foreground: 0 0% 4%;
+  --muted: 60 10% 92%;
+  --muted-foreground: 0 0% 38%;
+  --border: 60 10% 86%;
+  --input: 60 10% 86%;
+  --ring: 220 100% 50%;
+  --paper: 60 20% 97%;
+  --carbon: 0 0% 4%;
+  --synthesis: 220 100% 50%;
+  --concrete: 60 10% 86%;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-paper: hsl(var(--paper));
+  --color-carbon: hsl(var(--carbon));
+  --color-concrete: hsl(var(--concrete));
+  --color-synthesis: hsl(var(--synthesis));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
+  --color-error: hsl(var(--error));
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground min-h-screen flex flex-col;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: hsl(var(--synthesis));
+    color: hsl(var(--paper));
+  }
+
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--foreground));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  opacity: 0;
+}
+
+html[data-theme='dark'],
+html[data-theme='light'] {
+  opacity: initial;
+}
