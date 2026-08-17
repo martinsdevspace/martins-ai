@@ -21,7 +21,7 @@ interface ResumeInteractiveProps {
 /**
  * Wraps the server-rendered `ResumeDocument` with the interactive shell:
  * a sticky download bar, an animated hero, a CMS-driven highlights strip,
- * and the html2canvas → jsPDF export flow. Kept as a thin client wrapper
+ * and the html2canvas-pro → jsPDF export flow. Kept as a thin client wrapper
  * around server-rendered children (rather than making the whole page a
  * client component) so the actual resume content stays a server component.
  */
@@ -40,7 +40,7 @@ export default function ResumeInteractive({
     setDownloading(true)
     try {
       const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
-        import('html2canvas'),
+        import('html2canvas-pro'),
         import('jspdf'),
       ])
 

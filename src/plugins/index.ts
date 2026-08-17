@@ -173,7 +173,6 @@ export const plugins: Plugin[] = [
       uses: { description: '"Uses" page content (tools, gear, setup).', tools: { update: false } },
     },
   }),
-  // @ts-expect-error - redirectsPlugin bundles its own payload types causing a mismatch with the root payload version
   redirectsPlugin({
     collections: ['pages', 'insights'],
     overrides: {
@@ -192,7 +191,6 @@ export const plugins: Plugin[] = [
         })
       },
       hooks: {
-        // @ts-expect-error - redirectsPlugin bundles its own payload types causing a hook type mismatch
         afterChange: [revalidateRedirects],
       },
     },
