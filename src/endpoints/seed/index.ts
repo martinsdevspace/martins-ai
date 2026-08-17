@@ -123,147 +123,149 @@ export const seed = async ({
     ),
   ])
 
-  const [demoAuthor, image1Doc, image2Doc, image3Doc, imageHomeDoc, categoryDocs] =
-    await Promise.all([
-      payload.create({
-        collection: 'users',
-        data: {
-          name: 'Demo Author',
-          email: 'demo-author@example.com',
-          password: 'password',
-        },
-      }),
-      payload.create({
-        collection: 'media',
-        data: image1,
-        file: image1Buffer,
-      }),
-      payload.create({
-        collection: 'media',
-        data: image2,
-        file: image2Buffer,
-      }),
-      payload.create({
-        collection: 'media',
-        data: image2,
-        file: image3Buffer,
-      }),
-      payload.create({
-        collection: 'media',
-        data: imageHero1,
-        file: hero1Buffer,
-      }),
-      Promise.all(
-        categories.map((category) =>
-          payload.create({
-            collection: 'categories',
-            data: {
-              title: category,
-              slug: category,
-            },
-          }),
-        ),
-      ),
-    ])
+   const [demoAuthor, image1Doc, image2Doc, image3Doc, imageHomeDoc, categoryDocs] =
+     await Promise.all([
+       payload.create({
+         collection: 'users',
+         data: {
+           name: 'Demo Author',
+           email: 'demo-author@example.com',
+           password: 'password',
+         },
+       }),
+       payload.create({
+         collection: 'media',
+         data: image1,
+         file: image1Buffer,
+       }),
+       payload.create({
+         collection: 'media',
+         data: image2,
+         file: image2Buffer,
+       }),
+       payload.create({
+         collection: 'media',
+         data: image2,
+         file: image3Buffer,
+       }),
+       payload.create({
+         collection: 'media',
+         data: imageHero1,
+         file: hero1Buffer,
+       }),
+       Promise.all(
+         categories.map((category) =>
+           payload.create({
+             collection: 'categories',
+             data: {
+               title: category,
+               slug: category,
+             },
+           }),
+         ),
+       ),
+     ])
 
-  const [aiAgentsCat, paymentsCat, architectureCat, engineeringCat] = categoryDocs
+   const [aiAgentsCat, paymentsCat, architectureCat, engineeringCat] = categoryDocs
 
-  payload.logger.info(`— Seeding insights...`)
+payload.logger.info(`— Seeding insights...`)
 
   // Do not create insights with `Promise.all` because we want the posts to be created in order
   // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
-  const post1Doc = await payload.create({
-    collection: 'insights',
-    depth: 0,
-    context: {
-      disableRevalidate: true,
-    },
-    data: {
-      ...post1({ heroImage: image1Doc, blockImage: image2Doc, author: demoAuthor }),
-      categories: [paymentsCat.id, architectureCat.id],
-    },
-  })
+  // POST SEEDING COMMENTED OUT - posts will not be created
+  // const post1Doc = await payload.create({
+  //   collection: 'insights',
+  //   depth: 0,
+  //   context: {
+  //     disableRevalidate: true,
+  //   },
+  //   data: {
+  //     ...post1({ heroImage: image1Doc, blockImage: image2Doc, author: demoAuthor }),
+  //     categories: [paymentsCat.id, architectureCat.id],
+  //   },
+  // })
 
-  const post2Doc = await payload.create({
-    collection: 'insights',
-    depth: 0,
-    context: {
-      disableRevalidate: true,
-    },
-    data: {
-      ...post2({ heroImage: image2Doc, blockImage: image3Doc, author: demoAuthor }),
-      categories: [aiAgentsCat.id],
-    },
-  })
+  // const post2Doc = await payload.create({
+  //   collection: 'insights',
+  //   depth: 0,
+  //   context: {
+  //     disableRevalidate: true,
+  //   },
+  //   data: {
+  //     ...post2({ heroImage: image2Doc, blockImage: image3Doc, author: demoAuthor }),
+  //     categories: [aiAgentsCat.id],
+  //   },
+  // })
 
-  const post3Doc = await payload.create({
-    collection: 'insights',
-    depth: 0,
-    context: {
-      disableRevalidate: true,
-    },
-    data: {
-      ...post3({ heroImage: image3Doc, blockImage: image1Doc, author: demoAuthor }),
-      categories: [paymentsCat.id, architectureCat.id],
-    },
-  })
+  // const post3Doc = await payload.create({
+  //   collection: 'insights',
+  //   depth: 0,
+  //   context: {
+  //     disableRevalidate: true,
+  //   },
+  //   data: {
+  //     ...post3({ heroImage: image3Doc, blockImage: image1Doc, author: demoAuthor }),
+  //     categories: [paymentsCat.id, architectureCat.id],
+  //   },
+  // })
 
-  const post4Doc = await payload.create({
-    collection: 'insights',
-    depth: 0,
-    context: {
-      disableRevalidate: true,
-    },
-    data: {
-      ...post4({ heroImage: image2Doc, author: demoAuthor }),
-      categories: [aiAgentsCat.id, engineeringCat.id],
-    },
-  })
+  // const post4Doc = await payload.create({
+  //   collection: 'insights',
+  //   depth: 0,
+  //   context: {
+  //     disableRevalidate: true,
+  //   },
+  //   data: {
+  //     ...post4({ heroImage: image2Doc, author: demoAuthor }),
+  //     categories: [aiAgentsCat.id, engineeringCat.id],
+  //   },
+  // })
 
-  const post5Doc = await payload.create({
-    collection: 'insights',
-    depth: 0,
-    context: {
-      disableRevalidate: true,
-    },
-    data: {
-      ...post5({ heroImage: image3Doc, author: demoAuthor }),
-      categories: [paymentsCat.id, engineeringCat.id],
-    },
-  })
+  // const post5Doc = await payload.create({
+  //   collection: 'insights',
+  //   depth: 0,
+  //   context: {
+  //     disableRevalidate: true,
+  //   },
+  //   data: {
+  //     ...post5({ heroImage: image3Doc, author: demoAuthor }),
+  //     categories: [paymentsCat.id, engineeringCat.id],
+  //   },
+  // })
 
   // update each post with topically-relevant related posts (not an
   // all-to-all link) so the RelatedPosts block demonstrates real curation
-  await payload.update({
-    id: post1Doc.id,
-    collection: 'insights',
-    context: { disableRevalidate: true },
-    data: { relatedPosts: [post3Doc.id, post5Doc.id] },
-  })
-  await payload.update({
-    id: post2Doc.id,
-    collection: 'insights',
-    context: { disableRevalidate: true },
-    data: { relatedPosts: [post4Doc.id, post1Doc.id] },
-  })
-  await payload.update({
-    id: post3Doc.id,
-    collection: 'insights',
-    context: { disableRevalidate: true },
-    data: { relatedPosts: [post1Doc.id, post5Doc.id] },
-  })
-  await payload.update({
-    id: post4Doc.id,
-    collection: 'insights',
-    context: { disableRevalidate: true },
-    data: { relatedPosts: [post2Doc.id, post1Doc.id] },
-  })
-  await payload.update({
-    id: post5Doc.id,
-    collection: 'insights',
-    context: { disableRevalidate: true },
-    data: { relatedPosts: [post3Doc.id, post1Doc.id] },
-  })
+  // POST RELATED POSTS COMMENTED OUT - posts will not be linked
+  // await payload.update({
+  //   id: post1Doc.id,
+  //   collection: 'insights',
+  //   context: { disableRevalidate: true },
+  //   data: { relatedPosts: [post3Doc.id, post5Doc.id] },
+  // })
+  // await payload.update({
+  //   id: post2Doc.id,
+  //   collection: 'insights',
+  //   context: { disableRevalidate: true },
+  //   data: { relatedPosts: [post4Doc.id, post1Doc.id] },
+  // })
+  // await payload.update({
+  //   id: post3Doc.id,
+  //   collection: 'insights',
+  //   context: { disableRevalidate: true },
+  //   data: { relatedPosts: [post1Doc.id, post5Doc.id] },
+  // })
+  // await payload.update({
+  //   id: post4Doc.id,
+  //   collection: 'insights',
+  //   context: { disableRevalidate: true },
+  //   data: { relatedPosts: [post2Doc.id, post1Doc.id] },
+  // })
+  // await payload.update({
+  //   id: post5Doc.id,
+  //   collection: 'insights',
+  //   context: { disableRevalidate: true },
+  //   data: { relatedPosts: [post3Doc.id, post1Doc.id] },
+  // })
 
   payload.logger.info(`— Seeding contact form...`)
 
