@@ -4,12 +4,12 @@ import type { FormFieldBlock, Form as FormType } from '@payloadcms/plugin-form-b
 import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
-import { Send } from 'lucide-react'
 import RichText from '@/components/RichText'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
+import { IconSend } from '@tabler/icons-react'
 
 export type FormBlockType = {
   blockName?: string
@@ -175,7 +175,7 @@ export const FormBlock: React.FC<
               <>
                 <span className="w-2 h-2 bg-synthesis group-hover:bg-background rounded-full transition-colors" />
                 {submitButtonLabel || 'SEND_MESSAGE'}
-                <Send className="w-3.5 h-3.5" />
+                <IconSend className="w-3.5 h-3.5" />
               </>
             )}
           </button>

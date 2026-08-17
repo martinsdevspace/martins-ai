@@ -5,6 +5,10 @@ declare global {
       DATABASE_URL: string
       NEXT_PUBLIC_SERVER_URL: string
       VERCEL_PROJECT_PRODUCTION_URL: string
+      RESEND_API_KEY: string
+      EMAIL_FROM: string
+      EMAIL_FROM_NAME: string
+      BLOB_READ_WRITE_TOKEN: string
     }
   }
 }

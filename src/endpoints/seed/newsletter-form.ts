@@ -36,7 +36,7 @@ export const newsletterForm: RequiredDataFromCollectionSlug<'forms'> = {
   },
   emails: [
     {
-      emailFrom: '"Payload" \u003Cdemo@payloadcms.com\u003E',
+      emailFrom: '"Martin\'s AI" <hello@martinsmichael.dev>',
       emailTo: '{{email}}',
       subject: 'You\u2019re subscribed.',
       message: {

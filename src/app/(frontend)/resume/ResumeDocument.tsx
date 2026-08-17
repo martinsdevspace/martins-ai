@@ -12,10 +12,10 @@ import type { Resume as ResumeGlobal } from '@/payload-types'
  * `ResumeInteractive`, so its look here IS the look of the downloaded PDF.
  */
 export default function ResumeDocument({ resume }: { resume: ResumeGlobal }) {
-  const email = resume.email || 'hello@martinsmichael.dev'
+  const email = resume.email || 'hello@martinsai.name.ng'
   const location = resume.location || 'Abuja, NG · Remote Worldwide'
 
-  const highlights = resume.highlights?.filter((h) => h.value || h.label) || []
+  // const highlights = resume.highlights?.filter((h) => h.value || h.label) || []
   const experience = resume.experience?.filter((e) => e.role || e.company) || []
   const education = resume.education?.filter((e) => e.degree || e.institution) || []
   const skills = resume.skills?.filter((s) => s.category) || []
@@ -51,7 +51,7 @@ export default function ResumeDocument({ resume }: { resume: ResumeGlobal }) {
       </div>
 
       {/* Highlights */}
-      {highlights.length > 0 ? (
+      {/* {highlights.length > 0 ? (
         <div className="mt-8 grid grid-cols-2 gap-px border border-carbon/15 bg-carbon/15 sm:grid-cols-4">
           {highlights.map((h, index) => (
             <div key={h.id || `highlight-${index}`} className="bg-paper p-4">
@@ -62,7 +62,7 @@ export default function ResumeDocument({ resume }: { resume: ResumeGlobal }) {
             </div>
           ))}
         </div>
-      ) : null}
+      ) : null} */}
 
       {/* Summary */}
       {resume.summary ? (
@@ -151,70 +151,69 @@ export default function ResumeDocument({ resume }: { resume: ResumeGlobal }) {
           </section>
         ) : null}
 
-        <div className="flex flex-col gap-10">
-          {/* Skills */}
-          {skills.length > 0 ? (
-            <section>
-              <h2 className="font-mono text-[10px] uppercase tracking-wider text-carbon/50">
-                Skills
-              </h2>
-              <div className="mt-4 flex flex-col gap-3">
-                {skills.map((skill) => {
-                  const items = skill.items?.map((i) => i.item).filter((i): i is string => Boolean(i)) || []
-                  return (
-                    <div key={skill.id || skill.category}>
-                      <h3 className="font-heading text-sm">{skill.category}</h3>
-                      <p className="mt-1 text-sm text-carbon/70">{items.join(', ')}</p>
-                    </div>
-                  )
-                })}
-              </div>
-            </section>
-          ) : null}
-
-          {/* Certifications */}
-          {certifications.length > 0 ? (
-            <section>
-              <h2 className="font-mono text-[10px] uppercase tracking-wider text-carbon/50">
-                Certifications
-              </h2>
-              <div className="mt-4 flex flex-col gap-2">
-                {certifications.map((cert) => (
-                  <div key={cert.id || cert.name} className="flex items-baseline justify-between gap-4">
-                    <div>
-                      <p className="text-sm">{cert.name}</p>
-                      <p className="font-mono text-[10px] text-carbon/50">{cert.issuer}</p>
-                    </div>
-                    {cert.year ? (
-                      <span className="font-mono text-[10px] text-carbon/50">{cert.year}</span>
-                    ) : null}
+        {/* Certifications */}
+        {certifications.length > 0 ? (
+          <section>
+            <h2 className="font-mono text-[10px] uppercase tracking-wider text-carbon/50">
+              Certifications
+            </h2>
+            <div className="mt-4 flex flex-col gap-2">
+              {certifications.map((cert) => (
+                <div key={cert.id || cert.name} className="flex items-baseline justify-between gap-4">
+                  <div>
+                    <p className="text-sm">{cert.name}</p>
+                    <p className="font-mono text-[10px] text-carbon/50">{cert.issuer}</p>
                   </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
+                  {cert.year ? (
+                    <span className="font-mono text-[10px] text-carbon/50">{cert.year}</span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
-          {/* Speaking */}
-          {speaking.length > 0 ? (
-            <section>
-              <h2 className="font-mono text-[10px] uppercase tracking-wider text-carbon/50">
-                Speaking
-              </h2>
-              <div className="mt-4 flex flex-col gap-2">
-                {speaking.map((talk) => (
-                  <div key={talk.id || talk.event || talk.title}>
-                    <p className="text-sm">{talk.title || talk.event}</p>
-                    <p className="font-mono text-[10px] text-carbon/50">
-                      {talk.event}
-                      {talk.event && talk.year ? ' · ' : ''}
-                      {talk.year}
-                    </p>
+        {/* Skills */}
+        {skills.length > 0 ? (
+          <section>
+            <h2 className="font-mono text-[10px] uppercase tracking-wider text-carbon/50">
+              Skills
+            </h2>
+            <div className="mt-4 flex flex-col gap-3">
+              {skills.map((skill) => {
+                const items = skill.items?.map((i) => i.item).filter((i): i is string => Boolean(i)) || []
+                return (
+                  <div key={skill.id || skill.category}>
+                    <h3 className="font-heading text-sm">{skill.category}</h3>
+                    <p className="mt-1 text-sm text-carbon/70">{items.join(', ')}</p>
                   </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
-        </div>
+                )
+              })}
+            </div>
+          </section>
+        ) : null}
+
+        {/* Speaking */}
+        {speaking.length > 0 ? (
+          <section>
+            <h2 className="font-mono text-[10px] uppercase tracking-wider text-carbon/50">
+              Speaking
+            </h2>
+            <div className="mt-4 flex flex-col gap-2">
+              {speaking.map((talk) => (
+                <div key={talk.id || talk.event || talk.title}>
+                  <p className="text-sm">{talk.title || talk.event}</p>
+                  <p className="font-mono text-[10px] text-carbon/50">
+                    {talk.event}
+                    {talk.event && talk.year ? ' · ' : ''}
+                    {talk.year}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
       </div>
     </div>
   )

@@ -1,5 +1,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { resendAdapter } from '@payloadcms/email-resend'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -114,9 +116,24 @@ export default buildConfig({
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer, SiteSettings, About, Resume, Uses, Now],
+  email: resendAdapter({
+    apiKey: process.env.RESEND_API_KEY || '',
+    defaultFromAddress: process.env.EMAIL_FROM || 'hello@martinsmichael.dev',
+    defaultFromName: process.env.EMAIL_FROM_NAME || "Martin's AI",
+  }),
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,
+  storage: process.env.BLOB_READ_WRITE_TOKEN?.startsWith('vercel_blob_')
+    ? [
+        vercelBlobStorage({
+          collections: {
+            media: true,
+          },
+          token: process.env.BLOB_READ_WRITE_TOKEN,
+        }),
+      ]
+    : [],
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
