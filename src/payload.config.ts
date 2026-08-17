@@ -73,8 +73,7 @@ export default buildConfig({
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db:
-    process.env.NODE_ENV === 'production' &&
-      !process.env.DATABASE_URL?.startsWith('file:')
+    process.env.DATABASE_URL && !process.env.DATABASE_URL.startsWith('file:')
       ? postgresAdapter({
         pool: {
           connectionString: process.env.DATABASE_URL || '',
