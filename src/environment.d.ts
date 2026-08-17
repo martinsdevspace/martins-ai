@@ -9,6 +9,12 @@ declare global {
       EMAIL_FROM: string
       EMAIL_FROM_NAME: string
       BLOB_READ_WRITE_TOKEN: string
+      UPSTASH_REDIS_REST_KV_REST_API_URL: string
+      UPSTASH_REDIS_REST_KV_REST_API_TOKEN: string
+      UPSTASH_REDIS_REST_KV_REST_API_READ_ONLY_TOKEN: string
+      OPENROUTER_API_KEY: string
+      CHAT_MODEL: string
+      CRON_SECRET: string
     }
   }
 }

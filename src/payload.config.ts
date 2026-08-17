@@ -28,6 +28,7 @@ import { Uses } from './globals/Uses'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { upstashKVAdapter } from './adapters/upstash.kv'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -73,19 +74,19 @@ export default buildConfig({
   editor: defaultLexical,
   db:
     process.env.NODE_ENV === 'production' &&
-    !process.env.DATABASE_URL?.startsWith('file:')
+      !process.env.DATABASE_URL?.startsWith('file:')
       ? postgresAdapter({
-          pool: {
-            connectionString: process.env.DATABASE_URL || '',
-          },
-        })
+        pool: {
+          connectionString: process.env.DATABASE_URL || '',
+        },
+      })
       : sqliteAdapter({
-          client: {
-            url: process.env.DATABASE_URL || 'file:./payload.db',
-          },
-          busyTimeout: 10000,
-          wal: true,
-        }),
+        client: {
+          url: process.env.DATABASE_URL || 'file:./payload.db',
+        },
+        busyTimeout: 10000,
+        wal: true,
+      }),
   collections: [
     {
       slug: 'folders',
@@ -126,13 +127,13 @@ export default buildConfig({
   sharp,
   storage: process.env.BLOB_READ_WRITE_TOKEN?.startsWith('vercel_blob_')
     ? [
-        vercelBlobStorage({
-          collections: {
-            media: true,
-          },
-          token: process.env.BLOB_READ_WRITE_TOKEN,
-        }),
-      ]
+      vercelBlobStorage({
+        collections: {
+          media: true,
+        },
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+      }),
+    ]
     : [],
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -155,4 +156,7 @@ export default buildConfig({
     },
     tasks: [],
   },
+  kv: upstashKVAdapter({
+    keyPrefix: 'payload-kv:',
+  }),
 })

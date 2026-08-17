@@ -23,7 +23,7 @@ import { Redis } from '@upstash/redis'
  * one person testing, often re-running the same message repeatedly, and a
  * limiter there just gets in the way.
  *
- * Requires `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (from an
+ * Requires `UPSTASH_REDIS_REST_KV_REST_API_URL` and `UPSTASH_REDIS_REST_KV_REST_API_READ_ONLY_TOKEN` (from an
  * Upstash Redis database — https://console.upstash.com).
  */
 
@@ -51,13 +51,13 @@ let memoryWarned = false
 function getLimiters(): Limiters {
   if (limiters !== undefined) return limiters
 
-  const url = process.env.UPSTASH_REDIS_REST_URL
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN
+  const url = process.env.UPSTASH_REDIS_REST_KV_REST_API_URL
+  const token = process.env.UPSTASH_REDIS_REST_KV_REST_API_READ_ONLY_TOKEN
 
   if (!url || !token) {
     if (!memoryWarned) {
       console.warn(
-        '[rate-limit] UPSTASH_REDIS_REST_URL/UPSTASH_REDIS_REST_TOKEN not set — falling back to in-memory limiting (per-instance only, resets on cold start).',
+        '[rate-limit] UPSTASH_REDIS_REST_KV_REST_API_URL/UPSTASH_REDIS_REST_KV_REST_API_READ_ONLY_TOKEN not set — falling back to in-memory limiting (per-instance only, resets on cold start).',
       )
       memoryWarned = true
     }
@@ -113,7 +113,7 @@ class MemorySlidingWindow {
   constructor(
     private readonly limit: number,
     private readonly windowMs: number,
-  ) {}
+  ) { }
 
   check(key: string): { success: boolean; retryAfter: number } {
     const now = Date.now()
