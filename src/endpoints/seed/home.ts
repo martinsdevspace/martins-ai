@@ -2,8 +2,8 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import type { Media } from '@/payload-types'
 
 type HomeArgs = {
-  heroImage: Media
-  metaImage: Media
+  heroImage?: Media
+  metaImage?: Media
 }
 
 export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> = ({
@@ -33,7 +33,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
           },
         },
       ],
-      media: heroImage.id,
+      ...(heroImage ? { media: heroImage.id } : {}),
       richText: {
         root: {
           type: 'root',
@@ -514,11 +514,15 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
           },
         ],
       },
-      {
-        blockName: 'Media Block',
-        blockType: 'mediaBlock',
-        media: metaImage.id,
-      },
+      ...(metaImage
+        ? [
+            {
+              blockName: 'Media Block',
+              blockType: 'mediaBlock' as const,
+              media: metaImage.id,
+            },
+          ]
+        : []),
       {
         blockName: 'Archive Block',
         blockType: 'archive',
@@ -675,7 +679,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
     ],
     meta: {
       description: 'An open-source website built with Payload and Next.js.',
-      image: heroImage.id,
+      ...(heroImage ? { image: heroImage.id } : {}),
       title: 'Payload Website Template',
     },
     title: 'Home',

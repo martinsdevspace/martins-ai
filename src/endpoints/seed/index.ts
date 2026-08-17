@@ -1,4 +1,4 @@
-import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest, File } from 'payload'
+import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest } from 'payload'
 
 import { aboutGlobal } from './about-global'
 import { caseStudies } from './case-studies'
@@ -6,16 +6,8 @@ import { contactForm as contactFormData } from './contact-form'
 import { newsletterForm as newsletterFormData } from './newsletter-form'
 import { contact as contactPageData } from './contact-page'
 import { home } from './home'
-import { image1 } from './image-1'
-import { image2 } from './image-2'
-import { imageHero1 } from './image-hero-1'
 import { industries } from './industries'
 import { nowGlobal } from './now-global'
-import { post1 } from './post-1'
-import { post2 } from './post-2'
-import { post3 } from './post-3'
-import { post4 } from './post-4'
-import { post5 } from './post-5'
 import { projects } from './projects'
 import { resumeGlobal } from './resume-global'
 import { services } from './services'
@@ -106,67 +98,32 @@ export const seed = async ({
     },
   })
 
-  payload.logger.info(`— Seeding media...`)
+  payload.logger.info(`— Seeding categories...`)
 
-  const [image1Buffer, image2Buffer, image3Buffer, hero1Buffer] = await Promise.all([
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post1.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post2.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-post3.webp',
-    ),
-    fetchFileByURL(
-      'https://raw.githubusercontent.com/payloadcms/payload/refs/heads/main/templates/website/src/endpoints/seed/image-hero1.webp',
-    ),
-  ])
+  const [demoAuthor, categoryDocs] =
+    await Promise.all([
+      payload.create({
+        collection: 'users',
+        data: {
+          name: 'Demo Author',
+          email: 'demo-author@example.com',
+          password: 'password',
+        },
+      }),
+      Promise.all(
+        categories.map((category) =>
+          payload.create({
+            collection: 'categories',
+            data: {
+              title: category,
+              slug: category,
+            },
+          }),
+        ),
+      ),
+    ])
 
-   const [demoAuthor, image1Doc, image2Doc, image3Doc, imageHomeDoc, categoryDocs] =
-     await Promise.all([
-       payload.create({
-         collection: 'users',
-         data: {
-           name: 'Demo Author',
-           email: 'demo-author@example.com',
-           password: 'password',
-         },
-       }),
-       payload.create({
-         collection: 'media',
-         data: image1,
-         file: image1Buffer,
-       }),
-       payload.create({
-         collection: 'media',
-         data: image2,
-         file: image2Buffer,
-       }),
-       payload.create({
-         collection: 'media',
-         data: image2,
-         file: image3Buffer,
-       }),
-       payload.create({
-         collection: 'media',
-         data: imageHero1,
-         file: hero1Buffer,
-       }),
-       Promise.all(
-         categories.map((category) =>
-           payload.create({
-             collection: 'categories',
-             data: {
-               title: category,
-               slug: category,
-             },
-           }),
-         ),
-       ),
-     ])
-
-   const [aiAgentsCat, paymentsCat, architectureCat, engineeringCat] = categoryDocs
+  const [aiAgentsCat, paymentsCat, architectureCat, engineeringCat] = categoryDocs
 
 payload.logger.info(`— Seeding insights...`)
 
@@ -374,7 +331,7 @@ payload.logger.info(`— Seeding insights...`)
       context: {
         disableRevalidate: true,
       },
-      data: home({ heroImage: imageHomeDoc, metaImage: image2Doc }),
+      data: home({}),
     }),
     payload.create({
       collection: 'pages',
@@ -727,24 +684,4 @@ payload.logger.info(`— Seeding insights...`)
   ])
 
   payload.logger.info('Seeded database successfully!')
-}
-
-async function fetchFileByURL(url: string): Promise<File> {
-  const res = await fetch(url, {
-    credentials: 'include',
-    method: 'GET',
-  })
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch file from ${url}, status: ${res.status}`)
-  }
-
-  const data = await res.arrayBuffer()
-
-  return {
-    name: url.split('/').pop() || `file-${Date.now()}`,
-    data: Buffer.from(data),
-    mimetype: `image/${url.split('.').pop()}`,
-    size: data.byteLength,
-  }
 }
