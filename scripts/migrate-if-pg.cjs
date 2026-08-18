@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Conditionally runs `payload migrate` only when DATABASE_URL points to a
- * real Postgres database (not a local SQLite file). This keeps the build
+ * Conditionally runs `payload migrate` + seed only when DATABASE_URL points
+ * to a real Postgres database (not a local SQLite file). This keeps the build
  * script simple and cross-platform.
  */
 const { execSync } = require('child_process')
@@ -15,3 +15,6 @@ if (!url || url.startsWith('file:')) {
 
 console.log(`[migrate-if-pg] DATABASE_URL detected (${url.split('@')[1]?.split('?')[0] || 'postgres'}) — running payload migrate…`)
 execSync('payload migrate', { stdio: 'inherit', env: process.env })
+
+console.log('[migrate-if-pg] Running seed (skips if DB already has data)…')
+execSync('npx tsx scripts/seed.ts', { stdio: 'inherit', env: process.env })

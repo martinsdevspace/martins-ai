@@ -4,7 +4,8 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { searchPlugin } from '@payloadcms/plugin-search'
-import { Plugin } from 'payload'
+import { Plugin, UnauthorizedError, type CollectionSlug } from 'payload'
+import { getAccessResults, type SanitizedPermissions } from 'payload'
 import { revalidateRedirects } from '@/hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL, GenerateDescription } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
@@ -14,6 +15,8 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { Insight, Page } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 import { lexicalToPlainText, truncateForMeta } from '@/utilities/lexicalToPlainText'
+
+import { jwtVerify } from 'jose'
 
 const generateTitle: GenerateTitle<Insight | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Martin's AI` : "Martin's AI"
@@ -169,7 +172,76 @@ export const plugins: Plugin[] = [
       now: { description: '"Now" page content.', tools: { update: false } },
       resume: { description: 'Resume/CV content.', tools: { update: false } },
       uses: { description: '"Uses" page content (tools, gear, setup).', tools: { update: false } },
-    }
+    },
+    overrideGetAuthorizedMCP: async ({ overrideAccess, pluginConfig, req }) => {
+      const headers = req.headers
+      const authHeader =
+        headers instanceof Headers
+          ? headers.get('Authorization')
+          : (headers as Record<string, string | undefined>)?.authorization
+      const hasAuthorization = !!authHeader
+
+      if (authHeader) {
+        const token = authHeader.startsWith('JWT ')
+          ? authHeader.slice(4)
+          : authHeader.startsWith('Bearer ')
+            ? authHeader.slice(7)
+            : null
+
+        if (token) {
+          try {
+            const { payload: claims } = await jwtVerify(
+              token,
+              new TextEncoder().encode(req.payload.secret),
+            )
+            const { id, collection } = claims as { id: string; collection: CollectionSlug }
+            const user = await req.payload.findByID({
+              id,
+              collection,
+              overrideAccess: true,
+              depth: 0,
+            })
+            if (user) {
+              ;(req as any).user = { ...user, collection }
+            }
+          } catch {
+            // Token verification failed — req.user stays null
+          }
+        }
+
+        if (hasAuthorization && !req.user) {
+          throw new UnauthorizedError(req.t)
+        }
+      }
+
+      // Filter items by per-item access when overrideAccess is off
+      if (overrideAccess) {
+        return { items: pluginConfig.items, overrideAccess }
+      }
+
+      const permissions = await getAccessResults({ req }) as SanitizedPermissions
+      const authorizedItems = []
+      for (const item of pluginConfig.items) {
+        if (item.type !== 'collectionTool' && item.type !== 'globalTool' && item.type !== 'tool') {
+          authorizedItems.push(item)
+          continue
+        }
+        if (!item.tool.access) {
+          authorizedItems.push(item)
+          continue
+        }
+        const accessArgs: Record<string, unknown> = { permissions, req }
+        if (item.type === 'collectionTool') {
+          accessArgs.collectionSlug = item.collectionSlug
+        } else if (item.type === 'globalTool') {
+          accessArgs.globalSlug = item.globalSlug
+        }
+        if (await item.tool.access(accessArgs as any)) {
+          authorizedItems.push(item)
+        }
+      }
+      return { items: authorizedItems, overrideAccess }
+    },
   }),
   redirectsPlugin({
     collections: ['pages', 'insights'],

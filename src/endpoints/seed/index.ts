@@ -61,67 +61,56 @@ export const seed = async ({
   payload.logger.info(`— Clearing collections and globals...`)
 
   // clear the database
-  await Promise.all(
-    globals.map((global) =>
-      payload.updateGlobal({
-        slug: global,
-        data: {
-          navItems: [],
-        },
-        depth: 0,
-        context: {
-          disableRevalidate: true,
-        },
-      }),
-    ),
-  )
+  for (const global of globals) {
+    await payload.updateGlobal({
+      slug: global,
+      data: { navItems: [] },
+      depth: 0,
+      context: { disableRevalidate: true },
+    })
+  }
 
-  await Promise.all(
-    collections.map((collection) => payload.db.deleteMany({ collection, req, where: {} })),
-  )
+  for (const collection of collections) {
+    await payload.db.deleteMany({ collection, req, where: {} })
+  }
 
-  await Promise.all(
-    collections
-      .filter((collection) => Boolean(payload.collections[collection].config.versions))
-      .map((collection) => payload.db.deleteVersions({ collection, req, where: {} })),
-  )
+  for (const collection of collections) {
+    if (payload.collections[collection].config.versions) {
+      await payload.db.deleteVersions({ collection, req, where: {} })
+    }
+  }
 
-  payload.logger.info(`— Seeding demo author and user...`)
+  payload.logger.info(`— Seeding admin user...`)
 
   await payload.delete({
     collection: 'users',
     depth: 0,
     where: {
       email: {
-        equals: 'demo-author@example.com',
+        equals: 'hello@martinsai.name.ng',
       },
     },
   })
 
   payload.logger.info(`— Seeding categories...`)
 
-  const [demoAuthor, categoryDocs] =
-    await Promise.all([
-      payload.create({
-        collection: 'users',
-        data: {
-          name: 'Demo Author',
-          email: 'demo-author@example.com',
-          password: 'password',
-        },
-      }),
-      Promise.all(
-        categories.map((category) =>
-          payload.create({
-            collection: 'categories',
-            data: {
-              title: category,
-              slug: category,
-            },
-          }),
-        ),
-      ),
-    ])
+  const adminUser = await payload.create({
+    collection: 'users',
+    data: {
+      name: 'Martins Michael',
+      email: 'hello@martinsai.name.ng',
+      password: 'Youhear5xmore.',
+    },
+  })
+
+  const categoryDocs = []
+  for (const category of categories) {
+    const doc = await payload.create({
+      collection: 'categories',
+      data: { title: category, slug: category },
+    })
+    categoryDocs.push(doc)
+  }
 
   const [aiAgentsCat, paymentsCat, architectureCat, engineeringCat] = categoryDocs
 
@@ -253,7 +242,7 @@ payload.logger.info(`— Seeding insights...`)
     industryDocs.push(doc)
   }
 
-  payload.logger.info(`— Seeding projects, services, testimonials in parallel...`)
+  payload.logger.info(`— Seeding projects, services, testimonials sequentially...`)
 
   const projectIndustries: Record<string, string> = {
     'aurora-ledger': 'fintech',
@@ -264,97 +253,77 @@ payload.logger.info(`— Seeding insights...`)
     'relay-gateway': 'logistics',
   }
 
-  const [projectDocs, serviceDocs, testimonialDocs] = await Promise.all([
-    // Projects — depend on industry IDs
-    Promise.all(
-      projects.map((project) => {
-        const industry = industryDocs.find((i) => i.slug === projectIndustries[project.slug])
-        return payload.create({
-          collection: 'projects',
-          depth: 0,
-          context: {
-            disableRevalidate: true,
-          },
-          data: {
-            ...project,
-            industry: industry ? industry.id : undefined,
-          },
-        })
-      }),
-    ),
-    // Services — no dependencies
-    Promise.all(
-      services.map((service) =>
-        payload.create({
-          collection: 'services',
-          depth: 0,
-          context: {
-            disableRevalidate: true,
-          },
-          data: service,
-        }),
-      ),
-    ),
-    // Testimonials — no dependencies
-    Promise.all(
-      testimonials.map((testimonial) =>
-        payload.create({
-          collection: 'testimonials',
-          depth: 0,
-          context: {
-            disableRevalidate: true,
-          },
-          data: testimonial,
-        }),
-      ),
-    ),
-  ])
+  // Projects — depend on industry IDs
+  const projectDocs = []
+  for (const project of projects) {
+    const industry = industryDocs.find((i) => i.slug === projectIndustries[project.slug])
+    const doc = await payload.create({
+      collection: 'projects',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: { ...project, industry: industry ? industry.id : undefined },
+    })
+    projectDocs.push(doc)
+  }
+
+  // Services — no dependencies
+  const serviceDocs = []
+  for (const service of services) {
+    const doc = await payload.create({
+      collection: 'services',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: service,
+    })
+    serviceDocs.push(doc)
+  }
+
+  // Testimonials — no dependencies
+  const testimonialDocs = []
+  for (const testimonial of testimonials) {
+    const doc = await payload.create({
+      collection: 'testimonials',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: testimonial,
+    })
+    testimonialDocs.push(doc)
+  }
 
   payload.logger.info(`— Seeding case studies...`)
 
-  await Promise.all(
-    caseStudies(projectDocs).map((caseStudy) =>
-      payload.create({
-        collection: 'case-studies',
-        depth: 0,
-        context: {
-          disableRevalidate: true,
-        },
-        data: caseStudy,
-      }),
-    ),
-  )
+payload.logger.info(`— Seeding case studies...`)
+
+  for (const caseStudy of caseStudies(projectDocs)) {
+    await payload.create({
+      collection: 'case-studies',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: caseStudy,
+    })
+  }
 
   payload.logger.info(`— Seeding pages...`)
 
-  const [_, contactPage] = await Promise.all([
-    payload.create({
-      collection: 'pages',
-      depth: 0,
-      context: {
-        disableRevalidate: true,
-      },
-      data: home({}),
-    }),
-    payload.create({
-      collection: 'pages',
-      depth: 0,
-      context: {
-        disableRevalidate: true,
-      },
-      data: contactPageData({ contactForm: contactForm }),
-    }),
-  ])
+  await payload.create({
+    collection: 'pages',
+    depth: 0,
+    context: { disableRevalidate: true },
+    data: home({}),
+  })
+  await payload.create({
+    collection: 'pages',
+    depth: 0,
+    context: { disableRevalidate: true },
+    data: contactPageData({ contactForm }),
+  })
 
   payload.logger.info(`— Seeding globals...`)
 
-  await Promise.all([
-    payload.updateGlobal({
-      slug: 'site-settings',
-      context: {
-        disableRevalidate: true,
-      },
-      data: {
+  await payload.updateGlobal({
+    slug: 'site-settings',
+    context: { disableRevalidate: true },
+    data: {
         siteName: 'MARTINS_AI',
         name: 'Martins Michael',
         roles: [{ role: 'Full-Stack Developer' }, { role: 'AI Agent Architect' }],
@@ -523,41 +492,36 @@ payload.logger.info(`— Seeding insights...`)
         footerNote:
           'Full-Stack Developer & AI Agent Architect. Building production systems that handle real money, real users, and real scale.',
       },
-    }),
-    payload.updateGlobal({
-      slug: 'about',
-      context: {
-        disableRevalidate: true,
-      },
-      data: aboutGlobal(),
-    }),
-    payload.updateGlobal({
-      slug: 'resume',
-      context: {
-        disableRevalidate: true,
-      },
-      data: resumeGlobal(),
-    }),
-    payload.updateGlobal({
-      slug: 'uses',
-      context: {
-        disableRevalidate: true,
-      },
-      data: usesGlobal(),
-    }),
-    payload.updateGlobal({
-      slug: 'now',
-      context: {
-        disableRevalidate: true,
-      },
-      data: nowGlobal(),
-    }),
-    payload.updateGlobal({
-      slug: 'header',
-      context: {
-        disableRevalidate: true,
-      },
-      data: {
+    })
+
+  await payload.updateGlobal({
+    slug: 'about',
+    context: { disableRevalidate: true },
+    data: aboutGlobal(),
+  })
+
+  await payload.updateGlobal({
+    slug: 'resume',
+    context: { disableRevalidate: true },
+    data: resumeGlobal(),
+  })
+
+  await payload.updateGlobal({
+    slug: 'uses',
+    context: { disableRevalidate: true },
+    data: usesGlobal(),
+  })
+
+  await payload.updateGlobal({
+    slug: 'now',
+    context: { disableRevalidate: true },
+    data: nowGlobal(),
+  })
+
+  await payload.updateGlobal({
+    slug: 'header',
+    context: { disableRevalidate: true },
+    data: {
         navItems: [
           {
             link: {
@@ -603,13 +567,12 @@ payload.logger.info(`— Seeding insights...`)
           },
         ],
       },
-    }),
-    payload.updateGlobal({
-      slug: 'footer',
-      context: {
-        disableRevalidate: true,
-      },
-      data: {
+    })
+
+  await payload.updateGlobal({
+    slug: 'footer',
+    context: { disableRevalidate: true },
+    data: {
         navItems: [
           {
             link: {
@@ -683,8 +646,7 @@ payload.logger.info(`— Seeding insights...`)
           },
         ],
       },
-    }),
-  ])
+    })
 
   payload.logger.info('Seeded database successfully!')
 }
