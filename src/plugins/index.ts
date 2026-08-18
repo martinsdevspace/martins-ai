@@ -169,7 +169,7 @@ export const plugins: Plugin[] = [
       now: { description: '"Now" page content.', tools: { update: false } },
       resume: { description: 'Resume/CV content.', tools: { update: false } },
       uses: { description: '"Uses" page content (tools, gear, setup).', tools: { update: false } },
-    },
+    }
   }),
   redirectsPlugin({
     collections: ['pages', 'insights'],

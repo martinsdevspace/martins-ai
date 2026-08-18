@@ -12,10 +12,16 @@
 import { SignJWT } from 'jose'
 import { loadEnv } from 'payload/node'
 import { createClient } from '@libsql/client'
+import crypto from 'node:crypto'
 import path from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
 
 const TOKEN_EXPIRATION = 31536000 // 1 year in seconds
+
+// Replicate Payload's deriveSecretKey so the JWT signature matches
+// what payload.secret holds at runtime (see packages/payload/src/auth/crypto.ts).
+const deriveSecretKey = (secret: string) =>
+  crypto.createHash('sha256').update(secret).digest('hex').slice(0, 32)
 
 async function main() {
   loadEnv()
@@ -46,7 +52,8 @@ async function main() {
 
   const email = result.rows.length > 0 ? String(result.rows[0].email) : 'unknown'
 
-  const secretKey = new TextEncoder().encode(secret)
+  // Use the derived key that Payload uses internally, not the raw PAYLOAD_SECRET
+  const secretKey = new TextEncoder().encode(deriveSecretKey(secret))
   const issuedAt = Math.floor(Date.now() / 1000)
   const exp = issuedAt + TOKEN_EXPIRATION
 

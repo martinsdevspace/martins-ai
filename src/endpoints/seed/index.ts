@@ -240,7 +240,7 @@ payload.logger.info(`— Seeding insights...`)
 
   payload.logger.info(`— Seeding industries...`)
 
-  const industryDocs = []
+  const industryDocs: Array<{ id: number; slug?: string | null }> = []
   for (const industry of industries) {
     const doc = await payload.create({
       collection: 'industries',
@@ -253,7 +253,7 @@ payload.logger.info(`— Seeding insights...`)
     industryDocs.push(doc)
   }
 
-  payload.logger.info(`— Seeding projects...`)
+  payload.logger.info(`— Seeding projects, services, testimonials in parallel...`)
 
   const projectIndustries: Record<string, string> = {
     'aurora-ledger': 'fintech',
@@ -264,63 +264,66 @@ payload.logger.info(`— Seeding insights...`)
     'relay-gateway': 'logistics',
   }
 
-  const projectDocs = []
-  for (const project of projects) {
-    const industry = industryDocs.find((i) => i.slug === projectIndustries[project.slug])
-    const doc = await payload.create({
-      collection: 'projects',
-      depth: 0,
-      context: {
-        disableRevalidate: true,
-      },
-      data: {
-        ...project,
-        industry: industry ? industry.id : undefined,
-      },
-    })
-    projectDocs.push(doc)
-  }
-
-  payload.logger.info(`— Seeding services...`)
-
-  const serviceDocs = []
-  for (const service of services) {
-    const doc = await payload.create({
-      collection: 'services',
-      depth: 0,
-      context: {
-        disableRevalidate: true,
-      },
-      data: service,
-    })
-    serviceDocs.push(doc)
-  }
+  const [projectDocs, serviceDocs, testimonialDocs] = await Promise.all([
+    // Projects — depend on industry IDs
+    Promise.all(
+      projects.map((project) => {
+        const industry = industryDocs.find((i) => i.slug === projectIndustries[project.slug])
+        return payload.create({
+          collection: 'projects',
+          depth: 0,
+          context: {
+            disableRevalidate: true,
+          },
+          data: {
+            ...project,
+            industry: industry ? industry.id : undefined,
+          },
+        })
+      }),
+    ),
+    // Services — no dependencies
+    Promise.all(
+      services.map((service) =>
+        payload.create({
+          collection: 'services',
+          depth: 0,
+          context: {
+            disableRevalidate: true,
+          },
+          data: service,
+        }),
+      ),
+    ),
+    // Testimonials — no dependencies
+    Promise.all(
+      testimonials.map((testimonial) =>
+        payload.create({
+          collection: 'testimonials',
+          depth: 0,
+          context: {
+            disableRevalidate: true,
+          },
+          data: testimonial,
+        }),
+      ),
+    ),
+  ])
 
   payload.logger.info(`— Seeding case studies...`)
 
-  for (const caseStudy of caseStudies(projectDocs)) {
-    await payload.create({
-      collection: 'case-studies',
-      depth: 0,
-      context: {
-        disableRevalidate: true,
-      },
-      data: caseStudy,
-    })
-  }
-
-  payload.logger.info(`— Seeding testimonials...`)
-
-  for (const testimonial of testimonials) {
-    await payload.create({
-      collection: 'testimonials',
-      depth: 0,
-      context: {
-        disableRevalidate: true,
-      },
-      data: testimonial,
-    })
-  }
+  await Promise.all(
+    caseStudies(projectDocs).map((caseStudy) =>
+      payload.create({
+        collection: 'case-studies',
+        depth: 0,
+        context: {
+          disableRevalidate: true,
+        },
+        data: caseStudy,
+      }),
+    ),
+  )
 
   payload.logger.info(`— Seeding pages...`)
 
