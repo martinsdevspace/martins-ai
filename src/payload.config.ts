@@ -27,6 +27,7 @@ import { SiteSettings } from './globals/SiteSettings'
 import { Uses } from './globals/Uses'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
+import { generateMcpToken } from './utilities/generateMcpToken'
 import { getServerSideURL } from './utilities/getURL'
 import { upstashKVAdapter } from './adapters/upstash.kv'
 
@@ -36,6 +37,8 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     components: {
+      // Renders an MCP access token generator + copy button on the dashboard.
+      beforeDashboard: ['@/components/McpToken'],
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
       // beforeLogin: ['@/components/BeforeLogin'],
@@ -112,6 +115,30 @@ export default buildConfig({
     Users,
   ],
   cors: [getServerSideURL()].filter(Boolean),
+  endpoints: [
+    {
+      // Generates a signed JWT for MCP server access (POST /api/mcp-token).
+      // Requires an authenticated admin user.
+      method: 'post',
+      path: '/mcp-token',
+      handler: async (req) => {
+        if (!req.user) {
+          return Response.json({ error: 'Unauthorized.' }, { status: 401 })
+        }
+
+        const { expiresAt, token } = await generateMcpToken({
+          id: req.user.id,
+          email: req.user.email,
+        })
+
+        return Response.json({
+          email: req.user.email,
+          expiresAt,
+          token: `JWT ${token}`,
+        })
+      },
+    },
+  ],
   globals: [Header, Footer, SiteSettings, About, Resume, Uses, Now],
   email:
     process.env.NODE_ENV === 'production'
