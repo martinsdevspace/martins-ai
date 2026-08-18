@@ -42,57 +42,50 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(dirname),
   },
-  // use in production only
-  // async headers() {
-  //   // Baseline hardening headers applied to every response, including the
-  //   // Payload admin panel and API routes — none of these constrain script
-  //   // sources, so they're safe to apply everywhere.
-  //   const baselineHeaders = [
-  //     { key: 'X-Content-Type-Options', value: 'nosniff' },
-  //     { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-  //     { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-  //     {
-  //       key: 'Permissions-Policy',
-  //       value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
-  //     },
-  //     {
-  //       key: 'Strict-Transport-Security',
-  //       value: 'max-age=63072000; includeSubDomains; preload',
-  //     },
-  //   ]
+  ...(process.env.NODE_ENV === 'production' && {
+    async headers() {
+      const baselineHeaders = [
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+        { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        {
+          key: 'Permissions-Policy',
+          value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+        },
+        {
+          key: 'Strict-Transport-Security',
+          value: 'max-age=63072000; includeSubDomains; preload',
+        },
+      ]
 
-  //   return [
-  //     {
-  //       source: '/:path*',
-  //       headers: baselineHeaders,
-  //     },
-  //     {
-  //       // A stricter Content-Security-Policy for the public marketing/
-  //       // content routes only. Deliberately excluded from /admin and /api
-  //       // — Payload's admin bundle needs a more permissive script/style
-  //       // policy, and a mismatched CSP there breaks the CMS editor rather
-  //       // than protecting anything.
-  //       source:
-  //         '/((?!admin|api|_next/static|_next/image|favicon.ico|favicon.svg).*)',
-  //       headers: [
-  //         {
-  //           key: 'Content-Security-Policy',
-  //           value: [
-  //             "default-src 'self'",
-  //             "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
-  //             "style-src 'self' 'unsafe-inline'",
-  //             "img-src 'self' data: blob: https:",
-  //             "font-src 'self' data:",
-  //             "connect-src 'self' https://vitals.vercel-insights.com",
-  //             "frame-ancestors 'self'",
-  //             "base-uri 'self'",
-  //             "form-action 'self'",
-  //           ].join('; '),
-  //         },
-  //       ],
-  //     },
-  //   ]
-  // },
+      return [
+        {
+          source: '/:path*',
+          headers: baselineHeaders,
+        },
+        {
+          source:
+            '/((?!admin|api|_next/static|_next/image|favicon.ico|favicon.svg).*)',
+          headers: [
+            {
+              key: 'Content-Security-Policy',
+              value: [
+                "default-src 'self'",
+                "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
+                "style-src 'self' 'unsafe-inline'",
+                "img-src 'self' data: blob: https:",
+                "font-src 'self' data:",
+                "connect-src 'self' https://vitals.vercel-insights.com",
+                "frame-ancestors 'self'",
+                "base-uri 'self'",
+                "form-action 'self'",
+              ].join('; '),
+            },
+          ],
+        },
+      ]
+    },
+  }),
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })
