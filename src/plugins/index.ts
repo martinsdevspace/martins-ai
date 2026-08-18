@@ -124,11 +124,9 @@ export const plugins: Plugin[] = [
           getCollectionSchema: false,
           getUploadInstructions: false,
           update: false,
-          // Auth tools (auth/forgotPassword/login/resetPassword/unlock/verify)
-          // are opt-IN on `MCPAuthCollectionToolsMap` — only `true` or an
-          // override object is valid, not `false`. They're simply absent
-          // from every collection's tool map unless explicitly turned on,
-          // so `users` never gets them without deliberate action elsewhere.
+          // Auth tools are opt-IN — only `true` or an override object is valid.
+          // Enable login for interactive MCP use and token generation.
+          login: true,
         },
       },
       'form-submissions': {

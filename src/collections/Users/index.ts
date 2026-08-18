@@ -15,7 +15,9 @@ export const Users: CollectionConfig = {
     defaultColumns: ['name', 'email'],
     useAsTitle: 'name',
   },
-  auth: true,
+  auth: {
+    tokenExpiration: 2592000, // 30 days — extends default 2h for MCP + admin sessions
+  },
   fields: [
     {
       name: 'name',

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "payload": {
+      "type": "remote",
+      "url": "{env:NEXT_PUBLIC_SERVER_URL}/api/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "{env:PAYLOAD_MCP_AUTHORIZATION}"
+      }
+    }
+  }
+}
