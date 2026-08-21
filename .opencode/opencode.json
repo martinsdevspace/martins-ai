@@ -3,10 +3,10 @@
   "mcp": {
     "payload": {
       "type": "remote",
-      "url": "{env:NEXT_PUBLIC_SERVER_URL}/api/mcp",
+      "url": "https://martinsai.name.ng/api/mcp",
       "enabled": true,
       "headers": {
-        "Authorization": "{env:PAYLOAD_MCP_AUTHORIZATION}"
+        "Authorization": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkiLCJjb2xsZWN0aW9uIjoidXNlcnMiLCJlbWFpbCI6ImhlbGxvQG1hcnRpbnNhaS5uYW1lLm5nIiwiaWF0IjoxNzg3MDU3Njk2LCJleHAiOjE4MTg1OTM2OTZ9.mR0lc0LrVP1o6k1bvZgBNjTKgC8uU63ZhY2z-P6p3BQ"
       }
     }
   }

@@ -66,44 +66,44 @@ function findFirstContentBlock(layout: Page['layout'] | undefined) {
 export const plugins: Plugin[] = [
   mcpPlugin({
     collections: {
-      // Public content — safe for an MCP client to read, but never to
-      // write or delete via the protocol. Payload's own access control
-      // still applies underneath this on top of these tool-level gates.
+      // Public content — MCP clients can read, create, update, and delete.
+      // Payload's own access control still applies underneath these tool-level gates.
+      // duplicate and restoreVersion are explicitly disabled.
       insights: {
         description: 'Articles, guides and essays published on the site.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false, restoreVersion: false },
       },
       projects: {
         description: 'Production products and systems built.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false, restoreVersion: false },
       },
       services: {
         description: 'Professional services offered.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false, restoreVersion: false },
       },
       industries: {
         description: 'Industry verticals served.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false, restoreVersion: false },
       },
       'case-studies': {
         description: 'Detailed project case studies.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false, restoreVersion: false },
       },
       pages: {
         description: 'Content pages.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false, restoreVersion: false },
       },
       categories: {
         description: 'Categories used to group insights.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false },
       },
       testimonials: {
         description: 'Client testimonials displayed on the site.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false, restoreVersion: false },
       },
       media: {
         description: 'Media library.',
-        tools: { create: false, update: false, delete: false },
+        tools: { duplicate: false, getUploadInstructions: false },
       },
       // Payload v4's plugin-mcp exposes every collection with full CRUD
       // by default (opt-out model). A prior pass here tried to disable
@@ -164,14 +164,11 @@ export const plugins: Plugin[] = [
       },
     },
     globals: {
-      'site-settings': {
-        description: 'Global site settings and identity.',
-        tools: { update: false },
-      },
-      about: { description: 'About page content.', tools: { update: false } },
-      now: { description: '"Now" page content.', tools: { update: false } },
-      resume: { description: 'Resume/CV content.', tools: { update: false } },
-      uses: { description: '"Uses" page content (tools, gear, setup).', tools: { update: false } },
+      'site-settings': { description: 'Global site settings and identity.' },
+      about: { description: 'About page content.' },
+      now: { description: '"Now" page content.' },
+      resume: { description: 'Resume/CV content.' },
+      uses: { description: '"Uses" page content (tools, gear, setup).' },
     },
     overrideGetAuthorizedMCP: async ({ overrideAccess, pluginConfig, req }) => {
       const headers = req.headers
