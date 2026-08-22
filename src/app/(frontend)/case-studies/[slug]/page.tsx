@@ -51,7 +51,7 @@ export default async function CaseStudyPage({ params: paramsPromise }: Args) {
   ].filter((f): f is DetailSidebarFact => Boolean(f))
 
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       {draft && <LivePreviewListener />}
 
       <Link
@@ -64,84 +64,84 @@ export default async function CaseStudyPage({ params: paramsPromise }: Args) {
 
       <div className="mt-10 grid grid-cols-1 gap-16 lg:grid-cols-[1fr_320px]">
         <div className="min-w-0">
-      <div className="flex flex-wrap items-center gap-2 font-mono-label">
-        {caseStudy.category ? (
-          <span className="border border-synthesis/40 bg-synthesis/10 px-2 py-1 text-synthesis">
-            {caseStudy.category}
-          </span>
-        ) : null}
-        {caseStudy.industry ? (
-          <span className="border border-border px-2 py-1 text-muted-foreground">
-            {caseStudy.industry}
-          </span>
-        ) : null}
-      </div>
-
-      <h1 className="mt-4 max-w-4xl font-heading text-4xl md:text-6xl font-light tracking-tight text-balance">
-        {caseStudy.client}
-      </h1>
-
-      {caseStudy.whyItMatters ? (
-        <blockquote className="mt-8 max-w-3xl border-l-2 border-synthesis pl-6">
-          <p className="font-heading text-2xl font-light leading-relaxed text-foreground/90">
-            {caseStudy.whyItMatters}
-          </p>
-        </blockquote>
-      ) : null}
-
-      {metrics.length > 0 ? (
-        <div className="mt-10 grid grid-cols-3 divide-x divide-border border border-border max-w-3xl">
-          {metrics.map((m, i) => (
-            <div key={i} className="px-4 py-5 flex flex-col gap-1">
-              <span className="font-heading text-2xl text-synthesis">{m.value}</span>
-              <span className="font-mono-label text-muted-foreground text-[10px]">{m.label}</span>
-            </div>
-          ))}
-        </div>
-      ) : null}
-
-      {narrative.length > 0 ? (
-        <section className="mt-16 flex max-w-3xl flex-col gap-4">
-          {narrative.map((item) => (
-            <div key={item.label} className="border border-border bg-card p-6">
-              <h2 className="font-mono-label text-synthesis mb-2">// {item.label}</h2>
-              <p className="text-base leading-relaxed text-foreground/80">{item.body}</p>
-            </div>
-          ))}
-        </section>
-      ) : null}
-
-      {tags.length > 0 ? (
-        <div className="mt-16">
-          <p className="font-mono-label text-muted-foreground mb-3">TAGS</p>
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span key={tag} className="border border-border px-3 py-1.5 font-mono-label text-muted-foreground">
-                {tag}
+          <div className="flex flex-wrap items-center gap-2 font-mono-label">
+            {caseStudy.category ? (
+              <span className="border border-synthesis/40 bg-synthesis/10 px-2 py-1 text-synthesis">
+                {caseStudy.category}
               </span>
-            ))}
+            ) : null}
+            {caseStudy.industry ? (
+              <span className="border border-border px-2 py-1 text-muted-foreground">
+                {caseStudy.industry}
+              </span>
+            ) : null}
           </div>
-        </div>
-      ) : null}
 
-      <div className="mt-16 flex flex-wrap items-center gap-3">
-        {project ? (
-          <Link
-            href={`/works/${project.slug}`}
-            className="inline-flex items-center gap-2 border border-border px-5 py-2.5 font-mono-label text-foreground hover:border-synthesis hover:text-synthesis transition-colors"
-          >
-            Related project: {project.name}
-            <IconArrowUpRight className="h-4 w-4" />
-          </Link>
-        ) : null}
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 bg-foreground px-5 py-2.5 font-mono-label text-background hover:bg-synthesis transition-colors"
-        >
-          Start a similar project
-          <IconArrowUpRight className="h-4 w-4" />
-        </Link>
-      </div>
+          <h1 className="mt-4 max-w-4xl font-heading text-4xl md:text-6xl font-light tracking-tight text-balance">
+            {caseStudy.client}
+          </h1>
+
+          {caseStudy.whyItMatters ? (
+            <blockquote className="mt-8 max-w-3xl border-l-2 border-synthesis pl-6">
+              <p className="font-heading text-2xl font-light leading-relaxed text-foreground/90">
+                {caseStudy.whyItMatters}
+              </p>
+            </blockquote>
+          ) : null}
+
+          {metrics.length > 0 ? (
+            <div className="mt-10 grid grid-cols-3 divide-x divide-border border border-border max-w-3xl">
+              {metrics.map((m, i) => (
+                <div key={i} className="px-4 py-5 flex flex-col gap-1">
+                  <span className="font-heading text-2xl text-synthesis">{m.value}</span>
+                  <span className="font-mono-label text-muted-foreground text-[10px]">{m.label}</span>
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          {narrative.length > 0 ? (
+            <section className="mt-16 flex max-w-3xl flex-col gap-4">
+              {narrative.map((item) => (
+                <div key={item.label} className="border border-border bg-card p-6">
+                  <h2 className="font-mono-label text-synthesis mb-2">// {item.label}</h2>
+                  <p className="text-base leading-relaxed text-foreground/80">{item.body}</p>
+                </div>
+              ))}
+            </section>
+          ) : null}
+
+          {tags.length > 0 ? (
+            <div className="mt-16">
+              <p className="font-mono-label text-muted-foreground mb-3">TAGS</p>
+              <div className="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span key={tag} className="border border-border px-3 py-1.5 font-mono-label text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          <div className="mt-16 flex flex-wrap items-center gap-3">
+            {project ? (
+              <Link
+                href={`/works/${project.slug}`}
+                className="inline-flex items-center gap-2 border border-border px-5 py-2.5 font-mono-label text-foreground hover:border-synthesis hover:text-synthesis transition-colors"
+              >
+                Related project: {project.name}
+                <IconArrowUpRight className="h-4 w-4" />
+              </Link>
+            ) : null}
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-foreground px-5 py-2.5 font-mono-label text-background hover:bg-synthesis transition-colors"
+            >
+              Start a similar project
+              <IconArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
 
         <DetailSidebar

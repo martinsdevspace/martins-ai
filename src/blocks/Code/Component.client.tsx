@@ -1,7 +1,19 @@
 'use client'
-import { Highlight, themes } from 'prism-react-renderer'
+import { Highlight, Prism, themes } from 'prism-react-renderer'
 import React from 'react'
 import { CopyButton } from './CopyButton'
+
+// Register additional Prism grammars on the same prismjs instance that
+// prism-react-renderer re-exports. The default bundle only ships a small
+// subset of languages; bash and php are added here so the Code block can
+// highlight them. Importing the component files attaches the grammar to the
+// shared Prism global.
+if (typeof globalThis !== 'undefined') {
+  // @ts-expect-error - prismjs mutates the global Prism instance
+  globalThis.Prism = Prism
+}
+import('prismjs/components/prism-bash')
+import('prismjs/components/prism-php')
 
 type Props = {
   code: string
@@ -15,6 +27,8 @@ const LANGUAGE_LABELS: Record<string, string> = {
   css: 'CSS',
   python: 'Python',
   sql: 'SQL',
+  bash: 'Bash',
+  php: 'PHP',
 }
 
 function titleFor(blockName: string | undefined, language: string): string {
@@ -27,7 +41,7 @@ export const Code: React.FC<Props> = ({ code, language = '', blockName }) => {
   if (!code) return null
 
   return (
-    <Highlight code={code} language={language} theme={themes.vsDark}>
+    <Highlight Prism={Prism} code={code} language={language} theme={themes.vsDark}>
       {({ getLineProps, getTokenProps, tokens }) => (
         <div className="overflow-hidden rounded border border-border bg-black">
           <div className="flex items-center gap-2 border-b border-white/10 bg-[#1e1e1e] px-3 py-2">

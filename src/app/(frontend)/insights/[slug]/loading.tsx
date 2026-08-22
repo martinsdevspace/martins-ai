@@ -2,7 +2,7 @@ import { SkeletonBackLink, SkeletonBar } from '@/components/Skeleton'
 
 export default function Loading() {
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       <SkeletonBackLink />
 
       <header className="mt-10 max-w-3xl">

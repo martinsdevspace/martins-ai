@@ -2,7 +2,7 @@ import { SkeletonBackLink, SkeletonBar, SkeletonCard } from '@/components/Skelet
 
 export default function Loading() {
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       <SkeletonBackLink />
 
       <div className="mt-10 grid gap-10 lg:grid-cols-12">

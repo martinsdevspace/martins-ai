@@ -40,7 +40,7 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
   const solutions = industry.solutions?.map((s) => s.solution).filter((v): v is string => Boolean(v)) || []
 
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       {draft && <LivePreviewListener />}
 
       <Link

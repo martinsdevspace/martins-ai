@@ -12,7 +12,7 @@ export default async function NowPage() {
   const blocks = now.blocks?.filter((b) => b.label || b.title) || []
 
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       <div className="max-w-3xl">
         <div className="flex items-center gap-3">
           <SectionLabel className="mb-0">// — NOW</SectionLabel>

@@ -52,7 +52,7 @@ export default async function IndustriesPage() {
   }))
 
   return (
-    <article className="pb-8">
+    <article>
       <PageHero
         label="// 03 — VERTICALS"
         breadcrumbLabel="Industries"

@@ -6,11 +6,13 @@ import { contactForm as contactFormData } from './contact-form'
 import { newsletterForm as newsletterFormData } from './newsletter-form'
 import { contact as contactPageData } from './contact-page'
 import { home } from './home'
+import { homeGlobal } from './home-global'
 import { industries } from './industries'
 import { nowGlobal } from './now-global'
 import { projects } from './projects'
 import { resumeGlobal } from './resume-global'
 import { services } from './services'
+import { speakingGlobal } from './speaking-global'
 import { testimonials } from './testimonials'
 import { usesGlobal } from './uses-global'
 
@@ -332,10 +334,18 @@ payload.logger.info(`— Seeding case studies...`)
         location: 'Abuja, NG · Remote Worldwide',
         email: 'hello@martinsmichael.dev',
         calendlyUrl: 'https://calendly.com/martinsmichael/intro',
+        { label: 'X', url: 'https://x.com/martinsmichael' },
+        ],
         socials: [
           { label: 'GitHub', url: 'https://github.com/martinsmichael' },
           { label: 'LinkedIn', url: 'https://www.linkedin.com/in/martinsmichael' },
           { label: 'X', url: 'https://x.com/martinsmichael' },
+          { label: 'Medium', url: 'https://medium.com/@martinsmichael' },
+          { label: 'Hashnode', url: 'https://hashnode.com/@martinsmichael' },
+          { label: 'Daily.dev', url: 'https://daily.dev/@martinsmichael' },
+          { label: 'HackerNoon', url: 'https://hackernoon.com/@martinsmichael' },
+          { label: 'Dev.To', url: 'https://dev.to/@martinsmichael' },
+          { label: 'Cal.com', url: 'https://cal.com/martinsmichael' },
         ],
         heroHeadline:
           'I build AI agents\nthat handle real money, real users, and real scale.',
@@ -501,6 +511,18 @@ payload.logger.info(`— Seeding case studies...`)
   })
 
   await payload.updateGlobal({
+    slug: 'home',
+    context: { disableRevalidate: true },
+    data: homeGlobal(),
+  })
+
+  await payload.updateGlobal({
+    slug: 'speaking',
+    context: { disableRevalidate: true },
+    data: speakingGlobal(),
+  })
+
+  await payload.updateGlobal({
     slug: 'resume',
     context: { disableRevalidate: true },
     data: resumeGlobal(),
@@ -565,6 +587,13 @@ payload.logger.info(`— Seeding case studies...`)
               url: '/insights',
             },
           },
+          {
+            link: {
+              type: 'custom',
+              label: 'Speaking',
+              url: '/speaking',
+            },
+          },
         ],
       },
     })
@@ -614,6 +643,13 @@ payload.logger.info(`— Seeding case studies...`)
               type: 'custom',
               label: 'Insights',
               url: '/insights',
+            },
+          },
+          {
+            link: {
+              type: 'custom',
+              label: 'Speaking',
+              url: '/speaking',
             },
           },
           {

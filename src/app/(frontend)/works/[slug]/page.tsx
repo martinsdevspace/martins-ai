@@ -47,7 +47,7 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
   const codeSample = project.codeSample?.code ? project.codeSample : null
 
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       {draft && <LivePreviewListener />}
 
       <Link
@@ -77,9 +77,8 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
               {project.projectStatus ? (
                 <span className="inline-flex items-center gap-2 border border-border px-2 py-1">
                   <span
-                    className={`h-1.5 w-1.5 animate-pulse ${
-                      project.projectStatus === 'COMPLETED' ? 'bg-success' : 'bg-warning'
-                    }`}
+                    className={`h-1.5 w-1.5 animate-pulse ${project.projectStatus === 'COMPLETED' ? 'bg-success' : 'bg-warning'
+                      }`}
                   />
                   {project.projectStatus.replace('_', ' ')}
                 </span>

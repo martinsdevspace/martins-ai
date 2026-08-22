@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
 import { CaseStudies } from './collections/CaseStudies'
+import { Comments } from './collections/Comments'
 import { Industries } from './collections/Industries'
 import { Insights } from './collections/Insights'
 import { Leads } from './collections/Leads'
@@ -21,9 +22,11 @@ import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { About } from './globals/About'
+import { Home } from './globals/Home'
 import { Now } from './globals/Now'
 import { Resume } from './globals/Resume'
 import { SiteSettings } from './globals/SiteSettings'
+import { Speaking } from './globals/Speaking'
 import { Uses } from './globals/Uses'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
@@ -110,6 +113,7 @@ export default buildConfig({
     CaseStudies,
     Testimonials,
     Leads,
+    Comments,
     Media,
     Categories,
     Users,
@@ -139,7 +143,7 @@ export default buildConfig({
       },
     },
   ],
-  globals: [Header, Footer, SiteSettings, About, Resume, Uses, Now],
+  globals: [Header, Footer, SiteSettings, About, Home, Resume, Uses, Now, Speaking],
   email:
     process.env.NODE_ENV === 'production'
       ? resendAdapter({

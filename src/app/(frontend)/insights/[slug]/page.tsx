@@ -19,6 +19,7 @@ import { InsightsSidebar } from '@/components/insights/InsightsSidebar'
 import { NewsletterSection } from '@/components/NewsletterBlock/NewsletterSection'
 import { ReadingProgress } from '@/components/insights/ReadingProgress'
 import { CopyLinkButton } from '@/components/insights/CopyLinkButton'
+import { CommentsSection } from '@/components/Comments/CommentsSection'
 import { extractHeadings } from '@/utilities/extractHeadings'
 import { getCachedInsightsSidebarData } from '@/utilities/getInsightsSidebarData'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -50,11 +51,19 @@ type Args = {
   params: Promise<{
     slug?: string
   }>
+  searchParams: Promise<{
+    cpage?: string
+  }>
 }
 
-export default async function Insight({ params: paramsPromise }: Args) {
+export default async function Insight({
+  params: paramsPromise,
+  searchParams: searchParamsPromise,
+}: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug = '' } = await paramsPromise
+  const { cpage } = await searchParamsPromise
+  const commentsPage = cpage ? Number(cpage) : 1
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
   const url = '/insights/' + decodedSlug
@@ -112,7 +121,7 @@ export default async function Insight({ params: paramsPromise }: Args) {
   }
 
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       <ReadingProgress />
       <script
         type="application/ld+json"
@@ -204,6 +213,8 @@ export default async function Insight({ params: paramsPromise }: Args) {
               docs={insight.relatedPosts.filter((post) => typeof post === 'object')}
             />
           )}
+
+          <CommentsSection insight={insight} page={commentsPage} />
 
           <NewsletterSection className="-mx-5 mt-20 lg:mx-[-6vw]" />
         </div>

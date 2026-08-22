@@ -74,6 +74,19 @@ export type LexicalNodes_F30819D6 =
   | SerializedLinkNode<LexicalNodes_F30819D6, LexicalLinkFields>;
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LexicalNodes_F1434086".
+ */
+export type LexicalNodes_F1434086 =
+  | SerializedTextNode
+  | SerializedTabNode
+  | SerializedLineBreakNode
+  | SerializedParagraphNode<LexicalNodes_F1434086>
+  | SerializedHorizontalRuleNode
+  | SerializedHeadingNode<LexicalNodes_F1434086, 'h2' | 'h3' | 'h4'>
+  | SerializedAutoLinkNode<LexicalNodes_F1434086, LexicalLinkFields>
+  | SerializedLinkNode<LexicalNodes_F1434086, LexicalLinkFields>;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "LexicalNodes_106E6C8F".
  */
 export type LexicalNodes_106E6C8F =
@@ -121,19 +134,6 @@ export type LexicalNodes_2603BD92 =
   | SerializedHeadingNode<LexicalNodes_2603BD92, 'h1' | 'h2' | 'h3' | 'h4'>
   | SerializedAutoLinkNode<LexicalNodes_2603BD92, LexicalLinkFields>
   | SerializedLinkNode<LexicalNodes_2603BD92, LexicalLinkFields>;
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LexicalNodes_F1434086".
- */
-export type LexicalNodes_F1434086 =
-  | SerializedTextNode
-  | SerializedTabNode
-  | SerializedLineBreakNode
-  | SerializedParagraphNode<LexicalNodes_F1434086>
-  | SerializedHorizontalRuleNode
-  | SerializedHeadingNode<LexicalNodes_F1434086, 'h2' | 'h3' | 'h4'>
-  | SerializedAutoLinkNode<LexicalNodes_F1434086, LexicalLinkFields>
-  | SerializedLinkNode<LexicalNodes_F1434086, LexicalLinkFields>;
 
 export interface Config {
   auth: {
@@ -150,6 +150,7 @@ export interface Config {
     'case-studies': CaseStudy;
     testimonials: Testimonial;
     leads: Lead;
+    comments: Comment;
     media: Media;
     categories: Category;
     users: User;
@@ -174,6 +175,7 @@ export interface Config {
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     leads: LeadsSelect<false> | LeadsSelect<true>;
+    comments: CommentsSelect<false> | CommentsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -196,9 +198,11 @@ export interface Config {
     footer: Footer;
     'site-settings': SiteSetting;
     about: About;
+    home: Home;
     resume: Resume;
     uses: Use;
     now: Now;
+    speaking: Speaking;
     'payload-jobs-stats': PayloadJobsStat;
   };
   globalsSelect: {
@@ -206,9 +210,11 @@ export interface Config {
     footer: FooterSelect<false> | FooterSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
+    home: HomeSelect<false> | HomeSelect<true>;
     resume: ResumeSelect<false> | ResumeSelect<true>;
     uses: UsesSelect<false> | UsesSelect<true>;
     now: NowSelect<false> | NowSelect<true>;
+    speaking: SpeakingSelect<false> | SpeakingSelect<true>;
     'payload-jobs-stats': PayloadJobsStatsSelect<false> | PayloadJobsStatsSelect<true>;
   };
   locale: null;
@@ -1114,6 +1120,23 @@ export interface Lead {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comments".
+ */
+export interface Comment {
+  id: number;
+  insight: number | Insight;
+  author: string;
+  email: string;
+  content: string;
+  /**
+   * Only approved comments are shown publicly on the insight page.
+   */
+  approved?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1355,6 +1378,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'leads';
         value: number | Lead;
+      } | null)
+    | ({
+        relationTo: 'comments';
+        value: number | Comment;
       } | null)
     | ({
         relationTo: 'media';
@@ -1888,6 +1915,19 @@ export interface LeadsSelect<T extends boolean = true> {
   projectType?: T;
   source?: T;
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comments_select".
+ */
+export interface CommentsSelect<T extends boolean = true> {
+  insight?: T;
+  author?: T;
+  email?: T;
+  content?: T;
+  approved?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2492,12 +2532,31 @@ export interface SiteSetting {
  */
 export interface About {
   id: number;
+  layout?:
+    | (
+        | AboutHeroBlock
+        | OriginStoryBlock
+        | PhilosophyBlock
+        | TimelineBlock
+        | SkillsBlock
+        | BeyondCodeBlock
+        | CertificationsBlock
+      )[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutHeroBlock".
+ */
+export interface AboutHeroBlock {
   portrait?: (number | null) | Media;
   /**
    * About page headline, e.g. "The Architect Behind the Code."
    */
-  heroHeadline?: string | null;
-  intro?: LexicalRichText<LexicalNodes_F30819D6> | null;
+  headline?: string | null;
+  intro?: LexicalRichText<LexicalNodes_F1434086> | null;
   stats?:
     | {
         value?: string | null;
@@ -2505,10 +2564,28 @@ export interface About {
         id?: string | null;
       }[]
     | null;
-  originHeading?: string | null;
-  originStory?: LexicalRichText<LexicalNodes_F30819D6> | null;
-  valuesHeading?: string | null;
-  valuesIntro?: LexicalRichText<LexicalNodes_F30819D6> | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OriginStoryBlock".
+ */
+export interface OriginStoryBlock {
+  heading?: string | null;
+  content?: LexicalRichText<LexicalNodes_F1434086> | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'originStory';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PhilosophyBlock".
+ */
+export interface PhilosophyBlock {
+  heading?: string | null;
+  intro?: LexicalRichText<LexicalNodes_F1434086> | null;
   values?:
     | {
         /**
@@ -2520,8 +2597,17 @@ export interface About {
         id?: string | null;
       }[]
     | null;
-  timelineHeading?: string | null;
-  timeline?:
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'philosophy';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock".
+ */
+export interface TimelineBlock {
+  heading?: string | null;
+  items?:
     | {
         year?: string | null;
         title?: string | null;
@@ -2529,8 +2615,17 @@ export interface About {
         id?: string | null;
       }[]
     | null;
-  skillsHeading?: string | null;
-  skillCategories?:
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'timeline';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SkillsBlock".
+ */
+export interface SkillsBlock {
+  heading?: string | null;
+  categories?:
     | {
         name?: string | null;
         tools?: string | null;
@@ -2538,31 +2633,36 @@ export interface About {
         id?: string | null;
       }[]
     | null;
-  speakingHeading?: string | null;
-  speaking?:
-    | {
-        event?: string | null;
-        title?: string | null;
-        year?: string | null;
-        location?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'skills';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BeyondCodeBlock".
+ */
+export interface BeyondCodeBlock {
+  heading?: string | null;
   /**
-   * e.g. "Beyond the code."
+   * Short personal paragraphs — interests, hobbies, the human side.
    */
-  beyondCodeHeading?: string | null;
-  /**
-   * Short personal paragraphs — interests, hobbies, the human side. Shown between Skills and Speaking/Certifications.
-   */
-  beyondCode?:
+  paragraphs?:
     | {
         paragraph?: string | null;
         id?: string | null;
       }[]
     | null;
-  certificationsHeading?: string | null;
-  certifications?:
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'beyondCode';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CertificationsBlock".
+ */
+export interface CertificationsBlock {
+  heading?: string | null;
+  items?:
     | {
         name?: string | null;
         issuer?: string | null;
@@ -2570,8 +2670,138 @@ export interface About {
         id?: string | null;
       }[]
     | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'certifications';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: number;
+  layout?:
+    | (
+        | HeroBlock
+        | PainPointsBlock
+        | MiniStackBlock
+        | AboutBlock
+        | WorksBlock
+        | ServicesBlock
+        | IndustriesBlock
+        | ProcessBlock
+        | TestimonialsBlock
+        | InsightsBlock
+        | PageCTABlock
+      )[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock".
+ */
+export interface HeroBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homeHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PainPointsBlock".
+ */
+export interface PainPointsBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'painPoints';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MiniStackBlock".
+ */
+export interface MiniStackBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'miniStack';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock".
+ */
+export interface AboutBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'about';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WorksBlock".
+ */
+export interface WorksBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'works';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesBlock".
+ */
+export interface ServicesBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'services';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IndustriesBlock".
+ */
+export interface IndustriesBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'industries';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessBlock".
+ */
+export interface ProcessBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'process';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InsightsBlock".
+ */
+export interface InsightsBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'insights';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageCTABlock".
+ */
+export interface PageCTABlock {
+  title?: string | null;
+  subtitle?: string | null;
+  primaryLabel?: string | null;
+  primaryTo?: string | null;
+  secondaryLabel?: string | null;
+  secondaryTo?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pageCta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2713,6 +2943,37 @@ export interface Now {
               id?: string | null;
             }[]
           | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "speaking".
+ */
+export interface Speaking {
+  id: number;
+  intro?: LexicalRichText<LexicalNodes_F1434086> | null;
+  /**
+   * Past and upcoming talks, panels and workshops.
+   */
+  talks?:
+    | {
+        title: string;
+        event?: string | null;
+        /**
+         * e.g. "2026" or "Mar 2026".
+         */
+        year?: string | null;
+        location?: string | null;
+        /**
+         * Optional link to the talk, recording or slides.
+         */
+        link?: string | null;
+        description?: string | null;
+        featured?: boolean | null;
         id?: string | null;
       }[]
     | null;
@@ -2898,8 +3159,28 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        aboutHero?: T | AboutHeroBlockSelect<T>;
+        originStory?: T | OriginStoryBlockSelect<T>;
+        philosophy?: T | PhilosophyBlockSelect<T>;
+        timeline?: T | TimelineBlockSelect<T>;
+        skills?: T | SkillsBlockSelect<T>;
+        beyondCode?: T | BeyondCodeBlockSelect<T>;
+        certifications?: T | CertificationsBlockSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutHeroBlock_select".
+ */
+export interface AboutHeroBlockSelect<T extends boolean = true> {
   portrait?: T;
-  heroHeadline?: T;
+  headline?: T;
   intro?: T;
   stats?:
     | T
@@ -2908,10 +3189,26 @@ export interface AboutSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
-  originHeading?: T;
-  originStory?: T;
-  valuesHeading?: T;
-  valuesIntro?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OriginStoryBlock_select".
+ */
+export interface OriginStoryBlockSelect<T extends boolean = true> {
+  heading?: T;
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PhilosophyBlock_select".
+ */
+export interface PhilosophyBlockSelect<T extends boolean = true> {
+  heading?: T;
+  intro?: T;
   values?:
     | T
     | {
@@ -2920,8 +3217,16 @@ export interface AboutSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
-  timelineHeading?: T;
-  timeline?:
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TimelineBlock_select".
+ */
+export interface TimelineBlockSelect<T extends boolean = true> {
+  heading?: T;
+  items?:
     | T
     | {
         year?: T;
@@ -2929,8 +3234,16 @@ export interface AboutSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
-  skillsHeading?: T;
-  skillCategories?:
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SkillsBlock_select".
+ */
+export interface SkillsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  categories?:
     | T
     | {
         name?: T;
@@ -2938,25 +3251,31 @@ export interface AboutSelect<T extends boolean = true> {
         context?: T;
         id?: T;
       };
-  speakingHeading?: T;
-  speaking?:
-    | T
-    | {
-        event?: T;
-        title?: T;
-        year?: T;
-        location?: T;
-        id?: T;
-      };
-  beyondCodeHeading?: T;
-  beyondCode?:
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BeyondCodeBlock_select".
+ */
+export interface BeyondCodeBlockSelect<T extends boolean = true> {
+  heading?: T;
+  paragraphs?:
     | T
     | {
         paragraph?: T;
         id?: T;
       };
-  certificationsHeading?: T;
-  certifications?:
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CertificationsBlock_select".
+ */
+export interface CertificationsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  items?:
     | T
     | {
         name?: T;
@@ -2964,9 +3283,126 @@ export interface AboutSelect<T extends boolean = true> {
         year?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  layout?:
+    | T
+    | {
+        homeHero?: T | HeroBlockSelect<T>;
+        painPoints?: T | PainPointsBlockSelect<T>;
+        miniStack?: T | MiniStackBlockSelect<T>;
+        about?: T | AboutBlockSelect<T>;
+        works?: T | WorksBlockSelect<T>;
+        services?: T | ServicesBlockSelect<T>;
+        industries?: T | IndustriesBlockSelect<T>;
+        process?: T | ProcessBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
+        insights?: T | InsightsBlockSelect<T>;
+        pageCta?: T | PageCTABlockSelect<T>;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock_select".
+ */
+export interface HeroBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PainPointsBlock_select".
+ */
+export interface PainPointsBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MiniStackBlock_select".
+ */
+export interface MiniStackBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutBlock_select".
+ */
+export interface AboutBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WorksBlock_select".
+ */
+export interface WorksBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesBlock_select".
+ */
+export interface ServicesBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IndustriesBlock_select".
+ */
+export interface IndustriesBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessBlock_select".
+ */
+export interface ProcessBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InsightsBlock_select".
+ */
+export interface InsightsBlockSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageCTABlock_select".
+ */
+export interface PageCTABlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  primaryLabel?: T;
+  primaryTo?: T;
+  secondaryLabel?: T;
+  secondaryTo?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3104,6 +3540,28 @@ export interface NowSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "speaking_select".
+ */
+export interface SpeakingSelect<T extends boolean = true> {
+  intro?: T;
+  talks?:
+    | T
+    | {
+        title?: T;
+        event?: T;
+        year?: T;
+        location?: T;
+        link?: T;
+        description?: T;
+        featured?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs-stats_select".
  */
 export interface PayloadJobsStatsSelect<T extends boolean = true> {
@@ -3139,6 +3597,7 @@ export interface CollectionQueryWidget {
       | 'case-studies'
       | 'testimonials'
       | 'leads'
+      | 'comments'
       | 'media'
       | 'categories'
       | 'users'
@@ -3178,6 +3637,7 @@ export interface ActivityWidget {
           | 'case-studies'
           | 'testimonials'
           | 'leads'
+          | 'comments'
           | 'media'
           | 'categories'
           | 'users'

@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <div className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <div className="px-5 lg:px-[6vw] pt-24">
       <div className="max-w-3xl">
         <div className="font-mono-label text-synthesis mb-4 flex items-center gap-2">
           <span className="w-1 h-1 bg-synthesis animate-pulse" />

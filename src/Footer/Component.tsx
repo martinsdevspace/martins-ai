@@ -1,6 +1,16 @@
 import { CMSLink } from '@/components/Link'
 import { getCachedGlobal } from '@/utilities/getGlobals'
-import { IconBrandGithub, IconBrandLinkedin, IconBrandMedium, IconBrandOpenSource, IconBrandX, IconMail, IconRss } from '@tabler/icons-react'
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandMedium,
+  IconBrandOpenSource,
+  IconBrandX,
+  IconMail,
+  IconRss,
+  IconLink,
+  IconCalendar,
+} from '@tabler/icons-react'
 import Link from 'next/link'
 
 const socialIcon = (label?: string | null) => {
@@ -11,8 +21,11 @@ const socialIcon = (label?: string | null) => {
   if (l.includes('mail') || l.includes('email')) return IconMail
   if (l.includes('medium')) return IconBrandMedium
   if (l.includes('dev')) return IconBrandOpenSource
-  if (l.includes('rss')) return IconRss
-  return null
+  if (l.includes('hashnode')) return IconLink
+  if (l.includes('daily')) return IconLink
+  if (l.includes('hackerno')) return IconLink
+  if (l.includes('cal')) return IconCalendar
+  return IconLink
 }
 
 export async function Footer() {
@@ -69,7 +82,7 @@ export async function Footer() {
           {socials.length > 0 && (
             <div>
               <div className="font-mono-label text-muted-foreground mb-4">// CONNECT</div>
-              <ul className="space-y-2.5">
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
                 {socials.map((social, i) => {
                   const Icon = socialIcon(social.label)
                   if (!Icon) return null
@@ -100,10 +113,6 @@ export async function Footer() {
               <span className="italic">{email}</span>
             </a>
             <div className="space-y-1.5 text-xs text-muted-foreground/80 mt-2">
-              {/* <p className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
-                <span>Open for new projects & consulting</span>
-              </p> */}
               <p>Typical response time: &lt; 24h on weekdays.</p>
               <p className="text-muted-foreground/60">Based in GMT+1 </p>
             </div>

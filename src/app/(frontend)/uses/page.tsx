@@ -12,7 +12,7 @@ export default async function UsesPage() {
   const sections = uses.sections?.filter((s) => s.title || (s.items && s.items.length > 0)) || []
 
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       <div className="max-w-3xl">
         <SectionLabel className="mb-4">// — USES</SectionLabel>
         <h1 className="font-heading text-4xl md:text-6xl font-light tracking-tight text-balance">

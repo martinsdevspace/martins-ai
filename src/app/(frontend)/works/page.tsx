@@ -38,10 +38,10 @@ export default async function WorksPage() {
     stack: (project.stack || []).map((s) => s.tech).filter((t): t is string => Boolean(t)),
     stats: project.stats
       ? {
-          loc: project.stats.loc ?? null,
-          commits: project.stats.commits ?? null,
-          contributors: project.stats.contributors ?? null,
-        }
+        loc: project.stats.loc ?? null,
+        commits: project.stats.commits ?? null,
+        contributors: project.stats.contributors ?? null,
+      }
       : null,
     liveUrl: project.liveUrl || null,
     github: project.github || null,
@@ -66,7 +66,7 @@ export default async function WorksPage() {
   ]
 
   return (
-    <article className="pb-8">
+    <article>
       <PageHero
         label="// 01 — SELECTED_DEPLOYMENTS"
         breadcrumbLabel="Works"

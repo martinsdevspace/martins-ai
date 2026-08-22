@@ -47,7 +47,7 @@ export default async function CaseStudiesPage() {
   }))
 
   return (
-    <article className="pb-8">
+    <article>
       <PageHero
         label="// 04 — CASE_STUDIES"
         breadcrumbLabel="Case Studies"

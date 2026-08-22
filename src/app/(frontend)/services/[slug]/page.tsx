@@ -46,7 +46,7 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
   }
 
   return (
-    <article className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <article className="px-5 lg:px-[6vw] pt-24">
       {draft && <LivePreviewListener />}
 
       <Link

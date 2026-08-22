@@ -16,7 +16,7 @@ type Args = {
 
 export default function Page({ searchParams: searchParamsPromise }: Args) {
   return (
-    <div className="px-5 lg:px-[6vw] pt-24 pb-24">
+    <div className="px-5 lg:px-[6vw] pt-24">
       <div className="max-w-3xl">
         <div className="font-mono-label text-synthesis mb-4 flex items-center gap-2">
           <span className="w-1 h-1 bg-synthesis animate-pulse" />
@@ -64,31 +64,31 @@ async function SearchResults({ searchParams: searchParamsPromise }: Args) {
     pagination: false,
     ...(query
       ? {
-          where: {
-            or: [
-              {
-                title: {
-                  like: query,
-                },
+        where: {
+          or: [
+            {
+              title: {
+                like: query,
               },
-              {
-                'meta.description': {
-                  like: query,
-                },
+            },
+            {
+              'meta.description': {
+                like: query,
               },
-              {
-                'meta.title': {
-                  like: query,
-                },
+            },
+            {
+              'meta.title': {
+                like: query,
               },
-              {
-                slug: {
-                  like: query,
-                },
+            },
+            {
+              slug: {
+                like: query,
               },
-            ],
-          },
-        }
+            },
+          ],
+        },
+      }
       : {}),
   })
 

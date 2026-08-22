@@ -71,7 +71,7 @@ export default async function ServicesPage() {
   ]
 
   return (
-    <article className="pb-8">
+    <article>
       <PageHero
         label="// 02 — SERVICE_LAYER"
         breadcrumbLabel="Services"
