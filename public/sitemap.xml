@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>http://localhost:3000/pages-sitemap.xml</loc></sitemap>
-<sitemap><loc>http://localhost:3000/insights-sitemap.xml</loc></sitemap>
-<sitemap><loc>http://localhost:3000/projects-sitemap.xml</loc></sitemap>
-<sitemap><loc>http://localhost:3000/services-sitemap.xml</loc></sitemap>
-<sitemap><loc>http://localhost:3000/industries-sitemap.xml</loc></sitemap>
-<sitemap><loc>http://localhost:3000/case-studies-sitemap.xml</loc></sitemap>
+<sitemap><loc>https://martinsai.name.ng/pages-sitemap.xml</loc></sitemap>
+<sitemap><loc>https://martinsai.name.ng/insights-sitemap.xml</loc></sitemap>
+<sitemap><loc>https://martinsai.name.ng/projects-sitemap.xml</loc></sitemap>
+<sitemap><loc>https://martinsai.name.ng/services-sitemap.xml</loc></sitemap>
+<sitemap><loc>https://martinsai.name.ng/industries-sitemap.xml</loc></sitemap>
+<sitemap><loc>https://martinsai.name.ng/case-studies-sitemap.xml</loc></sitemap>
 </sitemapindex>

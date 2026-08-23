@@ -116,7 +116,7 @@ export const seed = async ({
 
   const [aiAgentsCat, paymentsCat, architectureCat, engineeringCat] = categoryDocs
 
-payload.logger.info(`— Seeding insights...`)
+  payload.logger.info(`— Seeding insights...`)
 
   // Do not create insights with `Promise.all` because we want the posts to be created in order
   // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
@@ -294,7 +294,7 @@ payload.logger.info(`— Seeding insights...`)
 
   payload.logger.info(`— Seeding case studies...`)
 
-payload.logger.info(`— Seeding case studies...`)
+  payload.logger.info(`— Seeding case studies...`)
 
   for (const caseStudy of caseStudies(projectDocs)) {
     await payload.create({
@@ -326,183 +326,181 @@ payload.logger.info(`— Seeding case studies...`)
     slug: 'site-settings',
     context: { disableRevalidate: true },
     data: {
-        siteName: 'MARTINS_AI',
-        name: 'Martins Michael',
-        roles: [{ role: 'Full-Stack Developer' }, { role: 'AI Agent Architect' }],
-        tagline: 'Full-Stack Developer & AI Agent Architect',
-        availability: 'Available for new projects',
-        location: 'Abuja, NG · Remote Worldwide',
-        email: 'hello@martinsmichael.dev',
-        calendlyUrl: 'https://calendly.com/martinsmichael/intro',
+      siteName: 'MARTINS_AI',
+      name: 'Martins Michael',
+      roles: [{ role: 'Full-Stack Developer' }, { role: 'AI Agent Architect' }],
+      tagline: 'Full-Stack Developer & AI Agent Architect',
+      availability: 'Available for new projects',
+      location: 'Abuja, NG · Remote Worldwide',
+      email: 'hello@martinsmichael.dev',
+      calendlyUrl: 'https://calendly.com/martinsmichael/intro',
+      socials: [
+        { label: 'GitHub', url: 'https://github.com/martinsmichael' },
+        { label: 'LinkedIn', url: 'https://www.linkedin.com/in/martinsmichael' },
         { label: 'X', url: 'https://x.com/martinsmichael' },
-        ],
-        socials: [
-          { label: 'GitHub', url: 'https://github.com/martinsmichael' },
-          { label: 'LinkedIn', url: 'https://www.linkedin.com/in/martinsmichael' },
-          { label: 'X', url: 'https://x.com/martinsmichael' },
-          { label: 'Medium', url: 'https://medium.com/@martinsmichael' },
-          { label: 'Hashnode', url: 'https://hashnode.com/@martinsmichael' },
-          { label: 'Daily.dev', url: 'https://daily.dev/@martinsmichael' },
-          { label: 'HackerNoon', url: 'https://hackernoon.com/@martinsmichael' },
-          { label: 'Dev.To', url: 'https://dev.to/@martinsmichael' },
-          { label: 'Cal.com', url: 'https://cal.com/martinsmichael' },
-        ],
-        heroHeadline:
-          'I build AI agents\nthat handle real money, real users, and real scale.',
-        heroIntro: {
-          root: {
-            type: 'root',
-            version: 1,
-            indent: 0,
-            direction: 'ltr',
-            format: '',
-            children: [
-              {
-                type: 'paragraph',
-                version: 1,
-                textFormat: 0,
-                textStyle: '',
-                indent: 0,
-                direction: 'ltr',
-                format: '',
-                children: [
-                  {
-                    type: 'text',
-                    detail: 0,
-                    format: 0,
-                    mode: 'normal',
-                    style: '',
-                    text: 'Full-stack engineer focused on fintech, payments and agentic systems — shipped to production for companies across Africa and Europe.',
-                    version: 1,
-                  },
-                ],
-              },
-            ],
-          },
+        { label: 'Medium', url: 'https://medium.com/@martinsmichael' },
+        { label: 'Hashnode', url: 'https://hashnode.com/@martinsmichael' },
+        { label: 'Daily.dev', url: 'https://daily.dev/@martinsmichael' },
+        { label: 'HackerNoon', url: 'https://hackernoon.com/@martinsmichael' },
+        { label: 'Dev.To', url: 'https://dev.to/@martinsmichael' },
+        { label: 'Cal.com', url: 'https://cal.com/martinsmichael' },
+      ],
+      heroHeadline:
+        'I build AI agents\nthat handle real money, real users, and real scale.',
+      heroIntro: {
+        root: {
+          type: 'root',
+          version: 1,
+          indent: 0,
+          direction: 'ltr',
+          format: '',
+          children: [
+            {
+              type: 'paragraph',
+              version: 1,
+              textFormat: 0,
+              textStyle: '',
+              indent: 0,
+              direction: 'ltr',
+              format: '',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text: 'Full-stack engineer focused on fintech, payments and agentic systems — shipped to production for companies across Africa and Europe.',
+                  version: 1,
+                },
+              ],
+            },
+          ],
         },
-        metrics: [
-          { value: '12+', label: 'Products shipped' },
-          { value: '5+', label: 'Years building' },
-          { value: '3m+', label: 'Transactions processed' },
-          { value: '100%', label: 'Production uptime focus' },
-        ],
-        clients: [
-          { name: 'PayLink', type: 'fintech' },
-          { name: 'CareGrid', type: 'healthtech' },
-          { name: 'Northwind', type: 'logistics' },
-          { name: 'Ember', type: 'fintech' },
-        ],
-        cta: {
-          title: 'Have a system that needs building?',
-          subtitle:
-            "Let's talk about your project — I'll tell you honestly if it's a fit, and give you a clear path to ship.",
-          primaryLabel: 'Book a call',
-          primaryTo: '/contact',
-          secondaryLabel: 'Email me',
-          secondaryTo: 'mailto:hello@martinsmichael.dev',
-        },
-        contactIntro: {
-          root: {
-            type: 'root',
-            version: 1,
-            indent: 0,
-            direction: 'ltr',
-            format: '',
-            children: [
-              {
-                type: 'paragraph',
-                version: 1,
-                textFormat: 0,
-                textStyle: '',
-                indent: 0,
-                direction: 'ltr',
-                format: '',
-                children: [
-                  {
-                    type: 'text',
-                    detail: 0,
-                    format: 0,
-                    mode: 'normal',
-                    style: '',
-                    text: 'Tell me where you are and where you need to be. If it is a fit, I will give you a clear path and a straight answer — if not, I will tell you that too.',
-                    version: 1,
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        contactChannels: [
-          { label: 'hello@martinsmichael.dev', url: 'mailto:hello@martinsmichael.dev' },
-          { label: 'Calendly — 30 min intro', url: 'https://calendly.com/martinsmichael/intro' },
-          { label: 'LinkedIn', url: 'https://www.linkedin.com/in/martinsmichael' },
-          { label: 'X / Twitter', url: 'https://x.com/martinsmichael' },
-          { label: 'GitHub', url: 'https://github.com/martinsmichael' },
-        ],
-        projectTypes: [
-          { type: 'AI Agent Systems' },
-          { type: 'Payments & Ledger' },
-          { type: 'Data Platforms' },
-          { type: 'Full-Stack Products' },
-          { type: 'Performance & Reliability' },
-          { type: 'Security & Compliance' },
-        ],
-        budgetRanges: [
-          { range: '$5k – $10k' },
-          { range: '$10k – $25k' },
-          { range: '$25k – $50k' },
-          { range: '$50k+' },
-        ],
-        timelines: [
-          { timeline: '2-4 weeks' },
-          { timeline: '1-2 months' },
-          { timeline: '2-4 months' },
-          { timeline: 'Flexible' },
-        ],
-        contactSteps: [
-          {
-            title: 'I review your message',
-            description: 'Within 24 hours, I read your message and assess fit — scope, timeline, and whether I\u2019m the right person for the job.',
-          },
-          {
-            title: 'Discovery call',
-            description: 'If it\u2019s a fit, we schedule a 30-minute call. You tell me about the problem; I ask questions and sketch a rough approach.',
-          },
-          {
-            title: 'Proposal & scope',
-            description: 'Within 3\u20135 days, you get a written proposal — scope, timeline, price, and deliverables. No pressure to accept.',
-          },
-          {
-            title: 'We start building',
-            description: 'Once you approve, we kick off. Weekly check-ins, transparent progress, and a system that actually works at the end.',
-          },
-        ],
-        contactFaq: [
-          {
-            question: 'What do you need from me to start?',
-            answer:
-              'A one-page brief is enough: the problem, the users, and what success looks like. I will ask the sharp questions from there.',
-          },
-          {
-            question: 'How fast do you reply?',
-            answer:
-              'Within 24 hours on weekdays, usually faster. If I am fully booked, I will say so and recommend someone good.',
-          },
-          {
-            question: 'Do you work with early-stage teams?',
-            answer:
-              'Yes — a fixed scope with weekly increments works well for startups that need momentum without a hiring cycle.',
-          },
-          {
-            question: 'Can you join an existing team?',
-            answer:
-              'Yes. Retainer engagements embed me as a senior engineer on your team, shipping alongside your people.',
-          },
-        ],
-        footerNote:
-          'Full-Stack Developer & AI Agent Architect. Building production systems that handle real money, real users, and real scale.',
       },
-    })
+      metrics: [
+        { value: '12+', label: 'Products shipped' },
+        { value: '5+', label: 'Years building' },
+        { value: '3m+', label: 'Transactions processed' },
+        { value: '100%', label: 'Production uptime focus' },
+      ],
+      clients: [
+        { name: 'PayLink', type: 'fintech' },
+        { name: 'CareGrid', type: 'healthtech' },
+        { name: 'Northwind', type: 'logistics' },
+        { name: 'Ember', type: 'fintech' },
+      ],
+      cta: {
+        title: 'Have a system that needs building?',
+        subtitle:
+          "Let's talk about your project — I'll tell you honestly if it's a fit, and give you a clear path to ship.",
+        primaryLabel: 'Book a call',
+        primaryTo: '/contact',
+        secondaryLabel: 'Email me',
+        secondaryTo: 'mailto:hello@martinsmichael.dev',
+      },
+      contactIntro: {
+        root: {
+          type: 'root',
+          version: 1,
+          indent: 0,
+          direction: 'ltr',
+          format: '',
+          children: [
+            {
+              type: 'paragraph',
+              version: 1,
+              textFormat: 0,
+              textStyle: '',
+              indent: 0,
+              direction: 'ltr',
+              format: '',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text: 'Tell me where you are and where you need to be. If it is a fit, I will give you a clear path and a straight answer — if not, I will tell you that too.',
+                  version: 1,
+                },
+              ],
+            },
+          ],
+        },
+      },
+      contactChannels: [
+        { label: 'hello@martinsmichael.dev', url: 'mailto:hello@martinsmichael.dev' },
+        { label: 'Calendly — 30 min intro', url: 'https://calendly.com/martinsmichael/intro' },
+        { label: 'LinkedIn', url: 'https://www.linkedin.com/in/martinsmichael' },
+        { label: 'X / Twitter', url: 'https://x.com/martinsmichael' },
+        { label: 'GitHub', url: 'https://github.com/martinsmichael' },
+      ],
+      projectTypes: [
+        { type: 'AI Agent Systems' },
+        { type: 'Payments & Ledger' },
+        { type: 'Data Platforms' },
+        { type: 'Full-Stack Products' },
+        { type: 'Performance & Reliability' },
+        { type: 'Security & Compliance' },
+      ],
+      budgetRanges: [
+        { range: '$5k – $10k' },
+        { range: '$10k – $25k' },
+        { range: '$25k – $50k' },
+        { range: '$50k+' },
+      ],
+      timelines: [
+        { timeline: '2-4 weeks' },
+        { timeline: '1-2 months' },
+        { timeline: '2-4 months' },
+        { timeline: 'Flexible' },
+      ],
+      contactSteps: [
+        {
+          title: 'I review your message',
+          description: 'Within 24 hours, I read your message and assess fit — scope, timeline, and whether I\u2019m the right person for the job.',
+        },
+        {
+          title: 'Discovery call',
+          description: 'If it\u2019s a fit, we schedule a 30-minute call. You tell me about the problem; I ask questions and sketch a rough approach.',
+        },
+        {
+          title: 'Proposal & scope',
+          description: 'Within 3\u20135 days, you get a written proposal — scope, timeline, price, and deliverables. No pressure to accept.',
+        },
+        {
+          title: 'We start building',
+          description: 'Once you approve, we kick off. Weekly check-ins, transparent progress, and a system that actually works at the end.',
+        },
+      ],
+      contactFaq: [
+        {
+          question: 'What do you need from me to start?',
+          answer:
+            'A one-page brief is enough: the problem, the users, and what success looks like. I will ask the sharp questions from there.',
+        },
+        {
+          question: 'How fast do you reply?',
+          answer:
+            'Within 24 hours on weekdays, usually faster. If I am fully booked, I will say so and recommend someone good.',
+        },
+        {
+          question: 'Do you work with early-stage teams?',
+          answer:
+            'Yes — a fixed scope with weekly increments works well for startups that need momentum without a hiring cycle.',
+        },
+        {
+          question: 'Can you join an existing team?',
+          answer:
+            'Yes. Retainer engagements embed me as a senior engineer on your team, shipping alongside your people.',
+        },
+      ],
+      footerNote:
+        'Full-Stack Developer & AI Agent Architect. Building production systems that handle real money, real users, and real scale.',
+    },
+  })
 
   await payload.updateGlobal({
     slug: 'about',
@@ -544,145 +542,145 @@ payload.logger.info(`— Seeding case studies...`)
     slug: 'header',
     context: { disableRevalidate: true },
     data: {
-        navItems: [
-          {
-            link: {
-              type: 'custom',
-              label: 'About',
-              url: '/about',
-            },
+      navItems: [
+        {
+          link: {
+            type: 'custom',
+            label: 'About',
+            url: '/about',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Works',
-              url: '/works',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Works',
+            url: '/works',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Services',
-              url: '/services',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Services',
+            url: '/services',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Industries',
-              url: '/industries',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Industries',
+            url: '/industries',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Case Studies',
-              url: '/case-studies',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Case Studies',
+            url: '/case-studies',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Insights',
-              url: '/insights',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Insights',
+            url: '/insights',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Speaking',
-              url: '/speaking',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Speaking',
+            url: '/speaking',
           },
-        ],
-      },
-    })
+        },
+      ],
+    },
+  })
 
   await payload.updateGlobal({
     slug: 'footer',
     context: { disableRevalidate: true },
     data: {
-        navItems: [
-          {
-            link: {
-              type: 'custom',
-              label: 'About',
-              url: '/about',
-            },
+      navItems: [
+        {
+          link: {
+            type: 'custom',
+            label: 'About',
+            url: '/about',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Works',
-              url: '/works',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Works',
+            url: '/works',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Services',
-              url: '/services',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Services',
+            url: '/services',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Industries',
-              url: '/industries',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Industries',
+            url: '/industries',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Case Studies',
-              url: '/case-studies',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Case Studies',
+            url: '/case-studies',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Insights',
-              url: '/insights',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Insights',
+            url: '/insights',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Speaking',
-              url: '/speaking',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Speaking',
+            url: '/speaking',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Resume',
-              url: '/resume',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Resume',
+            url: '/resume',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Uses',
-              url: '/uses',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Uses',
+            url: '/uses',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Now',
-              url: '/now',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Now',
+            url: '/now',
           },
-          {
-            link: {
-              type: 'custom',
-              label: 'Contact',
-              url: '/contact',
-            },
+        },
+        {
+          link: {
+            type: 'custom',
+            label: 'Contact',
+            url: '/contact',
           },
-        ],
-      },
-    })
+        },
+      ],
+    },
+  })
 
   payload.logger.info('Seeded database successfully!')
 }

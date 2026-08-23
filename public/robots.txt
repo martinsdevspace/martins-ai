@@ -3,13 +3,13 @@ User-agent: *
 Disallow: /admin/*
 
 # Host
-Host: http://localhost:3000
+Host: https://martinsai.name.ng
 
 # Sitemaps
-Sitemap: http://localhost:3000/sitemap.xml
-Sitemap: http://localhost:3000/pages-sitemap.xml
-Sitemap: http://localhost:3000/insights-sitemap.xml
-Sitemap: http://localhost:3000/projects-sitemap.xml
-Sitemap: http://localhost:3000/services-sitemap.xml
-Sitemap: http://localhost:3000/industries-sitemap.xml
-Sitemap: http://localhost:3000/case-studies-sitemap.xml
+Sitemap: https://martinsai.name.ng/sitemap.xml
+Sitemap: https://martinsai.name.ng/pages-sitemap.xml
+Sitemap: https://martinsai.name.ng/insights-sitemap.xml
+Sitemap: https://martinsai.name.ng/projects-sitemap.xml
+Sitemap: https://martinsai.name.ng/services-sitemap.xml
+Sitemap: https://martinsai.name.ng/industries-sitemap.xml
+Sitemap: https://martinsai.name.ng/case-studies-sitemap.xml
