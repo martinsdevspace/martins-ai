@@ -39,7 +39,7 @@ export async function Footer() {
   const email = siteSettings?.email || 'hello@martinsmichael.dev'
   const location = siteSettings?.location || 'Abuja, NG · Remote Worldwide'
   const availability = siteSettings?.availability || 'Available for projects'
-  const clients = siteSettings?.clients || []
+  // const clients = siteSettings?.clients || []
 
   return (
     <footer className="mt-auto border-t border-border bg-background">
@@ -120,7 +120,7 @@ export async function Footer() {
         </div>
       </div>
 
-      {clients.length > 0 && (
+      {/* {clients.length > 0 && (
         <div className="border-t border-border px-5 lg:px-[6vw] py-8">
           <div className="font-mono-label text-muted-foreground mb-5">// TRUSTED_BY</div>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
@@ -134,9 +134,9 @@ export async function Footer() {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
-      <div className="border-t border-border px-5 lg:px-[6vw] py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+      <div className="border-t border-border bg-card px-5 lg:px-[6vw] py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
         <div className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
           © {new Date().getFullYear()} Martins Michael — Engineering Intelligence, Architecting Impact
         </div>

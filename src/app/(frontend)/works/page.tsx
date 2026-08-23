@@ -98,7 +98,7 @@ export default async function WorksPage() {
         <WorksGrid projects={cards} />
       </section>
 
-      <section className="px-5 lg:px-[6vw] py-16 lg:py-24">
+      {/* <section className="px-5 lg:px-[6vw] py-16 lg:py-24">
         <Reveal>
           <div className="flex flex-col justify-between gap-6 border border-border bg-card p-8 lg:flex-row lg:items-center lg:p-14">
             <div>
@@ -119,7 +119,7 @@ export default async function WorksPage() {
             </Link>
           </div>
         </Reveal>
-      </section>
+      </section> */}
 
       <PageCTA />
     </article>

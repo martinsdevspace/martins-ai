@@ -122,18 +122,20 @@ export type LexicalNodes_744BEF80 =
   | SerializedLinkNode<LexicalNodes_744BEF80, LexicalLinkFields>;
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LexicalNodes_2603BD92".
+ * via the `definition` "LexicalNodes_D377A99B".
  */
-export type LexicalNodes_2603BD92 =
+export type LexicalNodes_D377A99B =
   | SerializedTextNode
   | SerializedTabNode
   | SerializedLineBreakNode
-  | SerializedParagraphNode<LexicalNodes_2603BD92>
+  | SerializedParagraphNode<LexicalNodes_D377A99B>
   | SerializedHorizontalRuleNode
+  | SerializedListNode<LexicalNodes_D377A99B>
+  | SerializedListItemNode<LexicalNodes_D377A99B>
   | SerializedBlockNode<BannerBlock | CodeBlock | MediaBlock_D6C44817>
-  | SerializedHeadingNode<LexicalNodes_2603BD92, 'h1' | 'h2' | 'h3' | 'h4'>
-  | SerializedAutoLinkNode<LexicalNodes_2603BD92, LexicalLinkFields>
-  | SerializedLinkNode<LexicalNodes_2603BD92, LexicalLinkFields>;
+  | SerializedHeadingNode<LexicalNodes_D377A99B, 'h1' | 'h2' | 'h3' | 'h4'>
+  | SerializedAutoLinkNode<LexicalNodes_D377A99B, LexicalLinkFields>
+  | SerializedLinkNode<LexicalNodes_D377A99B, LexicalLinkFields>;
 
 export interface Config {
   auth: {
@@ -325,7 +327,7 @@ export interface Insight {
   id: number;
   title: string;
   heroImage?: (number | null) | Media;
-  content: LexicalRichText<LexicalNodes_2603BD92>;
+  content: LexicalRichText<LexicalNodes_D377A99B>;
   relatedPosts?: (number | Insight)[] | null;
   categories?: (number | Category)[] | null;
   /**
@@ -3706,7 +3708,7 @@ export interface BannerBlock {
 export interface CodeBlock {
   id: string;
   blockType: 'code';
-  language?: ('typescript' | 'javascript' | 'css' | 'python' | 'sql') | null;
+  language?: ('typescript' | 'javascript' | 'css' | 'python' | 'sql' | 'bash' | 'php') | null;
   code: string;
   blockName?: string | null;
 }
@@ -3820,6 +3822,20 @@ export interface SerializedHeadingNode<
 > extends SerializedLexicalElementBase<TChildren> {
   type: 'heading';
   tag: TTag;
+}
+
+export interface SerializedListNode<TChildren> extends SerializedLexicalElementBase<TChildren> {
+  type: 'list';
+  checked?: boolean;
+  listType: 'number' | 'bullet' | 'check';
+  start: number;
+  tag: 'ul' | 'ol';
+}
+
+export interface SerializedListItemNode<TChildren> extends SerializedLexicalElementBase<TChildren> {
+  type: 'listitem';
+  checked?: boolean;
+  value: number;
 }
 
 export type SerializedBlockNode<TFields extends { blockType: string }> = TFields extends unknown ? {
