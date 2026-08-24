@@ -9,14 +9,14 @@ import { getPayload } from 'payload'
  * reference implementation this was adapted from, this app has no `tools`
  * collection (the equivalent content — software/gear used — lives on the
  * `Uses` global, not a queryable collection). `post` was renamed `insight`
- * to match this app's actual collection slug (`insights`), and `case_study`
- * maps to the real `case-studies` slug.
+ * to match this app's actual collection slug (`insights`), `project` maps
+ * to `portfolio`, and `idea` maps to the real `ideas` slug.
  */
 const RESOURCE_MAP = {
-  project: 'projects',
+  portfolio: 'portfolio',
   service: 'services',
   industry: 'industries',
-  case_study: 'case-studies',
+  idea: 'ideas',
   insight: 'insights',
   testimonial: 'testimonials',
 } as const
@@ -24,7 +24,7 @@ const RESOURCE_MAP = {
 type ResourceKey = keyof typeof RESOURCE_MAP
 
 const resourceEnum = z
-  .enum(['project', 'service', 'industry', 'case_study', 'insight', 'testimonial'])
+  .enum(['portfolio', 'service', 'industry', 'idea', 'insight', 'testimonial'])
   .describe('The content resource type')
 
 /**
@@ -41,7 +41,7 @@ export function createChatTools() {
   return {
     listContent: tool({
       description:
-        'List items from a content collection. Valid resource values: project, service, industry, case_study, insight, testimonial.',
+        'List items from a content collection. Valid resource values: portfolio, service, industry, idea, insight, testimonial.',
       inputSchema: z.object({
         resource: resourceEnum,
       }),

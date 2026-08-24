@@ -17,6 +17,25 @@ export const About: GlobalConfig = {
   },
   fields: [
     {
+      name: 'heroLabel',
+      type: 'text',
+      defaultValue: '// — ABOUT',
+      admin: { description: 'Eyebrow label for the About page hero.' },
+    },
+    {
+      name: 'heroTitle',
+      type: 'text',
+      defaultValue: 'The builder behind the build.',
+      admin: { description: 'Headline for the About page hero.' },
+    },
+    {
+      name: 'heroIntro',
+      type: 'textarea',
+      defaultValue:
+        'Background, philosophy, and the stack — what I care about, and how I like to work.',
+      admin: { description: 'Intro paragraph for the About page hero.' },
+    },
+    {
       name: 'layout',
       type: 'blocks',
       blocks: [

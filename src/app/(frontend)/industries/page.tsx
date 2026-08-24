@@ -22,7 +22,7 @@ type IndustryRow = {
 export default async function IndustriesPage() {
   const [industries, projects] = await Promise.all([
     getCachedCollection('industries', { sort: 'sortOrder', limit: 50, depth: 1 })(),
-    getCachedCollection('projects', { sort: 'sortOrder', limit: 100, depth: 1 })(),
+    getCachedCollection('portfolio', { sort: 'sortOrder', limit: 100, depth: 1 })(),
   ])
 
   const countByIndustry = new Map<string, number>()

@@ -73,7 +73,7 @@ export const plugins: Plugin[] = [
         description: 'Articles, guides and essays published on the site.',
         tools: { duplicate: false, restoreVersion: false },
       },
-      projects: {
+      portfolio: {
         description: 'Production products and systems built.',
         tools: { duplicate: false, restoreVersion: false },
       },
@@ -85,8 +85,8 @@ export const plugins: Plugin[] = [
         description: 'Industry verticals served.',
         tools: { duplicate: false, restoreVersion: false },
       },
-      'case-studies': {
-        description: 'Detailed project case studies.',
+      ideas: {
+        description: 'Ideas and engagements that can be built.',
         tools: { duplicate: false, restoreVersion: false },
       },
       pages: {

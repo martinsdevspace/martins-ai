@@ -8,14 +8,14 @@ import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
-import { CaseStudies } from './collections/CaseStudies'
+import { Ideas } from './collections/Ideas'
 import { Comments } from './collections/Comments'
 import { Industries } from './collections/Industries'
 import { Insights } from './collections/Insights'
 import { Leads } from './collections/Leads'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
-import { Projects } from './collections/Projects'
+import { Portfolio } from './collections/Portfolio'
 import { Services } from './collections/Services'
 import { Testimonials } from './collections/Testimonials'
 import { Users } from './collections/Users'
@@ -107,10 +107,10 @@ export default buildConfig({
     },
     Pages,
     Insights,
-    Projects,
+    Portfolio,
     Services,
     Industries,
-    CaseStudies,
+    Ideas,
     Testimonials,
     Leads,
     Comments,

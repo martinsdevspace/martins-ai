@@ -5,6 +5,7 @@ import React from 'react'
 import { RenderAboutBlocks } from '@/blocks/About/RenderAboutBlocks'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { PageHero } from '@/sections/PageHero'
 
 export default async function AboutPage() {
   const about = await getCachedGlobal('about', 2)()
@@ -12,6 +13,12 @@ export default async function AboutPage() {
   return (
     <article className="px-5 py-24 lg:px-[6vw]">
       <div className="max-w-7xl">
+        <PageHero
+          label={about.heroLabel || ''}
+          title={about.heroTitle || ''}
+          intro={about.heroIntro || ''}
+          breadcrumbLabel="About"
+        />
         <RenderAboutBlocks blocks={about.layout} />
       </div>
     </article>

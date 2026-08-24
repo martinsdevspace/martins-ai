@@ -2,10 +2,11 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 
 type ProjectRef = { id: number; slug: string }
 
-export const caseStudies = (
-  projects: ProjectRef[],
-): RequiredDataFromCollectionSlug<'case-studies'>[] => {
-  const projectId = (slug: string): number | undefined => projects.find((p) => p.slug === slug)?.id
+export const ideas = (
+  portfolioDocs: ProjectRef[],
+): RequiredDataFromCollectionSlug<'ideas'>[] => {
+  const projectId = (slug: string): number | undefined =>
+    portfolioDocs.find((p) => p.slug === slug)?.id
 
   return [
     {
@@ -15,6 +16,18 @@ export const caseStudies = (
       industry: 'Fintech',
       projectSlug: projectId('aurora-ledger'),
       sortOrder: 1,
+      overview:
+        'Unify a fragmented payout stack onto one engine with an immutable ledger and automated reconciliation.',
+      audience: 'Payout-heavy platforms losing ops hours to manual settlement cycles.',
+      outcomePromise:
+        'Settlement time drops from days to hours, exceptions are caught automatically, and your ops team stops living in spreadsheets.',
+      startingFrom: 'From $14k · 6–8 weeks',
+      deliverables: [
+        { item: 'Provider-abstraction layer for Flutterwave, Paystack & bank rails' },
+        { item: 'Immutable double-entry ledger with idempotent posting' },
+        { item: 'Automated reconciliation pipeline + finance dashboard' },
+        { item: 'Migration plan that keeps live merchant payouts running' },
+      ],
       whyItMatters:
         'A fragmented payout stack was costing the ops team eight hours a week and delaying merchant settlements.',
       initialSituation:
@@ -47,6 +60,18 @@ export const caseStudies = (
       industry: 'Healthcare',
       projectSlug: projectId('ember-portal'),
       sortOrder: 2,
+      overview:
+        'An offline-first scheduling and records platform that keeps clinics running through connectivity outages.',
+      audience: 'Clinics and field programs operating in low-bandwidth regions.',
+      outcomePromise:
+        'Check-in time falls up to 4x, no records are ever lost, and staff keep working normally when the network drops.',
+      startingFrom: 'From $18k · 8–10 weeks',
+      deliverables: [
+        { item: 'Offline-first client with conflict-free sync' },
+        { item: 'Scheduling + patient records server (lightweight footprint)' },
+        { item: 'Secure auth and role-based clinic access' },
+        { item: 'Clinic admin interface + deployment guide' },
+      ],
       whyItMatters:
         'Clinics needed a scheduling + records system that worked offline-first in low-bandwidth regions.',
       initialSituation:
@@ -74,6 +99,18 @@ export const caseStudies = (
       industry: 'SaaS & Software',
       projectSlug: projectId('northwind-support'),
       sortOrder: 3,
+      overview:
+        'Autonomous support agents grounded in your docs, with evaluation harnesses and safe human handoff.',
+      audience: 'Support teams drowning in repeat questions while docs go unused.',
+      outcomePromise:
+        'A majority of tickets resolve end-to-end, first-response time drops sharply, and your team handles only what needs a human.',
+      startingFrom: 'From $16k · 6–9 weeks',
+      deliverables: [
+        { item: 'Citation-required retrieval pipeline over private docs' },
+        { item: 'Confidence gate + human handoff with reasoning trace' },
+        { item: 'Continuous evaluation harness fed by resolved tickets' },
+        { item: 'Per-topic accuracy dashboards' },
+      ],
       whyItMatters:
         'Support volume was outgrowing the team, and answers to repetitive questions were eating the queue.',
       initialSituation:

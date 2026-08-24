@@ -2,13 +2,13 @@ import { getServerSideSitemap } from 'next-sitemap'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
-type Collection = 'projects' | 'services' | 'industries' | 'case-studies'
+type Collection = 'portfolio' | 'services' | 'industries' | 'ideas'
 
 const collectionPath: Record<Collection, string> = {
-  projects: 'works',
+  portfolio: 'portfolio',
   services: 'services',
   industries: 'industries',
-  'case-studies': 'case-studies',
+  ideas: 'ideas',
 }
 
 export async function getCollectionSitemap(collection: Collection, tag: string) {

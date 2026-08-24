@@ -9,7 +9,7 @@ import PainPoints from '@/sections/PainPoints'
 import Process from '@/sections/Process'
 import Services from '@/sections/Services'
 import Testimonials from '@/sections/Testimonials'
-import Works from '@/sections/Works'
+import Portfolio from '@/sections/Portfolio'
 import { PageCTA } from '@/sections/PageCTA'
 
 export const HeroBlock = () => <Hero />
@@ -20,7 +20,7 @@ export const MiniStackBlock = (props: React.ComponentProps<typeof MiniStack>) =>
   <MiniStack {...props} />
 )
 export const AboutBlock = (props: React.ComponentProps<typeof About>) => <About {...props} />
-export const WorksBlock = (props: React.ComponentProps<typeof Works>) => <Works {...props} />
+export const WorksBlock = (props: React.ComponentProps<typeof Portfolio>) => <Portfolio {...props} />
 export const ServicesBlock = (props: React.ComponentProps<typeof Services>) => (
   <Services {...props} />
 )

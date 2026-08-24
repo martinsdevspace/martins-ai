@@ -50,10 +50,10 @@ export const homeGlobal = (): Partial<DataFromGlobalSlug<'home'>> => ({
     },
     {
       blockType: 'works',
-      label: '// 02 — SELECTED_WORKS',
+      label: '// 02 — PORTFOLIO',
       heading: 'Systems that run real money.',
       intro: 'Production systems for fintech and beyond.',
-      viewAllLabel: 'View all works',
+      viewAllLabel: 'View all portfolio',
     },
     {
       blockType: 'services',
@@ -138,7 +138,7 @@ export const homeGlobal = (): Partial<DataFromGlobalSlug<'home'>> => ({
       primaryLabel: 'BOOK_FREE_REVIEW',
       primaryTo: '/contact',
       secondaryLabel: 'VIEW_WORK',
-      secondaryTo: '/works',
+      secondaryTo: '/portfolio',
       responseNote: 'Response within 24h',
     },
   ],

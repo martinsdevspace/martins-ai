@@ -4,10 +4,10 @@ import { IconArrowUpRight } from '@tabler/icons-react'
 import Link from 'next/link'
 import React from 'react'
 
-import RichText from '@/components/RichText'
-import { SectionHeading, SectionLabel } from '@/sections/_shared'
+import { SectionHeading } from '@/sections/_shared'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+import { PageHero } from '@/sections/PageHero'
 
 export default async function SpeakingPage() {
   const speaking = await getCachedGlobal('speaking', 2)()
@@ -24,18 +24,12 @@ export default async function SpeakingPage() {
   return (
     <article className="px-5 py-24 lg:px-[6vw]">
       <div className="mx-auto max-w-6xl">
-        {pageLabel ? <SectionLabel>{pageLabel}</SectionLabel> : null}
-
-        {speaking.intro ? (
-          <div className="mt-6 max-w-3xl">
-            <RichText
-              data={speaking.intro}
-              enableProse={false}
-              enableGutter={false}
-              className="text-base leading-relaxed text-foreground/80"
-            />
-          </div>
-        ) : null}
+        <PageHero
+          label={speaking.heroLabel || pageLabel}
+          breadcrumbLabel="Speaking"
+          title={speaking.heroTitle || ''}
+          intro={speaking.heroIntro || ''}
+        />
 
         {upcoming.length > 0 && upcomingHeading ? (
           <section className="mt-16">

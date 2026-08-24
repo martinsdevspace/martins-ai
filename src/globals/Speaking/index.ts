@@ -17,6 +17,22 @@ export const Speaking: GlobalConfig = {
       admin: { description: 'Mono eyebrow label at the top of the page.' },
     },
     {
+      name: 'heroLabel',
+      type: 'text',
+      defaultValue: '// — SPEAKING',
+      admin: { description: 'Eyebrow label for the page hero.' },
+    },
+    {
+      name: 'heroTitle',
+      type: 'text',
+      admin: { description: 'Headline shown in the page hero.' },
+    },
+    {
+      name: 'heroIntro',
+      type: 'textarea',
+      admin: { description: 'Intro paragraph shown in the page hero.' },
+    },
+    {
       name: 'upcomingHeading',
       type: 'text',
       defaultValue: 'Upcoming',

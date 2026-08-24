@@ -32,7 +32,7 @@ export const PageCTA: React.FC<PageCTAProps> = async (props) => {
   const primaryLabel = props.primaryLabel || cta?.primaryLabel || ''
   const primaryTo = props.primaryTo || cta?.primaryTo || '/contact'
   const secondaryLabel = props.secondaryLabel || cta?.secondaryLabel || ''
-  const secondaryTo = props.secondaryTo || cta?.secondaryTo || '/works'
+  const secondaryTo = props.secondaryTo || cta?.secondaryTo || '/portfolio'
   const responseNote = props.responseNote || ''
 
   if (!title && !subtitle) return null

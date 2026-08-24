@@ -127,7 +127,7 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
               {keyProjects.map((project, i) => (
                 <li key={i}>
                   <Link
-                    href="/works"
+                    href="/portfolio"
                     className="group flex items-center gap-3 border border-border bg-card px-5 py-3 transition-colors hover:border-synthesis"
                   >
                     <IconArrowUpRight className="h-4 w-4 text-synthesis shrink-0" />

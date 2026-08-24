@@ -7,15 +7,15 @@ import { SectionHeading, SectionLabel } from '@/sections/_shared'
 import { getCachedCollection } from '@/utilities/getCollection'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
-const getProjects = getCachedCollection('projects', { sort: 'sortOrder', limit: 6, depth: 2 })
+const getPortfolio = getCachedCollection('portfolio', { sort: 'sortOrder', limit: 6, depth: 2 })
 
-export default async function Works({
+export default async function Portfolio({
   label,
   heading,
   intro,
   viewAllLabel,
 }: WorksBlockProps) {
-  const projects = await getProjects()
+  const projects = await getPortfolio()
 
   const docs = [...projects].sort(
     (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)),
@@ -24,7 +24,7 @@ export default async function Works({
   if (!heading && docs.length === 0) return null
 
   return (
-    <section id="works" className="px-5 lg:px-[6vw] py-16 lg:py-24">
+    <section id="portfolio" className="px-5 lg:px-[6vw] py-16 lg:py-24">
       {label ? <SectionLabel className="mb-4">{label}</SectionLabel> : null}
       {heading ? <SectionHeading className="mb-4">{heading}</SectionHeading> : null}
       {intro ? <p className="text-muted-foreground text-base max-w-xl mb-12">{intro}</p> : null}
@@ -124,7 +124,7 @@ export default async function Works({
       {viewAllLabel ? (
         <div className="mt-10">
           <Link
-            href="/works"
+            href="/portfolio"
             className="inline-flex items-center gap-2 font-mono-label text-muted-foreground hover:text-synthesis transition-colors"
           >
             {viewAllLabel}

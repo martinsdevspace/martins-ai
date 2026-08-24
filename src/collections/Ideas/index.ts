@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { revalidateCaseStudy, revalidateDelete } from './hooks/revalidateCaseStudy'
+import { revalidateIdea, revalidateDelete } from './hooks/revalidateIdea'
 
 import {
   MetaDescriptionField,
@@ -13,8 +13,8 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 
-export const CaseStudies: CollectionConfig = {
-  slug: 'case-studies',
+export const Ideas: CollectionConfig = {
+  slug: 'ideas',
   access: {
     create: authenticated,
     delete: authenticated,
@@ -36,14 +36,14 @@ export const CaseStudies: CollectionConfig = {
       url: ({ data, req }) =>
         generatePreviewPath({
           slug: data?.slug,
-          collection: 'case-studies',
+          collection: 'ideas',
           req,
         }),
     },
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: data?.slug as string,
-        collection: 'case-studies',
+        collection: 'ideas',
         req,
       }),
     useAsTitle: 'client',
@@ -53,7 +53,7 @@ export const CaseStudies: CollectionConfig = {
       name: 'slug',
       type: 'slug',
       admin: {
-        description: 'Used as the URL path segment for this case study.',
+        description: 'Used as the URL path segment for this idea.',
       },
     },
     {
@@ -68,6 +68,9 @@ export const CaseStudies: CollectionConfig = {
             {
               name: 'client',
               type: 'text',
+              admin: {
+                description: 'Who this idea is for (optional reference client or engagement).',
+              },
             },
             {
               name: 'industry',
@@ -77,9 +80,47 @@ export const CaseStudies: CollectionConfig = {
               name: 'projectSlug',
               type: 'relationship',
               admin: {
-                description: 'Related project.',
+                description:
+                  'Related built platform (Portfolio entry), if this idea maps to something already shipped.',
               },
-              relationTo: 'projects',
+              relationTo: 'portfolio',
+            },
+            {
+              name: 'overview',
+              type: 'textarea',
+              admin: {
+                description: 'What this engagement is, in one screen. Shown as the lead on the idea page.',
+              },
+            },
+            {
+              name: 'audience',
+              type: 'textarea',
+              admin: {
+                description: 'Who this is for — the team or problem this idea targets.',
+              },
+            },
+            {
+              name: 'outcomePromise',
+              type: 'textarea',
+              admin: {
+                description: 'What you walk away with if we build this.',
+              },
+            },
+            {
+              name: 'startingFrom',
+              type: 'text',
+              admin: {
+                description: 'Indicative budget or timeline, e.g. "From $8k" or "4–6 weeks".',
+              },
+            },
+            {
+              name: 'deliverables',
+              type: 'array',
+              admin: {
+                initCollapsed: true,
+                description: 'What is included if we build this idea.',
+              },
+              fields: [{ name: 'item', type: 'text' }],
             },
             {
               name: 'whyItMatters',
@@ -194,7 +235,7 @@ export const CaseStudies: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [revalidateCaseStudy],
+    afterChange: [revalidateIdea],
     afterDelete: [revalidateDelete],
   },
   versions: {

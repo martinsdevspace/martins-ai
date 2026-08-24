@@ -23,9 +23,9 @@ const collectionLabels = {
     plural: 'Insights',
     singular: 'Insight',
   },
-  projects: {
-    plural: 'Projects',
-    singular: 'Project',
+  portfolio: {
+    plural: 'Portfolio',
+    singular: 'Portfolio',
   },
 }
 

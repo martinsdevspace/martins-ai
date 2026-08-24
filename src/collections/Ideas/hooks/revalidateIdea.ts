@@ -2,44 +2,44 @@ import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'paylo
 
 import { revalidatePath, revalidateTag } from 'next/cache'
 
-import type { CaseStudy } from '../../../payload-types'
+import type { Idea } from '../../../payload-types'
 
-export const revalidateCaseStudy: CollectionAfterChangeHook<CaseStudy> = ({
+export const revalidateIdea: CollectionAfterChangeHook<Idea> = ({
   doc,
   previousDoc,
   req: { payload, context },
 }) => {
   if (!context.disableRevalidate) {
     if (doc._status === 'published') {
-      const path = `/case-studies/${doc.slug}`
+      const path = `/ideas/${doc.slug}`
 
-      payload.logger.info(`Revalidating case study at path: ${path}`)
+      payload.logger.info(`Revalidating idea at path: ${path}`)
 
       revalidatePath(path)
-      revalidatePath('/case-studies')
+      revalidatePath('/ideas')
       revalidatePath('/')
-      revalidateTag('case-studies-sitemap', 'max')
+      revalidateTag('ideas-sitemap', 'max')
     }
 
     if (previousDoc._status === 'published' && doc._status !== 'published') {
-      const oldPath = `/case-studies/${previousDoc.slug}`
+      const oldPath = `/ideas/${previousDoc.slug}`
 
-      payload.logger.info(`Revalidating old case study at path: ${oldPath}`)
+      payload.logger.info(`Revalidating old idea at path: ${oldPath}`)
 
       revalidatePath(oldPath)
-      revalidatePath('/case-studies')
+      revalidatePath('/ideas')
     }
   }
   return doc
 }
 
-export const revalidateDelete: CollectionAfterDeleteHook<CaseStudy> = ({ doc, req: { context } }) => {
+export const revalidateDelete: CollectionAfterDeleteHook<Idea> = ({ doc, req: { context } }) => {
   if (!context.disableRevalidate) {
-    const path = `/case-studies/${doc?.slug}`
+    const path = `/ideas/${doc?.slug}`
 
     revalidatePath(path)
-    revalidatePath('/case-studies')
-    revalidateTag('case-studies-sitemap', 'max')
+    revalidatePath('/ideas')
+    revalidateTag('ideas-sitemap', 'max')
   }
 
   return doc

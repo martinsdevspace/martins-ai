@@ -32,8 +32,8 @@ export default async function ResumePage() {
         subtitle="I'm selective about the projects I take on. If you're building something that matters, let's talk. I respond within 24 hours."
         primaryLabel="BOOK_FREE_REVIEW"
         primaryTo="/contact"
-        secondaryLabel="VIEW_WORK"
-        secondaryTo="/works"
+        secondaryLabel="VIEW_PORTFOLIO"
+        secondaryTo="/portfolio"
       />
     </article>
   )

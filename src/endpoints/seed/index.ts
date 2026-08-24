@@ -1,7 +1,7 @@
 import type { CollectionSlug, GlobalSlug, Payload, PayloadRequest } from 'payload'
 
 import { aboutGlobal } from './about-global'
-import { caseStudies } from './case-studies'
+import { ideas } from './ideas'
 import { contactForm as contactFormData } from './contact-form'
 import { newsletterForm as newsletterFormData } from './newsletter-form'
 import { contact as contactPageData } from './contact-page'
@@ -9,7 +9,7 @@ import { home } from './home'
 import { homeGlobal } from './home-global'
 import { industries } from './industries'
 import { nowGlobal } from './now-global'
-import { projects } from './projects'
+import { portfolio } from './portfolio'
 import { resumeGlobal } from './resume-global'
 import { services } from './services'
 import { speakingGlobal } from './speaking-global'
@@ -21,10 +21,10 @@ const collections: CollectionSlug[] = [
   'media',
   'pages',
   'insights',
-  'projects',
+  'portfolio',
   'services',
   'industries',
-  'case-studies',
+  'ideas',
   'testimonials',
   'forms',
   'form-submissions',
@@ -143,7 +143,7 @@ export const seed = async ({
     industryDocs.push(doc)
   }
 
-  payload.logger.info(`— Seeding projects, services, testimonials sequentially...`)
+  payload.logger.info(`— Seeding portfolio, services, testimonials sequentially...`)
 
   const projectIndustries: Record<string, string> = {
     'aurora-ledger': 'fintech',
@@ -154,17 +154,17 @@ export const seed = async ({
     'relay-gateway': 'logistics',
   }
 
-  // Projects — depend on industry IDs
-  const projectDocs = []
-  for (const project of projects) {
+  // Portfolio — depend on industry IDs
+  const portfolioDocs = []
+  for (const project of portfolio) {
     const industry = industryDocs.find((i) => i.slug === projectIndustries[project.slug])
     const doc = await payload.create({
-      collection: 'projects',
+      collection: 'portfolio',
       depth: 0,
       context: { disableRevalidate: true },
       data: { ...project, industry: industry ? industry.id : undefined },
     })
-    projectDocs.push(doc)
+    portfolioDocs.push(doc)
   }
 
   // Services — no dependencies
@@ -191,16 +191,14 @@ export const seed = async ({
     testimonialDocs.push(doc)
   }
 
-  payload.logger.info(`— Seeding case studies...`)
+  payload.logger.info(`— Seeding ideas...`)
 
-  payload.logger.info(`— Seeding case studies...`)
-
-  for (const caseStudy of caseStudies(projectDocs)) {
+  for (const idea of ideas(portfolioDocs)) {
     await payload.create({
-      collection: 'case-studies',
+      collection: 'ideas',
       depth: 0,
       context: { disableRevalidate: true },
-      data: caseStudy,
+      data: idea,
     })
   }
 
@@ -468,8 +466,8 @@ export const seed = async ({
         {
           link: {
             type: 'custom',
-            label: 'Works',
-            url: '/works',
+            label: 'Portfolio',
+            url: '/portfolio',
           },
         },
         {
@@ -489,8 +487,8 @@ export const seed = async ({
         {
           link: {
             type: 'custom',
-            label: 'Case Studies',
-            url: '/case-studies',
+            label: 'Ideas',
+            url: '/ideas',
           },
         },
         {
@@ -526,8 +524,8 @@ export const seed = async ({
         {
           link: {
             type: 'custom',
-            label: 'Works',
-            url: '/works',
+            label: 'Portfolio',
+            url: '/portfolio',
           },
         },
         {
@@ -547,8 +545,8 @@ export const seed = async ({
         {
           link: {
             type: 'custom',
-            label: 'Case Studies',
-            url: '/case-studies',
+            label: 'Ideas',
+            url: '/ideas',
           },
         },
         {

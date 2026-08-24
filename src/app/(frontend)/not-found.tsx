@@ -6,9 +6,9 @@ import { IconArrowUpRight, IconSearch } from '@tabler/icons-react'
 const quickLinks = [
   { href: '/', label: 'Home' },
   { href: '/insights', label: 'Insights' },
-  { href: '/works', label: 'Works' },
+  { href: '/portfolio', label: 'Portfolio' },
   { href: '/services', label: 'Services' },
-  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/ideas', label: 'Ideas' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -40,7 +40,7 @@ export default function NotFound() {
           <input
             type="text"
             name="q"
-            placeholder="Search insights, works, services…"
+            placeholder="Search insights, portfolio, services…"
             aria-label="Search the site"
             className="w-full bg-transparent px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
           />

@@ -32,10 +32,10 @@ async function getPagesSitemap() {
   const staticRoutes = [
     '/',
     '/about',
-    '/works',
+    '/portfolio',
     '/services',
     '/industries',
-    '/case-studies',
+    '/ideas',
     '/contact',
     '/resume',
     '/uses',

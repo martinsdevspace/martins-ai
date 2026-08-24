@@ -146,10 +146,10 @@ export interface Config {
     folders: Folder;
     pages: Page;
     insights: Insight;
-    projects: Project;
+    portfolio: Portfolio;
     services: Service;
     industries: Industry;
-    'case-studies': CaseStudy;
+    ideas: Idea;
     testimonials: Testimonial;
     leads: Lead;
     comments: Comment;
@@ -171,10 +171,10 @@ export interface Config {
     folders: FoldersSelect<false> | FoldersSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     insights: InsightsSelect<false> | InsightsSelect<true>;
-    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    portfolio: PortfolioSelect<false> | PortfolioSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
-    'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    ideas: IdeasSelect<false> | IdeasSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     leads: LeadsSelect<false> | LeadsSelect<true>;
     comments: CommentsSelect<false> | CommentsSelect<true>;
@@ -760,9 +760,9 @@ export interface Textarea {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects".
+ * via the `definition` "portfolio".
  */
-export interface Project {
+export interface Portfolio {
   id: number;
   name: string;
   tagline?: string | null;
@@ -1026,21 +1026,49 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "case-studies".
+ * via the `definition` "ideas".
  */
-export interface CaseStudy {
+export interface Idea {
   id: number;
   /**
-   * Used as the URL path segment for this case study.
+   * Used as the URL path segment for this idea.
    */
   slug: string;
   category?: string | null;
+  /**
+   * Who this idea is for (optional reference client or engagement).
+   */
   client?: string | null;
   industry?: string | null;
   /**
-   * Related project.
+   * Related built platform (Portfolio entry), if this idea maps to something already shipped.
    */
-  projectSlug?: (number | null) | Project;
+  projectSlug?: (number | null) | Portfolio;
+  /**
+   * What this engagement is, in one screen. Shown as the lead on the idea page.
+   */
+  overview?: string | null;
+  /**
+   * Who this is for — the team or problem this idea targets.
+   */
+  audience?: string | null;
+  /**
+   * What you walk away with if we build this.
+   */
+  outcomePromise?: string | null;
+  /**
+   * Indicative budget or timeline, e.g. "From $8k" or "4–6 weeks".
+   */
+  startingFrom?: string | null;
+  /**
+   * What is included if we build this idea.
+   */
+  deliverables?:
+    | {
+        item?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   whyItMatters?: string | null;
   initialSituation?: string | null;
   scope?: string | null;
@@ -1358,8 +1386,8 @@ export interface PayloadLockedDocument {
         value: number | Insight;
       } | null)
     | ({
-        relationTo: 'projects';
-        value: number | Project;
+        relationTo: 'portfolio';
+        value: number | Portfolio;
       } | null)
     | ({
         relationTo: 'services';
@@ -1370,8 +1398,8 @@ export interface PayloadLockedDocument {
         value: number | Industry;
       } | null)
     | ({
-        relationTo: 'case-studies';
-        value: number | CaseStudy;
+        relationTo: 'ideas';
+        value: number | Idea;
       } | null)
     | ({
         relationTo: 'testimonials';
@@ -1641,9 +1669,9 @@ export interface InsightsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects_select".
+ * via the `definition` "portfolio_select".
  */
-export interface ProjectsSelect<T extends boolean = true> {
+export interface PortfolioSelect<T extends boolean = true> {
   name?: T;
   tagline?: T;
   description?: T;
@@ -1850,14 +1878,24 @@ export interface IndustriesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "case-studies_select".
+ * via the `definition` "ideas_select".
  */
-export interface CaseStudiesSelect<T extends boolean = true> {
+export interface IdeasSelect<T extends boolean = true> {
   slug?: T;
   category?: T;
   client?: T;
   industry?: T;
   projectSlug?: T;
+  overview?: T;
+  audience?: T;
+  outcomePromise?: T;
+  startingFrom?: T;
+  deliverables?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
   whyItMatters?: T;
   initialSituation?: T;
   scope?: T;
@@ -2578,6 +2616,18 @@ export interface SiteSetting {
  */
 export interface About {
   id: number;
+  /**
+   * Eyebrow label for the About page hero.
+   */
+  heroLabel?: string | null;
+  /**
+   * Headline for the About page hero.
+   */
+  heroTitle?: string | null;
+  /**
+   * Intro paragraph for the About page hero.
+   */
+  heroIntro?: string | null;
   layout?:
     | (
         | AboutHeroBlock
@@ -3077,6 +3127,18 @@ export interface Speaking {
    * Mono eyebrow label at the top of the page.
    */
   pageLabel?: string | null;
+  /**
+   * Eyebrow label for the page hero.
+   */
+  heroLabel?: string | null;
+  /**
+   * Headline shown in the page hero.
+   */
+  heroTitle?: string | null;
+  /**
+   * Intro paragraph shown in the page hero.
+   */
+  heroIntro?: string | null;
   upcomingHeading?: string | null;
   pastHeading?: string | null;
   emptyMessage?: string | null;
@@ -3298,6 +3360,9 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
+  heroLabel?: T;
+  heroTitle?: T;
+  heroIntro?: T;
   layout?:
     | T
     | {
@@ -3743,6 +3808,9 @@ export interface NowSelect<T extends boolean = true> {
  */
 export interface SpeakingSelect<T extends boolean = true> {
   pageLabel?: T;
+  heroLabel?: T;
+  heroTitle?: T;
+  heroIntro?: T;
   upcomingHeading?: T;
   pastHeading?: T;
   emptyMessage?: T;
@@ -3794,10 +3862,10 @@ export interface CollectionQueryWidget {
       | 'folders'
       | 'pages'
       | 'insights'
-      | 'projects'
+      | 'portfolio'
       | 'services'
       | 'industries'
-      | 'case-studies'
+      | 'ideas'
       | 'testimonials'
       | 'leads'
       | 'comments'
@@ -3834,10 +3902,10 @@ export interface ActivityWidget {
           | 'folders'
           | 'pages'
           | 'insights'
-          | 'projects'
+          | 'portfolio'
           | 'services'
           | 'industries'
-          | 'case-studies'
+          | 'ideas'
           | 'testimonials'
           | 'leads'
           | 'comments'
@@ -3871,8 +3939,8 @@ export interface TaskSchedulePublish {
           value: number | Insight;
         } | null)
       | ({
-          relationTo: 'projects';
-          value: number | Project;
+          relationTo: 'portfolio';
+          value: number | Portfolio;
         } | null)
       | ({
           relationTo: 'services';
@@ -3883,8 +3951,8 @@ export interface TaskSchedulePublish {
           value: number | Industry;
         } | null)
       | ({
-          relationTo: 'case-studies';
-          value: number | CaseStudy;
+          relationTo: 'ideas';
+          value: number | Idea;
         } | null);
     global?: string | null;
     user?: (number | null) | User;

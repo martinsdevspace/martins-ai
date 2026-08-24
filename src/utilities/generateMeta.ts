@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 
-import type { CaseStudy, Config, Industry, Insight, Media, Page, Project, Service } from '../payload-types'
+import type { Config, Idea, Industry, Insight, Media, Page, Portfolio, Service } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
 
 type MetaDoc = Partial<
-  Insight | Page | Project | Service | Industry | CaseStudy
+  Insight | Page | Portfolio | Service | Industry | Idea
 >
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {

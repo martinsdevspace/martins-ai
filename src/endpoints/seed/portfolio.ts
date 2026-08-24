@@ -1,6 +1,6 @@
 import type { RequiredDataFromCollectionSlug } from 'payload'
 
-export const projects: RequiredDataFromCollectionSlug<'projects'>[] = [
+export const portfolio: RequiredDataFromCollectionSlug<'portfolio'>[] = [
   {
     name: 'Aurora Ledger',
     slug: 'aurora-ledger',

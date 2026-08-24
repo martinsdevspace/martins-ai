@@ -4538,8 +4538,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.projects_stack": {
-      "name": "projects_stack",
+    "public.portfolio_stack": {
+      "name": "portfolio_stack",
       "schema": "",
       "columns": {
         "_order": {
@@ -4568,8 +4568,8 @@
         }
       },
       "indexes": {
-        "projects_stack_order_idx": {
-          "name": "projects_stack_order_idx",
+        "portfolio_stack_order_idx": {
+          "name": "portfolio_stack_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -4583,8 +4583,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_stack_parent_id_idx": {
-          "name": "projects_stack_parent_id_idx",
+        "portfolio_stack_parent_id_idx": {
+          "name": "portfolio_stack_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -4600,10 +4600,10 @@
         }
       },
       "foreignKeys": {
-        "projects_stack_parent_id_fk": {
-          "name": "projects_stack_parent_id_fk",
-          "tableFrom": "projects_stack",
-          "tableTo": "projects",
+        "portfolio_stack_parent_id_fk": {
+          "name": "portfolio_stack_parent_id_fk",
+          "tableFrom": "portfolio_stack",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -4620,8 +4620,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.projects_architecture": {
-      "name": "projects_architecture",
+    "public.portfolio_architecture": {
+      "name": "portfolio_architecture",
       "schema": "",
       "columns": {
         "_order": {
@@ -4656,8 +4656,8 @@
         }
       },
       "indexes": {
-        "projects_architecture_order_idx": {
-          "name": "projects_architecture_order_idx",
+        "portfolio_architecture_order_idx": {
+          "name": "portfolio_architecture_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -4671,8 +4671,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_architecture_parent_id_idx": {
-          "name": "projects_architecture_parent_id_idx",
+        "portfolio_architecture_parent_id_idx": {
+          "name": "portfolio_architecture_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -4688,10 +4688,10 @@
         }
       },
       "foreignKeys": {
-        "projects_architecture_parent_id_fk": {
-          "name": "projects_architecture_parent_id_fk",
-          "tableFrom": "projects_architecture",
-          "tableTo": "projects",
+        "portfolio_architecture_parent_id_fk": {
+          "name": "portfolio_architecture_parent_id_fk",
+          "tableFrom": "portfolio_architecture",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -4708,8 +4708,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.projects_features": {
-      "name": "projects_features",
+    "public.portfolio_features": {
+      "name": "portfolio_features",
       "schema": "",
       "columns": {
         "_order": {
@@ -4738,8 +4738,8 @@
         }
       },
       "indexes": {
-        "projects_features_order_idx": {
-          "name": "projects_features_order_idx",
+        "portfolio_features_order_idx": {
+          "name": "portfolio_features_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -4753,8 +4753,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_features_parent_id_idx": {
-          "name": "projects_features_parent_id_idx",
+        "portfolio_features_parent_id_idx": {
+          "name": "portfolio_features_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -4770,10 +4770,10 @@
         }
       },
       "foreignKeys": {
-        "projects_features_parent_id_fk": {
-          "name": "projects_features_parent_id_fk",
-          "tableFrom": "projects_features",
-          "tableTo": "projects",
+        "portfolio_features_parent_id_fk": {
+          "name": "portfolio_features_parent_id_fk",
+          "tableFrom": "portfolio_features",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -4790,8 +4790,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.projects_result_metrics": {
-      "name": "projects_result_metrics",
+    "public.portfolio_result_metrics": {
+      "name": "portfolio_result_metrics",
       "schema": "",
       "columns": {
         "_order": {
@@ -4826,8 +4826,8 @@
         }
       },
       "indexes": {
-        "projects_result_metrics_order_idx": {
-          "name": "projects_result_metrics_order_idx",
+        "portfolio_result_metrics_order_idx": {
+          "name": "portfolio_result_metrics_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -4841,8 +4841,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_result_metrics_parent_id_idx": {
-          "name": "projects_result_metrics_parent_id_idx",
+        "portfolio_result_metrics_parent_id_idx": {
+          "name": "portfolio_result_metrics_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -4858,10 +4858,10 @@
         }
       },
       "foreignKeys": {
-        "projects_result_metrics_parent_id_fk": {
-          "name": "projects_result_metrics_parent_id_fk",
-          "tableFrom": "projects_result_metrics",
-          "tableTo": "projects",
+        "portfolio_result_metrics_parent_id_fk": {
+          "name": "portfolio_result_metrics_parent_id_fk",
+          "tableFrom": "portfolio_result_metrics",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -4878,8 +4878,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.projects_lessons": {
-      "name": "projects_lessons",
+    "public.portfolio_lessons": {
+      "name": "portfolio_lessons",
       "schema": "",
       "columns": {
         "_order": {
@@ -4908,8 +4908,8 @@
         }
       },
       "indexes": {
-        "projects_lessons_order_idx": {
-          "name": "projects_lessons_order_idx",
+        "portfolio_lessons_order_idx": {
+          "name": "portfolio_lessons_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -4923,8 +4923,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_lessons_parent_id_idx": {
-          "name": "projects_lessons_parent_id_idx",
+        "portfolio_lessons_parent_id_idx": {
+          "name": "portfolio_lessons_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -4940,10 +4940,10 @@
         }
       },
       "foreignKeys": {
-        "projects_lessons_parent_id_fk": {
-          "name": "projects_lessons_parent_id_fk",
-          "tableFrom": "projects_lessons",
-          "tableTo": "projects",
+        "portfolio_lessons_parent_id_fk": {
+          "name": "portfolio_lessons_parent_id_fk",
+          "tableFrom": "portfolio_lessons",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -4960,8 +4960,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.projects_development_timeline": {
-      "name": "projects_development_timeline",
+    "public.portfolio_development_timeline": {
+      "name": "portfolio_development_timeline",
       "schema": "",
       "columns": {
         "_order": {
@@ -5014,8 +5014,8 @@
         }
       },
       "indexes": {
-        "projects_development_timeline_order_idx": {
-          "name": "projects_development_timeline_order_idx",
+        "portfolio_development_timeline_order_idx": {
+          "name": "portfolio_development_timeline_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -5029,8 +5029,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_development_timeline_parent_id_idx": {
-          "name": "projects_development_timeline_parent_id_idx",
+        "portfolio_development_timeline_parent_id_idx": {
+          "name": "portfolio_development_timeline_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -5046,10 +5046,10 @@
         }
       },
       "foreignKeys": {
-        "projects_development_timeline_parent_id_fk": {
-          "name": "projects_development_timeline_parent_id_fk",
-          "tableFrom": "projects_development_timeline",
-          "tableTo": "projects",
+        "portfolio_development_timeline_parent_id_fk": {
+          "name": "portfolio_development_timeline_parent_id_fk",
+          "tableFrom": "portfolio_development_timeline",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -5066,8 +5066,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.projects": {
-      "name": "projects",
+    "public.portfolio": {
+      "name": "portfolio",
       "schema": "",
       "columns": {
         "id": {
@@ -5150,7 +5150,7 @@
         },
         "code_sample_language": {
           "name": "code_sample_language",
-          "type": "enum_projects_code_sample_language",
+          "type": "enum_portfolio_code_sample_language",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
@@ -5163,7 +5163,7 @@
         },
         "project_status": {
           "name": "project_status",
-          "type": "enum_projects_project_status",
+          "type": "enum_portfolio_project_status",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
@@ -5246,7 +5246,7 @@
         },
         "_status": {
           "name": "_status",
-          "type": "enum_projects_status",
+          "type": "enum_portfolio_status",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
@@ -5254,8 +5254,8 @@
         }
       },
       "indexes": {
-        "projects_thumbnail_idx": {
-          "name": "projects_thumbnail_idx",
+        "portfolio_thumbnail_idx": {
+          "name": "portfolio_thumbnail_idx",
           "columns": [
             {
               "expression": "thumbnail_id",
@@ -5269,8 +5269,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_industry_idx": {
-          "name": "projects_industry_idx",
+        "portfolio_industry_idx": {
+          "name": "portfolio_industry_idx",
           "columns": [
             {
               "expression": "industry_id",
@@ -5284,8 +5284,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_meta_meta_image_idx": {
-          "name": "projects_meta_meta_image_idx",
+        "portfolio_meta_meta_image_idx": {
+          "name": "portfolio_meta_meta_image_idx",
           "columns": [
             {
               "expression": "meta_image_id",
@@ -5299,8 +5299,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_slug_idx": {
-          "name": "projects_slug_idx",
+        "portfolio_slug_idx": {
+          "name": "portfolio_slug_idx",
           "columns": [
             {
               "expression": "slug",
@@ -5314,8 +5314,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_updated_at_idx": {
-          "name": "projects_updated_at_idx",
+        "portfolio_updated_at_idx": {
+          "name": "portfolio_updated_at_idx",
           "columns": [
             {
               "expression": "updated_at",
@@ -5329,8 +5329,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects_created_at_idx": {
-          "name": "projects_created_at_idx",
+        "portfolio_created_at_idx": {
+          "name": "portfolio_created_at_idx",
           "columns": [
             {
               "expression": "created_at",
@@ -5344,8 +5344,8 @@
           "method": "btree",
           "with": {}
         },
-        "projects__status_idx": {
-          "name": "projects__status_idx",
+        "portfolio__status_idx": {
+          "name": "portfolio__status_idx",
           "columns": [
             {
               "expression": "_status",
@@ -5361,9 +5361,9 @@
         }
       },
       "foreignKeys": {
-        "projects_thumbnail_id_media_id_fk": {
-          "name": "projects_thumbnail_id_media_id_fk",
-          "tableFrom": "projects",
+        "portfolio_thumbnail_id_media_id_fk": {
+          "name": "portfolio_thumbnail_id_media_id_fk",
+          "tableFrom": "portfolio",
           "tableTo": "media",
           "columnsFrom": [
             "thumbnail_id"
@@ -5374,9 +5374,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "projects_industry_id_industries_id_fk": {
-          "name": "projects_industry_id_industries_id_fk",
-          "tableFrom": "projects",
+        "portfolio_industry_id_industries_id_fk": {
+          "name": "portfolio_industry_id_industries_id_fk",
+          "tableFrom": "portfolio",
           "tableTo": "industries",
           "columnsFrom": [
             "industry_id"
@@ -5387,9 +5387,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "projects_meta_image_id_media_id_fk": {
-          "name": "projects_meta_image_id_media_id_fk",
-          "tableFrom": "projects",
+        "portfolio_meta_image_id_media_id_fk": {
+          "name": "portfolio_meta_image_id_media_id_fk",
+          "tableFrom": "portfolio",
           "tableTo": "media",
           "columnsFrom": [
             "meta_image_id"
@@ -5407,8 +5407,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._projects_v_version_stack": {
-      "name": "_projects_v_version_stack",
+    "public._portfolio_v_version_stack": {
+      "name": "_portfolio_v_version_stack",
       "schema": "",
       "columns": {
         "_order": {
@@ -5443,8 +5443,8 @@
         }
       },
       "indexes": {
-        "_projects_v_version_stack_order_idx": {
-          "name": "_projects_v_version_stack_order_idx",
+        "_portfolio_v_version_stack_order_idx": {
+          "name": "_portfolio_v_version_stack_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -5458,8 +5458,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_stack_parent_id_idx": {
-          "name": "_projects_v_version_stack_parent_id_idx",
+        "_portfolio_v_version_stack_parent_id_idx": {
+          "name": "_portfolio_v_version_stack_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -5475,10 +5475,10 @@
         }
       },
       "foreignKeys": {
-        "_projects_v_version_stack_parent_id_fk": {
-          "name": "_projects_v_version_stack_parent_id_fk",
-          "tableFrom": "_projects_v_version_stack",
-          "tableTo": "_projects_v",
+        "_portfolio_v_version_stack_parent_id_fk": {
+          "name": "_portfolio_v_version_stack_parent_id_fk",
+          "tableFrom": "_portfolio_v_version_stack",
+          "tableTo": "_portfolio_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -5495,8 +5495,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._projects_v_version_architecture": {
-      "name": "_projects_v_version_architecture",
+    "public._portfolio_v_version_architecture": {
+      "name": "_portfolio_v_version_architecture",
       "schema": "",
       "columns": {
         "_order": {
@@ -5537,8 +5537,8 @@
         }
       },
       "indexes": {
-        "_projects_v_version_architecture_order_idx": {
-          "name": "_projects_v_version_architecture_order_idx",
+        "_portfolio_v_version_architecture_order_idx": {
+          "name": "_portfolio_v_version_architecture_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -5552,8 +5552,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_architecture_parent_id_idx": {
-          "name": "_projects_v_version_architecture_parent_id_idx",
+        "_portfolio_v_version_architecture_parent_id_idx": {
+          "name": "_portfolio_v_version_architecture_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -5569,10 +5569,10 @@
         }
       },
       "foreignKeys": {
-        "_projects_v_version_architecture_parent_id_fk": {
-          "name": "_projects_v_version_architecture_parent_id_fk",
-          "tableFrom": "_projects_v_version_architecture",
-          "tableTo": "_projects_v",
+        "_portfolio_v_version_architecture_parent_id_fk": {
+          "name": "_portfolio_v_version_architecture_parent_id_fk",
+          "tableFrom": "_portfolio_v_version_architecture",
+          "tableTo": "_portfolio_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -5589,8 +5589,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._projects_v_version_features": {
-      "name": "_projects_v_version_features",
+    "public._portfolio_v_version_features": {
+      "name": "_portfolio_v_version_features",
       "schema": "",
       "columns": {
         "_order": {
@@ -5625,8 +5625,8 @@
         }
       },
       "indexes": {
-        "_projects_v_version_features_order_idx": {
-          "name": "_projects_v_version_features_order_idx",
+        "_portfolio_v_version_features_order_idx": {
+          "name": "_portfolio_v_version_features_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -5640,8 +5640,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_features_parent_id_idx": {
-          "name": "_projects_v_version_features_parent_id_idx",
+        "_portfolio_v_version_features_parent_id_idx": {
+          "name": "_portfolio_v_version_features_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -5657,10 +5657,10 @@
         }
       },
       "foreignKeys": {
-        "_projects_v_version_features_parent_id_fk": {
-          "name": "_projects_v_version_features_parent_id_fk",
-          "tableFrom": "_projects_v_version_features",
-          "tableTo": "_projects_v",
+        "_portfolio_v_version_features_parent_id_fk": {
+          "name": "_portfolio_v_version_features_parent_id_fk",
+          "tableFrom": "_portfolio_v_version_features",
+          "tableTo": "_portfolio_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -5677,8 +5677,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._projects_v_version_result_metrics": {
-      "name": "_projects_v_version_result_metrics",
+    "public._portfolio_v_version_result_metrics": {
+      "name": "_portfolio_v_version_result_metrics",
       "schema": "",
       "columns": {
         "_order": {
@@ -5719,8 +5719,8 @@
         }
       },
       "indexes": {
-        "_projects_v_version_result_metrics_order_idx": {
-          "name": "_projects_v_version_result_metrics_order_idx",
+        "_portfolio_v_version_result_metrics_order_idx": {
+          "name": "_portfolio_v_version_result_metrics_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -5734,8 +5734,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_result_metrics_parent_id_idx": {
-          "name": "_projects_v_version_result_metrics_parent_id_idx",
+        "_portfolio_v_version_result_metrics_parent_id_idx": {
+          "name": "_portfolio_v_version_result_metrics_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -5751,10 +5751,10 @@
         }
       },
       "foreignKeys": {
-        "_projects_v_version_result_metrics_parent_id_fk": {
-          "name": "_projects_v_version_result_metrics_parent_id_fk",
-          "tableFrom": "_projects_v_version_result_metrics",
-          "tableTo": "_projects_v",
+        "_portfolio_v_version_result_metrics_parent_id_fk": {
+          "name": "_portfolio_v_version_result_metrics_parent_id_fk",
+          "tableFrom": "_portfolio_v_version_result_metrics",
+          "tableTo": "_portfolio_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -5771,8 +5771,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._projects_v_version_lessons": {
-      "name": "_projects_v_version_lessons",
+    "public._portfolio_v_version_lessons": {
+      "name": "_portfolio_v_version_lessons",
       "schema": "",
       "columns": {
         "_order": {
@@ -5807,8 +5807,8 @@
         }
       },
       "indexes": {
-        "_projects_v_version_lessons_order_idx": {
-          "name": "_projects_v_version_lessons_order_idx",
+        "_portfolio_v_version_lessons_order_idx": {
+          "name": "_portfolio_v_version_lessons_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -5822,8 +5822,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_lessons_parent_id_idx": {
-          "name": "_projects_v_version_lessons_parent_id_idx",
+        "_portfolio_v_version_lessons_parent_id_idx": {
+          "name": "_portfolio_v_version_lessons_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -5839,10 +5839,10 @@
         }
       },
       "foreignKeys": {
-        "_projects_v_version_lessons_parent_id_fk": {
-          "name": "_projects_v_version_lessons_parent_id_fk",
-          "tableFrom": "_projects_v_version_lessons",
-          "tableTo": "_projects_v",
+        "_portfolio_v_version_lessons_parent_id_fk": {
+          "name": "_portfolio_v_version_lessons_parent_id_fk",
+          "tableFrom": "_portfolio_v_version_lessons",
+          "tableTo": "_portfolio_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -5859,8 +5859,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._projects_v_version_development_timeline": {
-      "name": "_projects_v_version_development_timeline",
+    "public._portfolio_v_version_development_timeline": {
+      "name": "_portfolio_v_version_development_timeline",
       "schema": "",
       "columns": {
         "_order": {
@@ -5919,8 +5919,8 @@
         }
       },
       "indexes": {
-        "_projects_v_version_development_timeline_order_idx": {
-          "name": "_projects_v_version_development_timeline_order_idx",
+        "_portfolio_v_version_development_timeline_order_idx": {
+          "name": "_portfolio_v_version_development_timeline_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -5934,8 +5934,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_development_timeline_parent_id_idx": {
-          "name": "_projects_v_version_development_timeline_parent_id_idx",
+        "_portfolio_v_version_development_timeline_parent_id_idx": {
+          "name": "_portfolio_v_version_development_timeline_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -5951,10 +5951,10 @@
         }
       },
       "foreignKeys": {
-        "_projects_v_version_development_timeline_parent_id_fk": {
-          "name": "_projects_v_version_development_timeline_parent_id_fk",
-          "tableFrom": "_projects_v_version_development_timeline",
-          "tableTo": "_projects_v",
+        "_portfolio_v_version_development_timeline_parent_id_fk": {
+          "name": "_portfolio_v_version_development_timeline_parent_id_fk",
+          "tableFrom": "_portfolio_v_version_development_timeline",
+          "tableTo": "_portfolio_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -5971,8 +5971,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._projects_v": {
-      "name": "_projects_v",
+    "public._portfolio_v": {
+      "name": "_portfolio_v",
       "schema": "",
       "columns": {
         "id": {
@@ -6061,7 +6061,7 @@
         },
         "version_code_sample_language": {
           "name": "version_code_sample_language",
-          "type": "enum__projects_v_version_code_sample_language",
+          "type": "enum__portfolio_v_version_code_sample_language",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
@@ -6074,7 +6074,7 @@
         },
         "version_project_status": {
           "name": "version_project_status",
-          "type": "enum__projects_v_version_project_status",
+          "type": "enum__portfolio_v_version_project_status",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
@@ -6155,7 +6155,7 @@
         },
         "version__status": {
           "name": "version__status",
-          "type": "enum__projects_v_version_status",
+          "type": "enum__portfolio_v_version_status",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
@@ -6189,8 +6189,8 @@
         }
       },
       "indexes": {
-        "_projects_v_parent_idx": {
-          "name": "_projects_v_parent_idx",
+        "_portfolio_v_parent_idx": {
+          "name": "_portfolio_v_parent_idx",
           "columns": [
             {
               "expression": "parent_id",
@@ -6204,8 +6204,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_version_thumbnail_idx": {
-          "name": "_projects_v_version_version_thumbnail_idx",
+        "_portfolio_v_version_version_thumbnail_idx": {
+          "name": "_portfolio_v_version_version_thumbnail_idx",
           "columns": [
             {
               "expression": "version_thumbnail_id",
@@ -6219,8 +6219,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_version_industry_idx": {
-          "name": "_projects_v_version_version_industry_idx",
+        "_portfolio_v_version_version_industry_idx": {
+          "name": "_portfolio_v_version_version_industry_idx",
           "columns": [
             {
               "expression": "version_industry_id",
@@ -6234,8 +6234,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_meta_version_meta_image_idx": {
-          "name": "_projects_v_version_meta_version_meta_image_idx",
+        "_portfolio_v_version_meta_version_meta_image_idx": {
+          "name": "_portfolio_v_version_meta_version_meta_image_idx",
           "columns": [
             {
               "expression": "version_meta_image_id",
@@ -6249,8 +6249,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_version_slug_idx": {
-          "name": "_projects_v_version_version_slug_idx",
+        "_portfolio_v_version_version_slug_idx": {
+          "name": "_portfolio_v_version_version_slug_idx",
           "columns": [
             {
               "expression": "version_slug",
@@ -6264,8 +6264,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_version_updated_at_idx": {
-          "name": "_projects_v_version_version_updated_at_idx",
+        "_portfolio_v_version_version_updated_at_idx": {
+          "name": "_portfolio_v_version_version_updated_at_idx",
           "columns": [
             {
               "expression": "version_updated_at",
@@ -6279,8 +6279,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_version_created_at_idx": {
-          "name": "_projects_v_version_version_created_at_idx",
+        "_portfolio_v_version_version_created_at_idx": {
+          "name": "_portfolio_v_version_version_created_at_idx",
           "columns": [
             {
               "expression": "version_created_at",
@@ -6294,8 +6294,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_version_version__status_idx": {
-          "name": "_projects_v_version_version__status_idx",
+        "_portfolio_v_version_version__status_idx": {
+          "name": "_portfolio_v_version_version__status_idx",
           "columns": [
             {
               "expression": "version__status",
@@ -6309,8 +6309,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_created_at_idx": {
-          "name": "_projects_v_created_at_idx",
+        "_portfolio_v_created_at_idx": {
+          "name": "_portfolio_v_created_at_idx",
           "columns": [
             {
               "expression": "created_at",
@@ -6324,8 +6324,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_updated_at_idx": {
-          "name": "_projects_v_updated_at_idx",
+        "_portfolio_v_updated_at_idx": {
+          "name": "_portfolio_v_updated_at_idx",
           "columns": [
             {
               "expression": "updated_at",
@@ -6339,8 +6339,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_latest_idx": {
-          "name": "_projects_v_latest_idx",
+        "_portfolio_v_latest_idx": {
+          "name": "_portfolio_v_latest_idx",
           "columns": [
             {
               "expression": "latest",
@@ -6354,8 +6354,8 @@
           "method": "btree",
           "with": {}
         },
-        "_projects_v_autosave_idx": {
-          "name": "_projects_v_autosave_idx",
+        "_portfolio_v_autosave_idx": {
+          "name": "_portfolio_v_autosave_idx",
           "columns": [
             {
               "expression": "autosave",
@@ -6371,10 +6371,10 @@
         }
       },
       "foreignKeys": {
-        "_projects_v_parent_id_projects_id_fk": {
-          "name": "_projects_v_parent_id_projects_id_fk",
-          "tableFrom": "_projects_v",
-          "tableTo": "projects",
+        "_portfolio_v_parent_id_portfolio_id_fk": {
+          "name": "_portfolio_v_parent_id_portfolio_id_fk",
+          "tableFrom": "_portfolio_v",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "parent_id"
           ],
@@ -6384,9 +6384,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "_projects_v_version_thumbnail_id_media_id_fk": {
-          "name": "_projects_v_version_thumbnail_id_media_id_fk",
-          "tableFrom": "_projects_v",
+        "_portfolio_v_version_thumbnail_id_media_id_fk": {
+          "name": "_portfolio_v_version_thumbnail_id_media_id_fk",
+          "tableFrom": "_portfolio_v",
           "tableTo": "media",
           "columnsFrom": [
             "version_thumbnail_id"
@@ -6397,9 +6397,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "_projects_v_version_industry_id_industries_id_fk": {
-          "name": "_projects_v_version_industry_id_industries_id_fk",
-          "tableFrom": "_projects_v",
+        "_portfolio_v_version_industry_id_industries_id_fk": {
+          "name": "_portfolio_v_version_industry_id_industries_id_fk",
+          "tableFrom": "_portfolio_v",
           "tableTo": "industries",
           "columnsFrom": [
             "version_industry_id"
@@ -6410,9 +6410,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "_projects_v_version_meta_image_id_media_id_fk": {
-          "name": "_projects_v_version_meta_image_id_media_id_fk",
-          "tableFrom": "_projects_v",
+        "_portfolio_v_version_meta_image_id_media_id_fk": {
+          "name": "_portfolio_v_version_meta_image_id_media_id_fk",
+          "tableFrom": "_portfolio_v",
           "tableTo": "media",
           "columnsFrom": [
             "version_meta_image_id"
@@ -9262,8 +9262,90 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.case_studies_metrics": {
-      "name": "case_studies_metrics",
+    "public.ideas_deliverables": {
+      "name": "ideas_deliverables",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "item": {
+          "name": "item",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "ideas_deliverables_order_idx": {
+          "name": "ideas_deliverables_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "ideas_deliverables_parent_id_idx": {
+          "name": "ideas_deliverables_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "ideas_deliverables_parent_id_fk": {
+          "name": "ideas_deliverables_parent_id_fk",
+          "tableFrom": "ideas_deliverables",
+          "tableTo": "ideas",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.ideas_metrics": {
+      "name": "ideas_metrics",
       "schema": "",
       "columns": {
         "_order": {
@@ -9298,8 +9380,8 @@
         }
       },
       "indexes": {
-        "case_studies_metrics_order_idx": {
-          "name": "case_studies_metrics_order_idx",
+        "ideas_metrics_order_idx": {
+          "name": "ideas_metrics_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -9313,8 +9395,8 @@
           "method": "btree",
           "with": {}
         },
-        "case_studies_metrics_parent_id_idx": {
-          "name": "case_studies_metrics_parent_id_idx",
+        "ideas_metrics_parent_id_idx": {
+          "name": "ideas_metrics_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -9330,10 +9412,10 @@
         }
       },
       "foreignKeys": {
-        "case_studies_metrics_parent_id_fk": {
-          "name": "case_studies_metrics_parent_id_fk",
-          "tableFrom": "case_studies_metrics",
-          "tableTo": "case_studies",
+        "ideas_metrics_parent_id_fk": {
+          "name": "ideas_metrics_parent_id_fk",
+          "tableFrom": "ideas_metrics",
+          "tableTo": "ideas",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -9350,8 +9432,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.case_studies_tags": {
-      "name": "case_studies_tags",
+    "public.ideas_tags": {
+      "name": "ideas_tags",
       "schema": "",
       "columns": {
         "_order": {
@@ -9380,8 +9462,8 @@
         }
       },
       "indexes": {
-        "case_studies_tags_order_idx": {
-          "name": "case_studies_tags_order_idx",
+        "ideas_tags_order_idx": {
+          "name": "ideas_tags_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -9395,8 +9477,8 @@
           "method": "btree",
           "with": {}
         },
-        "case_studies_tags_parent_id_idx": {
-          "name": "case_studies_tags_parent_id_idx",
+        "ideas_tags_parent_id_idx": {
+          "name": "ideas_tags_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -9412,10 +9494,10 @@
         }
       },
       "foreignKeys": {
-        "case_studies_tags_parent_id_fk": {
-          "name": "case_studies_tags_parent_id_fk",
-          "tableFrom": "case_studies_tags",
-          "tableTo": "case_studies",
+        "ideas_tags_parent_id_fk": {
+          "name": "ideas_tags_parent_id_fk",
+          "tableFrom": "ideas_tags",
+          "tableTo": "ideas",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -9432,8 +9514,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.case_studies": {
-      "name": "case_studies",
+    "public.ideas": {
+      "name": "ideas",
       "schema": "",
       "columns": {
         "id": {
@@ -9469,6 +9551,30 @@
         "project_slug_id": {
           "name": "project_slug_id",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "overview": {
+          "name": "overview",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "audience": {
+          "name": "audience",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "outcome_promise": {
+          "name": "outcome_promise",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "starting_from": {
+          "name": "starting_from",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -9554,7 +9660,7 @@
         },
         "_status": {
           "name": "_status",
-          "type": "enum_case_studies_status",
+          "type": "enum_ideas_status",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
@@ -9562,8 +9668,8 @@
         }
       },
       "indexes": {
-        "case_studies_slug_idx": {
-          "name": "case_studies_slug_idx",
+        "ideas_slug_idx": {
+          "name": "ideas_slug_idx",
           "columns": [
             {
               "expression": "slug",
@@ -9577,8 +9683,8 @@
           "method": "btree",
           "with": {}
         },
-        "case_studies_project_slug_idx": {
-          "name": "case_studies_project_slug_idx",
+        "ideas_project_slug_idx": {
+          "name": "ideas_project_slug_idx",
           "columns": [
             {
               "expression": "project_slug_id",
@@ -9592,8 +9698,8 @@
           "method": "btree",
           "with": {}
         },
-        "case_studies_meta_meta_image_idx": {
-          "name": "case_studies_meta_meta_image_idx",
+        "ideas_meta_meta_image_idx": {
+          "name": "ideas_meta_meta_image_idx",
           "columns": [
             {
               "expression": "meta_image_id",
@@ -9607,8 +9713,8 @@
           "method": "btree",
           "with": {}
         },
-        "case_studies_updated_at_idx": {
-          "name": "case_studies_updated_at_idx",
+        "ideas_updated_at_idx": {
+          "name": "ideas_updated_at_idx",
           "columns": [
             {
               "expression": "updated_at",
@@ -9622,8 +9728,8 @@
           "method": "btree",
           "with": {}
         },
-        "case_studies_created_at_idx": {
-          "name": "case_studies_created_at_idx",
+        "ideas_created_at_idx": {
+          "name": "ideas_created_at_idx",
           "columns": [
             {
               "expression": "created_at",
@@ -9637,8 +9743,8 @@
           "method": "btree",
           "with": {}
         },
-        "case_studies__status_idx": {
-          "name": "case_studies__status_idx",
+        "ideas__status_idx": {
+          "name": "ideas__status_idx",
           "columns": [
             {
               "expression": "_status",
@@ -9654,10 +9760,10 @@
         }
       },
       "foreignKeys": {
-        "case_studies_project_slug_id_projects_id_fk": {
-          "name": "case_studies_project_slug_id_projects_id_fk",
-          "tableFrom": "case_studies",
-          "tableTo": "projects",
+        "ideas_project_slug_id_portfolio_id_fk": {
+          "name": "ideas_project_slug_id_portfolio_id_fk",
+          "tableFrom": "ideas",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "project_slug_id"
           ],
@@ -9667,9 +9773,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "case_studies_meta_image_id_media_id_fk": {
-          "name": "case_studies_meta_image_id_media_id_fk",
-          "tableFrom": "case_studies",
+        "ideas_meta_image_id_media_id_fk": {
+          "name": "ideas_meta_image_id_media_id_fk",
+          "tableFrom": "ideas",
           "tableTo": "media",
           "columnsFrom": [
             "meta_image_id"
@@ -9687,8 +9793,96 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._case_studies_v_version_metrics": {
-      "name": "_case_studies_v_version_metrics",
+    "public._ideas_v_version_deliverables": {
+      "name": "_ideas_v_version_deliverables",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "item": {
+          "name": "item",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_ideas_v_version_deliverables_order_idx": {
+          "name": "_ideas_v_version_deliverables_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_ideas_v_version_deliverables_parent_id_idx": {
+          "name": "_ideas_v_version_deliverables_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_ideas_v_version_deliverables_parent_id_fk": {
+          "name": "_ideas_v_version_deliverables_parent_id_fk",
+          "tableFrom": "_ideas_v_version_deliverables",
+          "tableTo": "_ideas_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public._ideas_v_version_metrics": {
+      "name": "_ideas_v_version_metrics",
       "schema": "",
       "columns": {
         "_order": {
@@ -9729,8 +9923,8 @@
         }
       },
       "indexes": {
-        "_case_studies_v_version_metrics_order_idx": {
-          "name": "_case_studies_v_version_metrics_order_idx",
+        "_ideas_v_version_metrics_order_idx": {
+          "name": "_ideas_v_version_metrics_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -9744,8 +9938,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_version_metrics_parent_id_idx": {
-          "name": "_case_studies_v_version_metrics_parent_id_idx",
+        "_ideas_v_version_metrics_parent_id_idx": {
+          "name": "_ideas_v_version_metrics_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -9761,10 +9955,10 @@
         }
       },
       "foreignKeys": {
-        "_case_studies_v_version_metrics_parent_id_fk": {
-          "name": "_case_studies_v_version_metrics_parent_id_fk",
-          "tableFrom": "_case_studies_v_version_metrics",
-          "tableTo": "_case_studies_v",
+        "_ideas_v_version_metrics_parent_id_fk": {
+          "name": "_ideas_v_version_metrics_parent_id_fk",
+          "tableFrom": "_ideas_v_version_metrics",
+          "tableTo": "_ideas_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -9781,8 +9975,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._case_studies_v_version_tags": {
-      "name": "_case_studies_v_version_tags",
+    "public._ideas_v_version_tags": {
+      "name": "_ideas_v_version_tags",
       "schema": "",
       "columns": {
         "_order": {
@@ -9817,8 +10011,8 @@
         }
       },
       "indexes": {
-        "_case_studies_v_version_tags_order_idx": {
-          "name": "_case_studies_v_version_tags_order_idx",
+        "_ideas_v_version_tags_order_idx": {
+          "name": "_ideas_v_version_tags_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -9832,8 +10026,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_version_tags_parent_id_idx": {
-          "name": "_case_studies_v_version_tags_parent_id_idx",
+        "_ideas_v_version_tags_parent_id_idx": {
+          "name": "_ideas_v_version_tags_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -9849,10 +10043,10 @@
         }
       },
       "foreignKeys": {
-        "_case_studies_v_version_tags_parent_id_fk": {
-          "name": "_case_studies_v_version_tags_parent_id_fk",
-          "tableFrom": "_case_studies_v_version_tags",
-          "tableTo": "_case_studies_v",
+        "_ideas_v_version_tags_parent_id_fk": {
+          "name": "_ideas_v_version_tags_parent_id_fk",
+          "tableFrom": "_ideas_v_version_tags",
+          "tableTo": "_ideas_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -9869,8 +10063,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public._case_studies_v": {
-      "name": "_case_studies_v",
+    "public._ideas_v": {
+      "name": "_ideas_v",
       "schema": "",
       "columns": {
         "id": {
@@ -9912,6 +10106,30 @@
         "version_project_slug_id": {
           "name": "version_project_slug_id",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_overview": {
+          "name": "version_overview",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_audience": {
+          "name": "version_audience",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_outcome_promise": {
+          "name": "version_outcome_promise",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_starting_from": {
+          "name": "version_starting_from",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -9995,7 +10213,7 @@
         },
         "version__status": {
           "name": "version__status",
-          "type": "enum__case_studies_v_version_status",
+          "type": "enum__ideas_v_version_status",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
@@ -10029,8 +10247,8 @@
         }
       },
       "indexes": {
-        "_case_studies_v_parent_idx": {
-          "name": "_case_studies_v_parent_idx",
+        "_ideas_v_parent_idx": {
+          "name": "_ideas_v_parent_idx",
           "columns": [
             {
               "expression": "parent_id",
@@ -10044,8 +10262,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_version_version_slug_idx": {
-          "name": "_case_studies_v_version_version_slug_idx",
+        "_ideas_v_version_version_slug_idx": {
+          "name": "_ideas_v_version_version_slug_idx",
           "columns": [
             {
               "expression": "version_slug",
@@ -10059,8 +10277,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_version_version_project_slug_idx": {
-          "name": "_case_studies_v_version_version_project_slug_idx",
+        "_ideas_v_version_version_project_slug_idx": {
+          "name": "_ideas_v_version_version_project_slug_idx",
           "columns": [
             {
               "expression": "version_project_slug_id",
@@ -10074,8 +10292,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_version_meta_version_meta_image_idx": {
-          "name": "_case_studies_v_version_meta_version_meta_image_idx",
+        "_ideas_v_version_meta_version_meta_image_idx": {
+          "name": "_ideas_v_version_meta_version_meta_image_idx",
           "columns": [
             {
               "expression": "version_meta_image_id",
@@ -10089,8 +10307,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_version_version_updated_at_idx": {
-          "name": "_case_studies_v_version_version_updated_at_idx",
+        "_ideas_v_version_version_updated_at_idx": {
+          "name": "_ideas_v_version_version_updated_at_idx",
           "columns": [
             {
               "expression": "version_updated_at",
@@ -10104,8 +10322,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_version_version_created_at_idx": {
-          "name": "_case_studies_v_version_version_created_at_idx",
+        "_ideas_v_version_version_created_at_idx": {
+          "name": "_ideas_v_version_version_created_at_idx",
           "columns": [
             {
               "expression": "version_created_at",
@@ -10119,8 +10337,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_version_version__status_idx": {
-          "name": "_case_studies_v_version_version__status_idx",
+        "_ideas_v_version_version__status_idx": {
+          "name": "_ideas_v_version_version__status_idx",
           "columns": [
             {
               "expression": "version__status",
@@ -10134,8 +10352,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_created_at_idx": {
-          "name": "_case_studies_v_created_at_idx",
+        "_ideas_v_created_at_idx": {
+          "name": "_ideas_v_created_at_idx",
           "columns": [
             {
               "expression": "created_at",
@@ -10149,8 +10367,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_updated_at_idx": {
-          "name": "_case_studies_v_updated_at_idx",
+        "_ideas_v_updated_at_idx": {
+          "name": "_ideas_v_updated_at_idx",
           "columns": [
             {
               "expression": "updated_at",
@@ -10164,8 +10382,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_latest_idx": {
-          "name": "_case_studies_v_latest_idx",
+        "_ideas_v_latest_idx": {
+          "name": "_ideas_v_latest_idx",
           "columns": [
             {
               "expression": "latest",
@@ -10179,8 +10397,8 @@
           "method": "btree",
           "with": {}
         },
-        "_case_studies_v_autosave_idx": {
-          "name": "_case_studies_v_autosave_idx",
+        "_ideas_v_autosave_idx": {
+          "name": "_ideas_v_autosave_idx",
           "columns": [
             {
               "expression": "autosave",
@@ -10196,10 +10414,10 @@
         }
       },
       "foreignKeys": {
-        "_case_studies_v_parent_id_case_studies_id_fk": {
-          "name": "_case_studies_v_parent_id_case_studies_id_fk",
-          "tableFrom": "_case_studies_v",
-          "tableTo": "case_studies",
+        "_ideas_v_parent_id_ideas_id_fk": {
+          "name": "_ideas_v_parent_id_ideas_id_fk",
+          "tableFrom": "_ideas_v",
+          "tableTo": "ideas",
           "columnsFrom": [
             "parent_id"
           ],
@@ -10209,10 +10427,10 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "_case_studies_v_version_project_slug_id_projects_id_fk": {
-          "name": "_case_studies_v_version_project_slug_id_projects_id_fk",
-          "tableFrom": "_case_studies_v",
-          "tableTo": "projects",
+        "_ideas_v_version_project_slug_id_portfolio_id_fk": {
+          "name": "_ideas_v_version_project_slug_id_portfolio_id_fk",
+          "tableFrom": "_ideas_v",
+          "tableTo": "portfolio",
           "columnsFrom": [
             "version_project_slug_id"
           ],
@@ -10222,9 +10440,9 @@
           "onDelete": "set null",
           "onUpdate": "no action"
         },
-        "_case_studies_v_version_meta_image_id_media_id_fk": {
-          "name": "_case_studies_v_version_meta_image_id_media_id_fk",
-          "tableFrom": "_case_studies_v",
+        "_ideas_v_version_meta_image_id_media_id_fk": {
+          "name": "_ideas_v_version_meta_image_id_media_id_fk",
+          "tableFrom": "_ideas_v",
           "tableTo": "media",
           "columnsFrom": [
             "version_meta_image_id"
@@ -18292,8 +18510,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "projects_id": {
-          "name": "projects_id",
+        "portfolio_id": {
+          "name": "portfolio_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -18310,8 +18528,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "case_studies_id": {
-          "name": "case_studies_id",
+        "ideas_id": {
+          "name": "ideas_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -18468,11 +18686,11 @@
           "method": "btree",
           "with": {}
         },
-        "payload_locked_documents_rels_projects_id_idx": {
-          "name": "payload_locked_documents_rels_projects_id_idx",
+        "payload_locked_documents_rels_portfolio_id_idx": {
+          "name": "payload_locked_documents_rels_portfolio_id_idx",
           "columns": [
             {
-              "expression": "projects_id",
+              "expression": "portfolio_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -18513,11 +18731,11 @@
           "method": "btree",
           "with": {}
         },
-        "payload_locked_documents_rels_case_studies_id_idx": {
-          "name": "payload_locked_documents_rels_case_studies_id_idx",
+        "payload_locked_documents_rels_ideas_id_idx": {
+          "name": "payload_locked_documents_rels_ideas_id_idx",
           "columns": [
             {
-              "expression": "case_studies_id",
+              "expression": "ideas_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -18732,12 +18950,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "payload_locked_documents_rels_projects_fk": {
-          "name": "payload_locked_documents_rels_projects_fk",
+        "payload_locked_documents_rels_portfolio_fk": {
+          "name": "payload_locked_documents_rels_portfolio_fk",
           "tableFrom": "payload_locked_documents_rels",
-          "tableTo": "projects",
+          "tableTo": "portfolio",
           "columnsFrom": [
-            "projects_id"
+            "portfolio_id"
           ],
           "columnsTo": [
             "id"
@@ -18771,12 +18989,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "payload_locked_documents_rels_case_studies_fk": {
-          "name": "payload_locked_documents_rels_case_studies_fk",
+        "payload_locked_documents_rels_ideas_fk": {
+          "name": "payload_locked_documents_rels_ideas_fk",
           "tableFrom": "payload_locked_documents_rels",
-          "tableTo": "case_studies",
+          "tableTo": "ideas",
           "columnsFrom": [
-            "case_studies_id"
+            "ideas_id"
           ],
           "columnsTo": [
             "id"
@@ -22578,6 +22796,27 @@
           "primaryKey": true,
           "notNull": true
         },
+        "hero_label": {
+          "name": "hero_label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'// — ABOUT'"
+        },
+        "hero_title": {
+          "name": "hero_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'The builder behind the build.'"
+        },
+        "hero_intro": {
+          "name": "hero_intro",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'Background, philosophy, and the stack — what I care about, and how I like to work.'"
+        },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp(3) with time zone",
@@ -25834,6 +26073,25 @@
           "notNull": false,
           "default": "'// — SPEAKING'"
         },
+        "hero_label": {
+          "name": "hero_label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'// — SPEAKING'"
+        },
+        "hero_title": {
+          "name": "hero_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hero_intro": {
+          "name": "hero_intro",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "upcoming_heading": {
           "name": "upcoming_heading",
           "type": "varchar",
@@ -26141,8 +26399,8 @@
         "published"
       ]
     },
-    "public.enum_projects_code_sample_language": {
-      "name": "enum_projects_code_sample_language",
+    "public.enum_portfolio_code_sample_language": {
+      "name": "enum_portfolio_code_sample_language",
       "schema": "public",
       "values": [
         "typescript",
@@ -26156,24 +26414,24 @@
         "yaml"
       ]
     },
-    "public.enum_projects_project_status": {
-      "name": "enum_projects_project_status",
+    "public.enum_portfolio_project_status": {
+      "name": "enum_portfolio_project_status",
       "schema": "public",
       "values": [
         "COMPLETED",
         "IN_PROGRESS"
       ]
     },
-    "public.enum_projects_status": {
-      "name": "enum_projects_status",
+    "public.enum_portfolio_status": {
+      "name": "enum_portfolio_status",
       "schema": "public",
       "values": [
         "draft",
         "published"
       ]
     },
-    "public.enum__projects_v_version_code_sample_language": {
-      "name": "enum__projects_v_version_code_sample_language",
+    "public.enum__portfolio_v_version_code_sample_language": {
+      "name": "enum__portfolio_v_version_code_sample_language",
       "schema": "public",
       "values": [
         "typescript",
@@ -26187,16 +26445,16 @@
         "yaml"
       ]
     },
-    "public.enum__projects_v_version_project_status": {
-      "name": "enum__projects_v_version_project_status",
+    "public.enum__portfolio_v_version_project_status": {
+      "name": "enum__portfolio_v_version_project_status",
       "schema": "public",
       "values": [
         "COMPLETED",
         "IN_PROGRESS"
       ]
     },
-    "public.enum__projects_v_version_status": {
-      "name": "enum__projects_v_version_status",
+    "public.enum__portfolio_v_version_status": {
+      "name": "enum__portfolio_v_version_status",
       "schema": "public",
       "values": [
         "draft",
@@ -26235,16 +26493,16 @@
         "published"
       ]
     },
-    "public.enum_case_studies_status": {
-      "name": "enum_case_studies_status",
+    "public.enum_ideas_status": {
+      "name": "enum_ideas_status",
       "schema": "public",
       "values": [
         "draft",
         "published"
       ]
     },
-    "public.enum__case_studies_v_version_status": {
-      "name": "enum__case_studies_v_version_status",
+    "public.enum__ideas_v_version_status": {
+      "name": "enum__ideas_v_version_status",
       "schema": "public",
       "values": [
         "draft",
@@ -26402,6 +26660,6 @@
     "tables": {},
     "columns": {}
   },
-  "id": "2beaef3a-dbf1-4d77-aa76-d720a19c9050",
+  "id": "d059c3bd-8388-4ad5-b9fa-3b1699c26934",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

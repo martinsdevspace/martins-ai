@@ -13,7 +13,7 @@ import { PayloadRedirects } from '@/components/PayloadRedirects'
 import { ProjectTimeline } from '@/components/ProjectTimeline'
 import { PageCTA } from '@/sections/PageCTA'
 import configPromise from '@payload-config'
-import type { Project } from '@/payload-types'
+import type { Portfolio } from '@/payload-types'
 import { SectionLabel } from '@/sections/_shared'
 import { generateMeta } from '@/utilities/generateMeta'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
@@ -29,8 +29,8 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug = '' } = await paramsPromise
   const decodedSlug = decodeURIComponent(slug)
-  const url = '/works/' + decodedSlug
-  const project = await queryProjectBySlug({ slug: decodedSlug })
+  const url = '/portfolio/' + decodedSlug
+  const project = await queryPortfolioBySlug({ slug: decodedSlug })
 
   if (!project) return <PayloadRedirects url={url} />
 
@@ -51,11 +51,11 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       <Link
-        href="/#works"
+        href="/#portfolio"
         className="inline-flex items-center gap-2 font-mono-label text-muted-foreground hover:text-synthesis transition-colors"
       >
         <IconArrowLeft className="h-4 w-4" />
-        Back to works
+        Back to portfolio
       </Link>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-12">
@@ -317,8 +317,8 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
           subtitle="If this project resonates with what you're building, let's talk. I take on a limited number of projects each quarter."
           primaryLabel="BOOK_FREE_REVIEW"
           primaryTo="/contact"
-          secondaryLabel="VIEW_ALL_WORK"
-          secondaryTo="/works"
+          secondaryLabel="VIEW_ALL_PORTFOLIO"
+          secondaryTo="/portfolio"
         />
       </div>
     </article>
@@ -328,7 +328,7 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
   const projects = await payload.find({
-    collection: 'projects',
+    collection: 'portfolio',
     draft: false,
     limit: 1000,
     overrideAccess: false,
@@ -344,18 +344,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = '' } = await paramsPromise
   const decodedSlug = decodeURIComponent(slug)
-  const project = await queryProjectBySlug({ slug: decodedSlug })
+  const project = await queryPortfolioBySlug({ slug: decodedSlug })
 
   return generateMeta({ doc: project })
 }
 
-const queryProjectBySlug = async ({ slug }: { slug: string }) => {
+const queryPortfolioBySlug = async ({ slug }: { slug: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })
 
   const result = await payload.find({
-    collection: 'projects',
+    collection: 'portfolio',
     depth: 2,
     draft,
     limit: 1,
@@ -368,5 +368,5 @@ const queryProjectBySlug = async ({ slug }: { slug: string }) => {
     },
   })
 
-  return (result.docs?.[0] as Project) || null
+  return (result.docs?.[0] as Portfolio) || null
 }

@@ -119,7 +119,7 @@ export const WorksGrid: React.FC<WorksGridProps> = ({ projects }) => {
             className="group flex flex-col border border-border bg-card transition-colors hover:border-synthesis"
           >
             <Link
-              href={`/works/${project.slug}`}
+              href={`/portfolio/${project.slug}`}
               className="flex aspect-[16/10] flex-col justify-between border-b border-border bg-carbon p-6 text-background"
             >
               <div className="flex items-start justify-between gap-3">
@@ -204,7 +204,7 @@ export const WorksGrid: React.FC<WorksGridProps> = ({ projects }) => {
                   ) : null}
                 </div>
                 <Link
-                  href={`/works/${project.slug}`}
+                  href={`/portfolio/${project.slug}`}
                   className="flex items-center gap-1.5 font-mono-label text-[10px] text-synthesis transition-colors hover:text-foreground"
                 >
                   DETAILS <IconArrowUpRight className="h-3 w-3" />

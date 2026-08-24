@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { revalidateDelete, revalidateProject } from './hooks/revalidateProject'
+import { revalidateDelete, revalidatePortfolio } from './hooks/revalidatePortfolio'
 
 import {
   MetaDescriptionField,
@@ -13,8 +13,8 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 
-export const Projects: CollectionConfig = {
-  slug: 'projects',
+export const Portfolio: CollectionConfig = {
+  slug: 'portfolio',
   access: {
     create: authenticated,
     delete: authenticated,
@@ -41,14 +41,14 @@ export const Projects: CollectionConfig = {
       url: ({ data, req }) =>
         generatePreviewPath({
           slug: data?.slug,
-          collection: 'projects',
+          collection: 'portfolio',
           req,
         }),
     },
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: data?.slug as string,
-        collection: 'projects',
+        collection: 'portfolio',
         req,
       }),
     useAsTitle: 'name',
@@ -320,7 +320,7 @@ export const Projects: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [revalidateProject],
+    afterChange: [revalidatePortfolio],
     afterDelete: [revalidateDelete],
   },
   versions: {

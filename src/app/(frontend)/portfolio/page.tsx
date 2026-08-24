@@ -13,7 +13,7 @@ import { generateMeta } from '@/utilities/generateMeta'
 
 export default async function WorksPage() {
   const [projects, industries] = await Promise.all([
-    getCachedCollection('projects', { sort: 'sortOrder', limit: 100, depth: 1 })(),
+    getCachedCollection('portfolio', { sort: 'sortOrder', limit: 100, depth: 1 })(),
     getCachedCollection('industries', { sort: 'sortOrder', limit: 100, depth: 0 })(),
   ])
 
@@ -68,9 +68,9 @@ export default async function WorksPage() {
   return (
     <article>
       <PageHero
-        label="// 01 — SELECTED_DEPLOYMENTS"
-        breadcrumbLabel="Works"
-        meta={`${cards.length} DEPLOYMENTS`}
+        label="// 01 — PORTFOLIO"
+        breadcrumbLabel="Portfolio"
+        meta={`${cards.length} SYSTEMS`}
         title={
           <>
             Every system tells <span className="text-synthesis italic">a story.</span>
@@ -112,16 +112,16 @@ export default async function WorksPage() {
               </p>
             </div>
             <Link
-              href="/case-studies"
+              href="/ideas"
               className="inline-flex shrink-0 items-center gap-2 border border-foreground px-6 py-4 font-mono-label text-sm transition-colors hover:bg-foreground hover:text-background"
             >
-              VIEW_CASE_STUDIES <IconArrowRight className="h-4 w-4" />
+              VIEW_IDEAS <IconArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </Reveal>
       </section> */}
 
-      <PageCTA />
+      <PageCTA secondaryTo="/ideas" secondaryLabel="VIEW_IDEAS" />
     </article>
   )
 }
@@ -129,9 +129,9 @@ export default async function WorksPage() {
 export async function generateMetadata(): Promise<Metadata> {
   return generateMeta({
     doc: {
-      slug: 'works',
+      slug: 'portfolio',
       meta: {
-        title: 'Works — Selected Deployments',
+        title: 'Portfolio — Selected Deployments',
         description:
           'A selection of production systems designed and shipped by Martins Michael — fintech payments, AI agents, data platforms, and infrastructure with measurable outcomes.',
       },
