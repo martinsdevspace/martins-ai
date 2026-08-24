@@ -36,35 +36,52 @@ export async function Footer() {
 
   const navItems = footerData?.navItems || []
   const socials = siteSettings?.socials || []
-  const email = siteSettings?.email || 'hello@martinsmichael.dev'
-  const location = siteSettings?.location || 'Abuja, NG · Remote Worldwide'
-  const availability = siteSettings?.availability || 'Available for projects'
-  // const clients = siteSettings?.clients || []
+  const email = siteSettings?.email
+  const location = siteSettings?.location
+  const availability = siteSettings?.availability
+  const brandName = siteSettings?.siteName || ''
+  const footerNote = siteSettings?.footerNote || ''
+  const navigateLabel = siteSettings?.navigateLabel || ''
+  const connectLabel = siteSettings?.connectLabel || ''
+  const contactColumnLabel = siteSettings?.contactColumnLabel || ''
+  const responseTimeNote = siteSettings?.responseTimeNote || ''
+  const timezoneNote = siteSettings?.timezoneNote || ''
+  const copyrightText = (siteSettings?.copyrightText || '').replace('{year}', String(new Date().getFullYear()))
+  const statusLabel = siteSettings?.statusLabel || ''
 
   return (
     <footer className="mt-auto border-t border-border bg-background">
       <div className="px-5 lg:px-[6vw] py-16 lg:py-24">
         <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4 lg:gap-12">
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <span className="w-1.5 h-1.5 bg-synthesis animate-pulse" />
-              <span className="font-mono-label text-foreground">MARTINS_AI</span>
-            </Link>
-            <p className="text-sm leading-relaxed text-muted-foreground mb-4 max-w-xs">
-              Full-Stack Developer &amp; AI Agent Architect. Building production systems that handle
-              real money, real users, and real scale.
-            </p>
-            <div className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
-              <span className="flex items-center gap-2 mb-1">
-                <span className="w-1 h-1 bg-green-500 animate-pulse" /> {availability}
-              </span>
-              {location}
-            </div>
+            {brandName ? (
+              <Link href="/" className="flex items-center gap-2 mb-4">
+                <span className="w-1.5 h-1.5 bg-synthesis animate-pulse" />
+                <span className="font-mono-label text-foreground">{brandName}</span>
+              </Link>
+            ) : null}
+            {footerNote ? (
+              <p className="text-sm leading-relaxed text-muted-foreground mb-4 max-w-xs">
+                {footerNote}
+              </p>
+            ) : null}
+            {(availability || location) && (
+              <div className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
+                {availability ? (
+                  <span className="flex items-center gap-2 mb-1">
+                    <span className="w-1 h-1 bg-green-500 animate-pulse" /> {availability}
+                  </span>
+                ) : null}
+                {location}
+              </div>
+            )}
           </div>
 
           {navItems.length > 0 && (
             <div>
-              <div className="font-mono-label text-muted-foreground mb-4">// NAVIGATE</div>
+              {navigateLabel ? (
+                <div className="font-mono-label text-muted-foreground mb-4">{navigateLabel}</div>
+              ) : null}
               <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
                 {navItems.map(({ link }, i) => (
                   <li key={i}>
@@ -81,11 +98,12 @@ export async function Footer() {
 
           {socials.length > 0 && (
             <div>
-              <div className="font-mono-label text-muted-foreground mb-4">// CONNECT</div>
+              {connectLabel ? (
+                <div className="font-mono-label text-muted-foreground mb-4">{connectLabel}</div>
+              ) : null}
               <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
                 {socials.map((social, i) => {
                   const Icon = socialIcon(social.label)
-                  if (!Icon) return null
                   return (
                     <li key={i}>
                       <a
@@ -103,20 +121,28 @@ export async function Footer() {
             </div>
           )}
 
-          <div>
-            <div className="font-mono-label text-muted-foreground mb-4">// CONTACT & AVAILABILITY</div>
-            <a
-              href={`mailto:${email}`}
-              className="inline-flex items-center gap-2.5 text-base lg:text-lg font-medium text-foreground/90 hover:text-synthesis transition-colors mb-2 break-all group"
-            >
-              <IconMail className="w-4 h-4 text-muted-foreground group-hover:text-synthesis transition-colors shrink-0" />
-              <span className="italic">{email}</span>
-            </a>
-            <div className="space-y-1.5 text-xs text-muted-foreground/80 mt-2">
-              <p>Typical response time: &lt; 24h on weekdays.</p>
-              <p className="text-muted-foreground/60">Based in GMT+1 </p>
+          {(email || responseTimeNote || timezoneNote) && (
+            <div>
+              {contactColumnLabel ? (
+                <div className="font-mono-label text-muted-foreground mb-4">{contactColumnLabel}</div>
+              ) : null}
+              {email ? (
+                <a
+                  href={`mailto:${email}`}
+                  className="inline-flex items-center gap-2.5 text-base lg:text-lg font-medium text-foreground/90 hover:text-synthesis transition-colors mb-2 break-all group"
+                >
+                  <IconMail className="w-4 h-4 text-muted-foreground group-hover:text-synthesis transition-colors shrink-0" />
+                  <span className="italic">{email}</span>
+                </a>
+              ) : null}
+              {(responseTimeNote || timezoneNote) && (
+                <div className="space-y-1.5 text-xs text-muted-foreground/80 mt-2">
+                  {responseTimeNote ? <p>{responseTimeNote}</p> : null}
+                  {timezoneNote ? <p className="text-muted-foreground/60">{timezoneNote}</p> : null}
+                </div>
+              )}
             </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -136,15 +162,21 @@ export async function Footer() {
         </div>
       )} */}
 
-      <div className="border-t border-border bg-card px-5 lg:px-[6vw] py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-        <div className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
-          © {new Date().getFullYear()} Martins Michael — Engineering Intelligence, Architecting Impact
+      {(copyrightText || statusLabel) && (
+        <div className="border-t border-border bg-card px-5 lg:px-[6vw] py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+          {copyrightText ? (
+            <div className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
+              {copyrightText}
+            </div>
+          ) : null}
+          {statusLabel ? (
+            <div className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase flex items-center gap-2">
+              <span className="w-1 h-1 bg-green-500 animate-pulse" />
+              {statusLabel}
+            </div>
+          ) : null}
         </div>
-        <div className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase flex items-center gap-2">
-          <span className="w-1 h-1 bg-green-500 animate-pulse" />
-          SYSTEM_ONLINE · v2.0.26
-        </div>
-      </div>
+      )}
     </footer>
   )
 }

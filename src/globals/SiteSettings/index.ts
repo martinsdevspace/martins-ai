@@ -131,6 +131,27 @@ export const SiteSettings: GlobalConfig = {
               ],
             },
             {
+              name: 'terminalLines',
+              type: 'array',
+              admin: {
+                description: 'Terminal mock panel lines shown in the hero.',
+                initCollapsed: true,
+              },
+              fields: [
+                {
+                  name: 'prompt',
+                  type: 'text',
+                  admin: {
+                    description: 'Prompt symbol, e.g. "$" or ">".',
+                  },
+                },
+                {
+                  name: 'text',
+                  type: 'text',
+                },
+              ],
+            },
+            {
               name: 'clients',
               type: 'array',
               admin: {
@@ -295,6 +316,44 @@ export const SiteSettings: GlobalConfig = {
             {
               name: 'footerNote',
               type: 'textarea',
+              admin: {
+                description: 'Short brand description shown under the logo in the footer.',
+              },
+            },
+            {
+              name: 'navigateLabel',
+              type: 'text',
+              admin: { description: 'Footer column heading, e.g. "// NAVIGATE".' },
+            },
+            {
+              name: 'connectLabel',
+              type: 'text',
+              admin: { description: 'Social links column heading, e.g. "// CONNECT".' },
+            },
+            {
+              name: 'contactColumnLabel',
+              type: 'text',
+              admin: { description: 'Contact column heading, e.g. "// CONTACT & AVAILABILITY".' },
+            },
+            {
+              name: 'responseTimeNote',
+              type: 'text',
+              admin: { description: 'e.g. "Typical response time: < 24h on weekdays."' },
+            },
+            {
+              name: 'timezoneNote',
+              type: 'text',
+              admin: { description: 'e.g. "Based in GMT+1".' },
+            },
+            {
+              name: 'copyrightText',
+              type: 'textarea',
+              admin: { description: 'Bottom-left copyright line. Use {year} to inject the year.' },
+            },
+            {
+              name: 'statusLabel',
+              type: 'text',
+              admin: { description: 'Bottom-right status badge text, e.g. "SYSTEM_ONLINE · v2.0.26".' },
             },
             {
               name: 'footerLinks',

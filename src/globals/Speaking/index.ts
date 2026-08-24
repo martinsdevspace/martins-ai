@@ -11,6 +11,27 @@ export const Speaking: GlobalConfig = {
   },
   fields: [
     {
+      name: 'pageLabel',
+      type: 'text',
+      defaultValue: '// — SPEAKING',
+      admin: { description: 'Mono eyebrow label at the top of the page.' },
+    },
+    {
+      name: 'upcomingHeading',
+      type: 'text',
+      defaultValue: 'Upcoming',
+    },
+    {
+      name: 'pastHeading',
+      type: 'text',
+      defaultValue: 'Selected talks',
+    },
+    {
+      name: 'emptyMessage',
+      type: 'text',
+      defaultValue: 'No talks listed yet. Check back soon.',
+    },
+    {
       name: 'intro',
       type: 'richText',
       editor: longFormLexical,

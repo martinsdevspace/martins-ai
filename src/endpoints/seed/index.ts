@@ -344,7 +344,25 @@ export const seed = async ({
         { label: 'HackerNoon', url: 'https://hackernoon.com/@martinsmichael' },
         { label: 'Dev.To', url: 'https://dev.to/@martinsmichael' },
         { label: 'Cal.com', url: 'https://cal.com/martinsmichael' },
-      ],
+        ],
+        terminalLines: [
+          { prompt: '$', text: 'whoami' },
+          { prompt: '>', text: 'martins - full-stack dev & ai agent architect' },
+          { prompt: '$', text: 'ls ./production' },
+          { prompt: '>', text: 'payments/  auth/  agents/  scale/' },
+          { prompt: '$', text: 'tail -f uptime.log' },
+          { prompt: '>', text: '99.9% uptime - 42ms p95 - 0 incidents' },
+        ],
+        footerNote:
+          'Full-Stack Developer & AI Agent Architect. Building production systems that handle real money, real users, and real scale.',
+        navigateLabel: '// NAVIGATE',
+        connectLabel: '// CONNECT',
+        contactColumnLabel: '// CONTACT & AVAILABILITY',
+        responseTimeNote: 'Typical response time: < 24h on weekdays.',
+        timezoneNote: 'Based in GMT+1',
+        copyrightText:
+          '© {year} Martins Michael — Engineering Intelligence, Architecting Impact',
+        statusLabel: 'SYSTEM_ONLINE · v2.0.26',
       heroHeadline:
         'I build AI agents\nthat handle real money, real users, and real scale.',
       heroIntro: {
@@ -497,8 +515,6 @@ export const seed = async ({
             'Yes. Retainer engagements embed me as a senior engineer on your team, shipping alongside your people.',
         },
       ],
-      footerNote:
-        'Full-Stack Developer & AI Agent Architect. Building production systems that handle real money, real users, and real scale.',
     },
   })
 

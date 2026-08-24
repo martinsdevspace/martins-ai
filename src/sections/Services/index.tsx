@@ -1,113 +1,31 @@
 import { IconArrowUpRight, IconCheck } from '@tabler/icons-react'
 import Link from 'next/link'
 
+import type { ServicesBlock as ServicesBlockProps } from '@/payload-types'
 import { SectionHeading, SectionLabel } from '@/sections/_shared'
 import { getCachedCollection } from '@/utilities/getCollection'
 import { serviceIconMap } from '@/utilities/serviceIcons'
 
 const getServices = getCachedCollection('services', { sort: 'sortOrder', limit: 8, depth: 2 })
 
-const FALLBACK_SERVICES: {
-  slug: string
-  num: string
-  icon: string
-  title: string
-  tagline: string
-  startingFrom: string
-  timeline: string
-  deliverables: { item: string }[]
-}[] = [
-  {
-    slug: 'ai-agent-systems',
-    num: '01',
-    icon: 'brain',
-    title: 'AI Agent Systems',
-    tagline: 'Autonomous agents, reasoning loops, and tool orchestration built for production.',
-    startingFrom: '5000',
-    timeline: '4-8 weeks',
-    deliverables: [
-      { item: 'Agent architecture & tool design' },
-      { item: 'Evaluation harness' },
-      { item: 'Observability & tracing' },
-      { item: 'Human-in-the-loop review' },
-    ],
-  },
-  {
-    slug: 'payments-ledger',
-    num: '02',
-    icon: 'creditcard',
-    title: 'Payments & Ledger',
-    tagline: 'Reliable rails for money movement, settlement, and reconciliation.',
-    startingFrom: '8000',
-    timeline: '6-12 weeks',
-    deliverables: [
-      { item: 'Payment flow design' },
-      { item: 'Ledger & reconciliation' },
-      { item: 'Compliance hooks' },
-      { item: 'Failure drill plans' },
-    ],
-  },
-  {
-    slug: 'data-platforms',
-    num: '03',
-    icon: 'database',
-    title: 'Data Platforms',
-    tagline: 'Streaming pipelines and analytics that scale with your volume.',
-    startingFrom: '6000',
-    timeline: '4-10 weeks',
-    deliverables: [
-      { item: 'Pipeline architecture' },
-      { item: 'Warehouse modeling' },
-      { item: 'Streaming ingestion' },
-      { item: 'Monitoring & alerts' },
-    ],
-  },
-  {
-    slug: 'security-compliance',
-    num: '04',
-    icon: 'shield',
-    title: 'Security & Compliance',
-    tagline: 'Hardening and audit-ready systems for regulated workloads.',
-    startingFrom: '7000',
-    timeline: '4-8 weeks',
-    deliverables: [
-      { item: 'Threat modeling' },
-      { item: 'Access control review' },
-      { item: 'Audit logging' },
-      { item: 'Compliance runbooks' },
-    ],
-  },
-  {
-    slug: 'performance-reliability',
-    num: '05',
-    icon: 'bolt',
-    title: 'Performance & Reliability',
-    tagline: 'Finding the tail, killing the p95, and keeping the lights on.',
-    startingFrom: '4500',
-    timeline: '3-6 weeks',
-    deliverables: [
-      { item: 'Load & soak testing' },
-      { item: 'Latency profiling' },
-      { item: 'Incident playbooks' },
-      { item: 'SLO dashboards' },
-    ],
-  },
-]
-
-export default async function Services() {
+export default async function Services({
+  label,
+  heading,
+  intro,
+  viewAllLabel,
+}: ServicesBlockProps) {
   const services = await getServices()
-  const items = services.length > 0 ? services : FALLBACK_SERVICES
+
+  if (!heading && services.length === 0) return null
 
   return (
     <section id="services" className="px-5 lg:px-[6vw] py-16 lg:py-24">
-      <SectionLabel className="mb-4">// 03 — SERVICES</SectionLabel>
-      <SectionHeading className="mb-4">Engagements that ship.</SectionHeading>
-      <p className="text-muted-foreground text-base max-w-xl mb-12">
-        Clear scopes, honest timelines, production delivery.
-      </p>
+      {label ? <SectionLabel className="mb-4">{label}</SectionLabel> : null}
+      {heading ? <SectionHeading className="mb-4">{heading}</SectionHeading> : null}
+      {intro ? <p className="text-muted-foreground text-base max-w-xl mb-12">{intro}</p> : null}
 
       <div className="flex flex-col gap-4">
-        {items.map((service) => {
+        {services.map((service) => {
           const ServiceIcon = service.icon
             ? serviceIconMap[service.icon.toLowerCase()]
             : undefined
@@ -183,15 +101,17 @@ export default async function Services() {
         })}
       </div>
 
-      <div className="mt-10">
-        <Link
-          href="/services"
-          className="inline-flex items-center gap-2 font-mono-label text-muted-foreground hover:text-synthesis transition-colors"
-        >
-          View all services
-          <IconArrowUpRight className="h-4 w-4" />
-        </Link>
-      </div>
+      {viewAllLabel ? (
+        <div className="mt-10">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 font-mono-label text-muted-foreground hover:text-synthesis transition-colors"
+          >
+            {viewAllLabel}
+            <IconArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      ) : null}
     </section>
   )
 }

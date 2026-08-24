@@ -16,10 +16,15 @@ export default async function SpeakingPage() {
   const upcoming = talks.filter((t) => t.featured)
   const past = talks.filter((t) => !t.featured)
 
+  const pageLabel = speaking.pageLabel || ''
+  const upcomingHeading = speaking.upcomingHeading || ''
+  const pastHeading = speaking.pastHeading || ''
+  const emptyMessage = speaking.emptyMessage || ''
+
   return (
     <article className="px-5 py-24 lg:px-[6vw]">
       <div className="mx-auto max-w-6xl">
-        <SectionLabel>// — SPEAKING</SectionLabel>
+        {pageLabel ? <SectionLabel>{pageLabel}</SectionLabel> : null}
 
         {speaking.intro ? (
           <div className="mt-6 max-w-3xl">
@@ -32,24 +37,22 @@ export default async function SpeakingPage() {
           </div>
         ) : null}
 
-        {upcoming.length > 0 ? (
+        {upcoming.length > 0 && upcomingHeading ? (
           <section className="mt-16">
-            <SectionHeading className="mb-8">Upcoming</SectionHeading>
+            <SectionHeading className="mb-8">{upcomingHeading}</SectionHeading>
             <TalkList talks={upcoming} />
           </section>
         ) : null}
 
-        {past.length > 0 ? (
+        {past.length > 0 && pastHeading ? (
           <section className="mt-16">
-            <SectionHeading className="mb-8">Selected talks</SectionHeading>
+            <SectionHeading className="mb-8">{pastHeading}</SectionHeading>
             <TalkList talks={past} />
           </section>
         ) : null}
 
-        {talks.length === 0 ? (
-          <p className="mt-16 font-mono-label text-muted-foreground">
-            // No talks listed yet. Check back soon.
-          </p>
+        {talks.length === 0 && emptyMessage ? (
+          <p className="mt-16 font-mono-label text-muted-foreground">{emptyMessage}</p>
         ) : null}
       </div>
     </article>

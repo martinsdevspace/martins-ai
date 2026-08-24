@@ -160,6 +160,7 @@ export interface Config {
     forms: Form;
     'form-submissions': FormSubmission;
     search: Search;
+    'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -184,6 +185,7 @@ export interface Config {
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -1208,6 +1210,23 @@ export interface Search {
     | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv".
+ */
+export interface PayloadKv {
+  id: number;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2244,6 +2263,14 @@ export interface SearchSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv_select".
+ */
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs_select".
  */
 export interface PayloadJobsSelect<T extends boolean = true> {
@@ -2420,6 +2447,19 @@ export interface SiteSetting {
       }[]
     | null;
   /**
+   * Terminal mock panel lines shown in the hero.
+   */
+  terminalLines?:
+    | {
+        /**
+         * Prompt symbol, e.g. "$" or ">".
+         */
+        prompt?: string | null;
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
    * Trusted-by client logos.
    */
   clients?:
@@ -2477,7 +2517,38 @@ export interface SiteSetting {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Short brand description shown under the logo in the footer.
+   */
   footerNote?: string | null;
+  /**
+   * Footer column heading, e.g. "// NAVIGATE".
+   */
+  navigateLabel?: string | null;
+  /**
+   * Social links column heading, e.g. "// CONNECT".
+   */
+  connectLabel?: string | null;
+  /**
+   * Contact column heading, e.g. "// CONTACT & AVAILABILITY".
+   */
+  contactColumnLabel?: string | null;
+  /**
+   * e.g. "Typical response time: < 24h on weekdays."
+   */
+  responseTimeNote?: string | null;
+  /**
+   * e.g. "Based in GMT+1".
+   */
+  timezoneNote?: string | null;
+  /**
+   * Bottom-left copyright line. Use {year} to inject the year.
+   */
+  copyrightText?: string | null;
+  /**
+   * Bottom-right status badge text, e.g. "SYSTEM_ONLINE · v2.0.26".
+   */
+  statusLabel?: string | null;
   footerLinks?:
     | {
         link: {
@@ -2687,6 +2758,20 @@ export interface HeroBlock {
  * via the `definition` "PainPointsBlock".
  */
 export interface PainPointsBlock {
+  label?: string | null;
+  heading?: string | null;
+  intro?: string | null;
+  items?:
+    | {
+        /**
+         * Icon name: database, plug, cloudOff, alertTriangle, shield, robot, brain, terminal.
+         */
+        icon?: string | null;
+        title?: string | null;
+        body?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'painPoints';
@@ -2696,6 +2781,14 @@ export interface PainPointsBlock {
  * via the `definition` "MiniStackBlock".
  */
 export interface MiniStackBlock {
+  label?: string | null;
+  heading?: string | null;
+  items?:
+    | {
+        tech?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'miniStack';
@@ -2705,6 +2798,8 @@ export interface MiniStackBlock {
  * via the `definition` "AboutBlock".
  */
 export interface AboutBlock {
+  label?: string | null;
+  linkLabel?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'about';
@@ -2714,6 +2809,10 @@ export interface AboutBlock {
  * via the `definition` "WorksBlock".
  */
 export interface WorksBlock {
+  label?: string | null;
+  heading?: string | null;
+  intro?: string | null;
+  viewAllLabel?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'works';
@@ -2723,6 +2822,10 @@ export interface WorksBlock {
  * via the `definition` "ServicesBlock".
  */
 export interface ServicesBlock {
+  label?: string | null;
+  heading?: string | null;
+  intro?: string | null;
+  viewAllLabel?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'services';
@@ -2732,6 +2835,10 @@ export interface ServicesBlock {
  * via the `definition` "IndustriesBlock".
  */
 export interface IndustriesBlock {
+  label?: string | null;
+  heading?: string | null;
+  intro?: string | null;
+  viewAllLabel?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'industries';
@@ -2741,6 +2848,23 @@ export interface IndustriesBlock {
  * via the `definition` "ProcessBlock".
  */
 export interface ProcessBlock {
+  label?: string | null;
+  heading?: string | null;
+  intro?: string | null;
+  phases?:
+    | {
+        num?: string | null;
+        title?: string | null;
+        description?: string | null;
+        tags?:
+          | {
+              tag?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'process';
@@ -2750,6 +2874,9 @@ export interface ProcessBlock {
  * via the `definition` "TestimonialsBlock".
  */
 export interface TestimonialsBlock {
+  label?: string | null;
+  heading?: string | null;
+  intro?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'testimonials';
@@ -2759,6 +2886,10 @@ export interface TestimonialsBlock {
  * via the `definition` "InsightsBlock".
  */
 export interface InsightsBlock {
+  label?: string | null;
+  heading?: string | null;
+  intro?: string | null;
+  viewAllLabel?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'insights';
@@ -2768,12 +2899,24 @@ export interface InsightsBlock {
  * via the `definition` "PageCTABlock".
  */
 export interface PageCTABlock {
+  /**
+   * Mono label shown at the top of the CTA band.
+   */
+  address?: string | null;
+  /**
+   * Pulsing badge label at the top right, e.g. "ACCEPTING_PROJECTS".
+   */
+  statusBadge?: string | null;
   title?: string | null;
   subtitle?: string | null;
   primaryLabel?: string | null;
   primaryTo?: string | null;
   secondaryLabel?: string | null;
   secondaryTo?: string | null;
+  /**
+   * Footer line under the CTAs, e.g. "Response within 24h".
+   */
+  responseNote?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'pageCta';
@@ -2930,6 +3073,13 @@ export interface Now {
  */
 export interface Speaking {
   id: number;
+  /**
+   * Mono eyebrow label at the top of the page.
+   */
+  pageLabel?: string | null;
+  upcomingHeading?: string | null;
+  pastHeading?: string | null;
+  emptyMessage?: string | null;
   intro?: LexicalRichText<LexicalNodes_F1434086> | null;
   /**
    * Past and upcoming talks, panels and workshops.
@@ -3053,6 +3203,13 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  terminalLines?:
+    | T
+    | {
+        prompt?: T;
+        text?: T;
+        id?: T;
+      };
   clients?:
     | T
     | {
@@ -3111,6 +3268,13 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         id?: T;
       };
   footerNote?: T;
+  navigateLabel?: T;
+  connectLabel?: T;
+  contactColumnLabel?: T;
+  responseTimeNote?: T;
+  timezoneNote?: T;
+  copyrightText?: T;
+  statusLabel?: T;
   footerLinks?:
     | T
     | {
@@ -3298,6 +3462,17 @@ export interface HeroBlockSelect<T extends boolean = true> {
  * via the `definition` "PainPointsBlock_select".
  */
 export interface PainPointsBlockSelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        body?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -3306,6 +3481,14 @@ export interface PainPointsBlockSelect<T extends boolean = true> {
  * via the `definition` "MiniStackBlock_select".
  */
 export interface MiniStackBlockSelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  items?:
+    | T
+    | {
+        tech?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -3314,6 +3497,8 @@ export interface MiniStackBlockSelect<T extends boolean = true> {
  * via the `definition` "AboutBlock_select".
  */
 export interface AboutBlockSelect<T extends boolean = true> {
+  label?: T;
+  linkLabel?: T;
   id?: T;
   blockName?: T;
 }
@@ -3322,6 +3507,10 @@ export interface AboutBlockSelect<T extends boolean = true> {
  * via the `definition` "WorksBlock_select".
  */
 export interface WorksBlockSelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  intro?: T;
+  viewAllLabel?: T;
   id?: T;
   blockName?: T;
 }
@@ -3330,6 +3519,10 @@ export interface WorksBlockSelect<T extends boolean = true> {
  * via the `definition` "ServicesBlock_select".
  */
 export interface ServicesBlockSelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  intro?: T;
+  viewAllLabel?: T;
   id?: T;
   blockName?: T;
 }
@@ -3338,6 +3531,10 @@ export interface ServicesBlockSelect<T extends boolean = true> {
  * via the `definition` "IndustriesBlock_select".
  */
 export interface IndustriesBlockSelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  intro?: T;
+  viewAllLabel?: T;
   id?: T;
   blockName?: T;
 }
@@ -3346,6 +3543,23 @@ export interface IndustriesBlockSelect<T extends boolean = true> {
  * via the `definition` "ProcessBlock_select".
  */
 export interface ProcessBlockSelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  intro?: T;
+  phases?:
+    | T
+    | {
+        num?: T;
+        title?: T;
+        description?: T;
+        tags?:
+          | T
+          | {
+              tag?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -3354,6 +3568,9 @@ export interface ProcessBlockSelect<T extends boolean = true> {
  * via the `definition` "TestimonialsBlock_select".
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  intro?: T;
   id?: T;
   blockName?: T;
 }
@@ -3362,6 +3579,10 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
  * via the `definition` "InsightsBlock_select".
  */
 export interface InsightsBlockSelect<T extends boolean = true> {
+  label?: T;
+  heading?: T;
+  intro?: T;
+  viewAllLabel?: T;
   id?: T;
   blockName?: T;
 }
@@ -3370,12 +3591,15 @@ export interface InsightsBlockSelect<T extends boolean = true> {
  * via the `definition` "PageCTABlock_select".
  */
 export interface PageCTABlockSelect<T extends boolean = true> {
+  address?: T;
+  statusBadge?: T;
   title?: T;
   subtitle?: T;
   primaryLabel?: T;
   primaryTo?: T;
   secondaryLabel?: T;
   secondaryTo?: T;
+  responseNote?: T;
   id?: T;
   blockName?: T;
 }
@@ -3518,6 +3742,10 @@ export interface NowSelect<T extends boolean = true> {
  * via the `definition` "speaking_select".
  */
 export interface SpeakingSelect<T extends boolean = true> {
+  pageLabel?: T;
+  upcomingHeading?: T;
+  pastHeading?: T;
+  emptyMessage?: T;
   intro?: T;
   talks?:
     | T
