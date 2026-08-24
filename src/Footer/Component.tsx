@@ -129,14 +129,14 @@ export async function Footer() {
               {email ? (
                 <a
                   href={`mailto:${email}`}
-                  className="inline-flex items-center gap-2.5 text-base lg:text-lg font-medium text-foreground/90 hover:text-synthesis transition-colors mb-2 break-all group"
+                  className="inline-flex items-center gap-2.5 text-base lg:text-xl font-medium text-foreground/90 hover:text-synthesis transition-colors mb-2 break-all group"
                 >
-                  <IconMail className="w-4 h-4 text-muted-foreground group-hover:text-synthesis transition-colors shrink-0" />
+                  <IconMail className="w-8 h-8 text-muted-foreground group-hover:text-synthesis transition-colors shrink-0" />
                   <span className="italic">{email}</span>
                 </a>
               ) : null}
               {(responseTimeNote || timezoneNote) && (
-                <div className="space-y-1.5 text-xs text-muted-foreground/80 mt-2">
+                <div className="space-y-1.5 text-sm text-muted-foreground/80 mt-2">
                   {responseTimeNote ? <p>{responseTimeNote}</p> : null}
                   {timezoneNote ? <p className="text-muted-foreground/60">{timezoneNote}</p> : null}
                 </div>

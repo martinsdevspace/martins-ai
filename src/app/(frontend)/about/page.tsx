@@ -11,7 +11,7 @@ export default async function AboutPage() {
 
   return (
     <article className="px-5 py-24 lg:px-[6vw]">
-      <div className="mx-auto max-w-6xl">
+      <div className="max-w-7xl">
         <RenderAboutBlocks blocks={about.layout} />
       </div>
     </article>
