@@ -98,7 +98,7 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
       blockType: 'text',
       label: 'Name',
       required: true,
-      width: 50,
+      width: 100,
     },
     {
       name: 'email',
@@ -106,7 +106,7 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
       blockType: 'email',
       label: 'Email',
       required: true,
-      width: 50,
+      width: 100,
     },
     {
       name: 'company',
@@ -137,7 +137,7 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
       blockType: 'select',
       label: 'Budget Range',
       required: false,
-      width: 50,
+      width: 100,
       options: [
         { label: 'Under $5K', value: 'under-5k' },
         { label: '$5K — $15K', value: '5k-15k' },
@@ -152,7 +152,7 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
       blockType: 'select',
       label: 'Timeline',
       required: false,
-      width: 50,
+      width: 100,
       options: [
         { label: 'ASAP', value: 'asap' },
         { label: '1—3 months', value: '1-3-months' },

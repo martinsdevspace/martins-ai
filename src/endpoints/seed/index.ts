@@ -82,28 +82,28 @@ export const seed = async ({
     }
   }
 
-  payload.logger.info(`— Seeding admin user...`)
+  // payload.logger.info(`— Seeding admin user...`)
 
-  await payload.delete({
-    collection: 'users',
-    depth: 0,
-    where: {
-      email: {
-        equals: 'hello@martinsai.name.ng',
-      },
-    },
-  })
+  // await payload.delete({
+  //   collection: 'users',
+  //   depth: 0,
+  //   where: {
+  //     email: {
+  //       equals: 'hello@martinsai.name.ng',
+  //     },
+  //   },
+  // })
 
   payload.logger.info(`— Seeding categories...`)
 
-  const adminUser = await payload.create({
-    collection: 'users',
-    data: {
-      name: 'Martins Michael',
-      email: 'hello@martinsai.name.ng',
-      password: 'Youhear5xmore.',
-    },
-  })
+  // await payload.create({
+  //   collection: 'users',
+  //   data: {
+  //     name: 'Martins Michael',
+  //     email: 'hello@martinsai.name.ng',
+  //     password: 'Youhear5xmore.',
+  //   },
+  // })
 
   const categoryDocs = []
   for (const category of categories) {
@@ -113,107 +113,6 @@ export const seed = async ({
     })
     categoryDocs.push(doc)
   }
-
-  const [aiAgentsCat, paymentsCat, architectureCat, engineeringCat] = categoryDocs
-
-  payload.logger.info(`— Seeding insights...`)
-
-  // Do not create insights with `Promise.all` because we want the posts to be created in order
-  // This way we can sort them by `createdAt` or `publishedAt` and they will be in the expected order
-  // POST SEEDING COMMENTED OUT - posts will not be created
-  // const post1Doc = await payload.create({
-  //   collection: 'insights',
-  //   depth: 0,
-  //   context: {
-  //     disableRevalidate: true,
-  //   },
-  //   data: {
-  //     ...post1({ heroImage: image1Doc, blockImage: image2Doc, author: demoAuthor }),
-  //     categories: [paymentsCat.id, architectureCat.id],
-  //   },
-  // })
-
-  // const post2Doc = await payload.create({
-  //   collection: 'insights',
-  //   depth: 0,
-  //   context: {
-  //     disableRevalidate: true,
-  //   },
-  //   data: {
-  //     ...post2({ heroImage: image2Doc, blockImage: image3Doc, author: demoAuthor }),
-  //     categories: [aiAgentsCat.id],
-  //   },
-  // })
-
-  // const post3Doc = await payload.create({
-  //   collection: 'insights',
-  //   depth: 0,
-  //   context: {
-  //     disableRevalidate: true,
-  //   },
-  //   data: {
-  //     ...post3({ heroImage: image3Doc, blockImage: image1Doc, author: demoAuthor }),
-  //     categories: [paymentsCat.id, architectureCat.id],
-  //   },
-  // })
-
-  // const post4Doc = await payload.create({
-  //   collection: 'insights',
-  //   depth: 0,
-  //   context: {
-  //     disableRevalidate: true,
-  //   },
-  //   data: {
-  //     ...post4({ heroImage: image2Doc, author: demoAuthor }),
-  //     categories: [aiAgentsCat.id, engineeringCat.id],
-  //   },
-  // })
-
-  // const post5Doc = await payload.create({
-  //   collection: 'insights',
-  //   depth: 0,
-  //   context: {
-  //     disableRevalidate: true,
-  //   },
-  //   data: {
-  //     ...post5({ heroImage: image3Doc, author: demoAuthor }),
-  //     categories: [paymentsCat.id, engineeringCat.id],
-  //   },
-  // })
-
-  // update each post with topically-relevant related posts (not an
-  // all-to-all link) so the RelatedPosts block demonstrates real curation
-  // POST RELATED POSTS COMMENTED OUT - posts will not be linked
-  // await payload.update({
-  //   id: post1Doc.id,
-  //   collection: 'insights',
-  //   context: { disableRevalidate: true },
-  //   data: { relatedPosts: [post3Doc.id, post5Doc.id] },
-  // })
-  // await payload.update({
-  //   id: post2Doc.id,
-  //   collection: 'insights',
-  //   context: { disableRevalidate: true },
-  //   data: { relatedPosts: [post4Doc.id, post1Doc.id] },
-  // })
-  // await payload.update({
-  //   id: post3Doc.id,
-  //   collection: 'insights',
-  //   context: { disableRevalidate: true },
-  //   data: { relatedPosts: [post1Doc.id, post5Doc.id] },
-  // })
-  // await payload.update({
-  //   id: post4Doc.id,
-  //   collection: 'insights',
-  //   context: { disableRevalidate: true },
-  //   data: { relatedPosts: [post2Doc.id, post1Doc.id] },
-  // })
-  // await payload.update({
-  //   id: post5Doc.id,
-  //   collection: 'insights',
-  //   context: { disableRevalidate: true },
-  //   data: { relatedPosts: [post3Doc.id, post1Doc.id] },
-  // })
 
   payload.logger.info(`— Seeding contact form...`)
 
@@ -344,25 +243,25 @@ export const seed = async ({
         { label: 'HackerNoon', url: 'https://hackernoon.com/@martinsmichael' },
         { label: 'Dev.To', url: 'https://dev.to/@martinsmichael' },
         { label: 'Cal.com', url: 'https://cal.com/martinsmichael' },
-        ],
-        terminalLines: [
-          { prompt: '$', text: 'whoami' },
-          { prompt: '>', text: 'martins - full-stack dev & ai agent architect' },
-          { prompt: '$', text: 'ls ./production' },
-          { prompt: '>', text: 'payments/  auth/  agents/  scale/' },
-          { prompt: '$', text: 'tail -f uptime.log' },
-          { prompt: '>', text: '99.9% uptime - 42ms p95 - 0 incidents' },
-        ],
-        footerNote:
-          'Full-Stack Developer & AI Agent Architect. Building production systems that handle real money, real users, and real scale.',
-        navigateLabel: '// NAVIGATE',
-        connectLabel: '// CONNECT',
-        contactColumnLabel: '// CONTACT & AVAILABILITY',
-        responseTimeNote: 'Typical response time: < 24h on weekdays.',
-        timezoneNote: 'Based in GMT+1',
-        copyrightText:
-          '© {year} Martins Michael — Engineering Intelligence, Architecting Impact',
-        statusLabel: 'SYSTEM_ONLINE · v2.0.26',
+      ],
+      terminalLines: [
+        { prompt: '$', text: 'whoami' },
+        { prompt: '>', text: 'martins - full-stack dev & ai agent architect' },
+        { prompt: '$', text: 'ls ./production' },
+        { prompt: '>', text: 'payments/  auth/  agents/  scale/' },
+        { prompt: '$', text: 'tail -f uptime.log' },
+        { prompt: '>', text: '99.9% uptime - 42ms p95 - 0 incidents' },
+      ],
+      footerNote:
+        'Full-Stack Developer & AI Agent Architect. Building production systems that handle real money, real users, and real scale.',
+      navigateLabel: '// NAVIGATE',
+      connectLabel: '// CONNECT',
+      contactColumnLabel: '// CONTACT & AVAILABILITY',
+      responseTimeNote: 'Typical response time: < 24h on weekdays.',
+      timezoneNote: 'Based in GMT+1',
+      copyrightText:
+        '© {year} Martins Michael — Engineering Intelligence, Architecting Impact',
+      statusLabel: 'SYSTEM_ONLINE · v2.0.26',
       heroHeadline:
         'I build AI agents\nthat handle real money, real users, and real scale.',
       heroIntro: {
