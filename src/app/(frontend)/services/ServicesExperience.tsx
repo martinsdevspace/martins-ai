@@ -51,13 +51,13 @@ export const ServicesExperience: React.FC<ServicesExperienceProps> = ({ services
               onClick={() => toggle(service.slug)}
               aria-expanded={isOpen}
               aria-controls={`service-${service.slug}`}
-              className="group grid w-full grid-cols-12 items-baseline gap-x-4 gap-y-3 py-10 text-left lg:py-14"
+               className="group grid w-full grid-cols-12 items-baseline gap-x-4 gap-y-3 py-10 text-left transition-colors motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-synthesis focus-visible:ring-offset-2 focus-visible:ring-offset-background touch-manipulation lg:py-14"
             >
               <span className="col-span-2 font-mono-label text-synthesis lg:col-span-1">
                 {service.num || String(i + 1).padStart(2, '0')}
               </span>
               <span className="col-span-10 lg:col-span-7">
-                <span className="block font-heading text-3xl font-light tracking-tight text-foreground transition-colors group-hover:text-synthesis lg:text-5xl">
+                 <span className="block font-heading text-3xl font-light tracking-tight text-foreground transition-colors group-hover:text-synthesis motion-reduce:transition-none lg:text-5xl">
                   {service.title}
                 </span>
                 {service.tagline ? (
@@ -68,13 +68,13 @@ export const ServicesExperience: React.FC<ServicesExperienceProps> = ({ services
               </span>
               <span className="col-span-10 col-start-3 flex items-center gap-4 lg:col-span-4 lg:col-start-auto">
                 {service.startingFrom ? (
-                  <span className="font-mono-label text-[10px] text-muted-foreground">
+                   <span className="font-mono-label text-[11px] text-muted-foreground">
                     FROM {service.startingFrom}
                   </span>
                 ) : null}
-                <span className="ml-auto rounded-full border border-border p-2 transition-colors group-hover:border-synthesis group-hover:text-synthesis">
+                 <span className="ml-auto rounded-full border border-border p-2 transition-colors group-hover:border-synthesis group-hover:text-synthesis motion-reduce:transition-none">
                   <IconChevronDown
-                    className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                     className={`h-4 w-4 transition-transform motion-reduce:transition-none ${isOpen ? 'rotate-180' : ''}`}
                   />
                 </span>
               </span>
@@ -82,7 +82,7 @@ export const ServicesExperience: React.FC<ServicesExperienceProps> = ({ services
 
             <div
               id={`service-${service.slug}`}
-              className={`grid transition-[grid-template-rows] duration-300 ${
+               className={`grid transition-[grid-template-rows] duration-300 motion-reduce:transition-none ${
                 isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
               }`}
             >
@@ -129,7 +129,7 @@ export const ServicesExperience: React.FC<ServicesExperienceProps> = ({ services
                             {service.stack.map((tech) => (
                               <span
                                 key={tech}
-                                className="border border-border px-2 py-1 font-mono-label text-[10px] text-muted-foreground"
+                                 className="border border-border px-2.5 py-1.5 font-mono-label text-[11px] text-muted-foreground"
                               >
                                 {tech}
                               </span>
@@ -188,7 +188,7 @@ export const ServicesExperience: React.FC<ServicesExperienceProps> = ({ services
                             }`}
                           >
                             {tier.best ? (
-                              <span className="w-fit border border-synthesis px-2 py-0.5 font-mono-label text-[9px] text-synthesis">
+                                 <span className="w-fit border border-synthesis px-2 py-0.5 font-mono-label text-[10px] text-synthesis">
                                 {tier.best}
                               </span>
                             ) : null}
@@ -229,14 +229,14 @@ export const ServicesExperience: React.FC<ServicesExperienceProps> = ({ services
                   <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-border pt-8">
                     <Link
                       href={`/contact?service=${service.slug}`}
-                      className="inline-flex items-center gap-2 bg-foreground px-5 py-2.5 font-mono-label text-background transition-colors hover:bg-synthesis"
+                      className="inline-flex items-center gap-2 bg-foreground px-5 py-2.5 font-mono-label text-background transition-colors hover:bg-synthesis motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-synthesis focus-visible:ring-offset-2 focus-visible:ring-offset-background touch-manipulation"
                     >
                       Get a quote for this
                       <IconArrowUpRight className="h-4 w-4" />
                     </Link>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="inline-flex items-center gap-2 font-mono-label text-sm text-muted-foreground transition-colors hover:text-synthesis"
+                      className="inline-flex items-center gap-2 font-mono-label text-sm text-muted-foreground transition-colors hover:text-synthesis motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-synthesis focus-visible:ring-offset-2 focus-visible:ring-offset-background touch-manipulation"
                     >
                       See full details
                     </Link>

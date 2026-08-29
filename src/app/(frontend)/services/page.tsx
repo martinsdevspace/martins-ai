@@ -1,17 +1,12 @@
 import type { Metadata } from 'next'
-import React from 'react'
-
-import { IconArrowRight } from '@tabler/icons-react'
-import Link from 'next/link'
-
-import { ServiceRowData, ServicesExperience } from './ServicesExperience'
+import { Reveal } from '@/components/Motion/Reveal'
 import { PageCTA } from '@/sections/PageCTA'
 import { PageHero } from '@/sections/PageHero'
 import { SectionLabel } from '@/sections/_shared'
-import { Reveal } from '@/components/Motion/Reveal'
+import { generateMeta } from '@/utilities/generateMeta'
 import { getCachedCollection } from '@/utilities/getCollection'
 import { getCachedGlobal } from '@/utilities/getGlobals'
-import { generateMeta } from '@/utilities/generateMeta'
+import { ServiceRowData, ServicesExperience } from './ServicesExperience'
 
 export default async function ServicesPage() {
   const [services, siteSettings] = await Promise.all([
@@ -73,7 +68,7 @@ export default async function ServicesPage() {
   return (
     <article>
       <PageHero
-        label="// 02 — SERVICE_LAYER"
+        label="// SERVICES"
         breadcrumbLabel="Services"
         meta={`${services.length} SERVICES`}
         title={
@@ -100,7 +95,7 @@ export default async function ServicesPage() {
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {approachSteps.map((step, i) => (
             <Reveal key={step.num} delay={i * 0.06}>
-              <div className="flex h-full flex-col gap-4 border border-border bg-card p-8">
+               <div className="flex h-full flex-col gap-4 border border-border bg-card p-8 transition-colors duration-200 hover:border-synthesis/60">
                 <span className="font-mono-label text-synthesis">{step.num}</span>
                 <h3 className="font-heading text-2xl font-light tracking-tight text-foreground">
                   {step.title}

@@ -51,7 +51,7 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
 
       <Link
         href="/#services"
-        className="inline-flex items-center gap-2 font-mono-label text-muted-foreground hover:text-synthesis transition-colors"
+        className="inline-flex items-center gap-2 font-mono-label text-muted-foreground hover:text-synthesis transition-colors motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-synthesis focus-visible:ring-offset-2 focus-visible:ring-offset-background touch-manipulation"
       >
         <IconArrowLeft className="h-4 w-4" />
         Back to services
@@ -94,7 +94,7 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
                 <p className="font-mono-label text-muted-foreground mb-2">STACK</p>
                 <div className="flex flex-wrap gap-1.5">
                   {stack.map((tech) => (
-                    <span key={tech} className="border border-border px-2 py-1 font-mono-label text-[10px] text-muted-foreground">
+                      <span key={tech} className="border border-border px-2.5 py-1.5 font-mono-label text-[11px] text-muted-foreground">
                       {tech}
                     </span>
                   ))}
@@ -102,8 +102,8 @@ export default async function ServicePage({ params: paramsPromise }: Args) {
               </div>
             ) : null}
             <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-2.5 font-mono-label text-background hover:bg-synthesis transition-colors"
+              href={`/contact?service=${service.slug}`}
+              className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-2.5 font-mono-label text-background hover:bg-synthesis transition-colors motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-synthesis focus-visible:ring-offset-2 focus-visible:ring-offset-background touch-manipulation"
             >
               Start a project
               <IconArrowUpRight className="h-4 w-4" />

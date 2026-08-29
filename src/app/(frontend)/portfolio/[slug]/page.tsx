@@ -151,7 +151,7 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
       </div>
 
       {thumbnailUrl && media ? (
-        <div className="mt-12 relative aspect-[16/9] overflow-hidden border border-border bg-background">
+        <div className="mt-12 relative aspect-video overflow-hidden border border-border bg-background">
           <Image
             src={thumbnailUrl}
             alt={media.alt || project.name}
@@ -161,7 +161,7 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
           />
         </div>
       ) : (
-        <div className="mt-12 flex aspect-[16/9] items-center justify-center border border-border bg-card">
+        <div className="mt-12 flex aspect-video items-center justify-center border border-border bg-card">
           <span className="font-mono-label text-muted-foreground">[THUMBNAIL]</span>
         </div>
       )}
@@ -255,7 +255,7 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
           <div className="grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-2">
             {features.map((feature, i) => (
               <div key={i} className="flex items-start gap-3 border-t border-border py-3">
-                <IconCheck className="mt-1 h-4 w-4 flex-shrink-0 text-synthesis" />
+                <IconCheck className="mt-1 h-4 w-4 shrink-0 text-synthesis" />
                 <span className="text-base leading-relaxed text-foreground/80">{feature}</span>
               </div>
             ))}
@@ -268,7 +268,7 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
 
       {/* Results */}
       {resultMetrics.length > 0 || lessons.length > 0 ? (
-        <section className="mt-20 border-t border-border pt-16">
+        <section className="mt-20 border-t border-border py-16">
           <div className="mb-10 flex items-center justify-between">
             <SectionLabel>// RESULTS</SectionLabel>
             {project.projectStatus === 'COMPLETED' ? (
@@ -298,7 +298,7 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
               <div className="flex flex-col gap-4">
                 {lessons.map((lesson, i) => (
                   <div key={i} className="flex items-start gap-4 border-t border-border py-4 last:border-b">
-                    <span className="mt-1 flex-shrink-0 font-mono text-sm text-synthesis">
+                    <span className="mt-1 shrink-0 font-mono text-sm text-synthesis">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <p className="text-base leading-relaxed text-foreground/80">{lesson}</p>
@@ -310,7 +310,7 @@ export default async function WorkspacePage({ params: paramsPromise }: Args) {
         </section>
       ) : null}
 
-      <div className="-mx-5 lg:-mx-[6vw]">
+      <div className="-mx-5 lg:mx-[-6vw]">
         <PageCTA
           address="0x008 // END_OF_FILE"
           title="Want similar results?"

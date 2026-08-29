@@ -49,7 +49,7 @@ export default async function Hero() {
     >
       <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-12 items-center">
         <div className="flex flex-col items-start">
-          <SectionLabel className="mb-6">// 01 - HERO</SectionLabel>
+          <SectionLabel className="mb-6">// HERO</SectionLabel>
 
           {(availability || location) && (
             <div className="font-mono-label text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-2 mb-6">

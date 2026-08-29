@@ -12,7 +12,6 @@ import RichText from '@/components/RichText'
 import configPromise from '@payload-config'
 import type { Industry } from '@/payload-types'
 import { SectionLabel } from '@/sections/_shared'
-import { PageCTA } from '@/sections/PageCTA'
 import { generateMeta } from '@/utilities/generateMeta'
 import { industryIcon } from '@/utilities/industryIcon'
 import { getPayload } from 'payload'
@@ -45,7 +44,7 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
 
       <Link
         href="/#industries"
-        className="inline-flex items-center gap-2 font-mono-label text-muted-foreground hover:text-synthesis transition-colors"
+        className="inline-flex items-center gap-2 font-mono-label text-muted-foreground hover:text-synthesis transition-colors motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-synthesis focus-visible:ring-offset-2 focus-visible:ring-offset-background touch-manipulation"
       >
         <IconArrowLeft className="h-4 w-4" />
         Back to industries
@@ -74,11 +73,11 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
             ) : null}
 
             {stats.length > 0 ? (
-              <div className="grid grid-cols-3 divide-x divide-border border border-border">
+                <div className="grid grid-cols-2 divide-x divide-border border border-border sm:grid-cols-3">
                 {stats.map((s, i) => (
                   <div key={s.id || `stat-${i}`} className="px-3 py-3 flex flex-col gap-1">
                     <span className="font-heading text-xl text-synthesis">{s.value}</span>
-                    <span className="font-mono-label text-muted-foreground text-[10px]">{s.label}</span>
+                    <span className="font-mono-label text-muted-foreground text-[11px]">{s.label}</span>
                   </div>
                 ))}
               </div>
@@ -86,7 +85,7 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-2.5 font-mono-label text-background hover:bg-synthesis transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-2.5 font-mono-label text-background hover:bg-synthesis transition-colors motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-synthesis focus-visible:ring-offset-2 focus-visible:ring-offset-background touch-manipulation"
             >
               Discuss a project
               <IconArrowUpRight className="h-4 w-4" />
@@ -128,7 +127,7 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
                 <li key={i}>
                   <Link
                     href="/portfolio"
-                    className="group flex items-center gap-3 border border-border bg-card px-5 py-3 transition-colors hover:border-synthesis"
+                     className="group flex items-center gap-3 border border-border bg-card px-5 py-3 transition-colors hover:border-synthesis motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-synthesis focus-visible:ring-offset-2 focus-visible:ring-offset-background touch-manipulation"
                   >
                     <IconArrowUpRight className="h-4 w-4 text-synthesis shrink-0" />
                     <span className="font-heading text-base transition-colors group-hover:text-synthesis">
@@ -150,7 +149,7 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
               <ul className="flex flex-col gap-3">
                 {challenges.map((challenge, i) => (
                   <li key={i} className="flex items-start gap-3 border border-border bg-card px-5 py-4">
-                    <span className="mt-2 h-1 w-1 shrink-0 bg-warning" />
+                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-warning" />
                     <span className="text-sm text-foreground/80">{challenge}</span>
                   </li>
                 ))}
@@ -164,7 +163,7 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
               <ul className="flex flex-col gap-3">
                 {solutions.map((solution, i) => (
                   <li key={i} className="flex items-start gap-3 border border-border bg-card px-5 py-4">
-                    <span className="mt-2 h-1 w-1 shrink-0 bg-success" />
+                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-success" />
                     <span className="text-sm text-foreground/80">{solution}</span>
                   </li>
                 ))}
@@ -174,17 +173,6 @@ export default async function IndustryPage({ params: paramsPromise }: Args) {
         </div>
       ) : null}
 
-      <div className="-mx-5 lg:-mx-[6vw]">
-        <PageCTA
-          address="0x006 // END_OF_FILE"
-          title={`Building in ${industry.name.toLowerCase()}?`}
-          subtitle="I've shipped production systems in this sector. Let's talk about your specific challenges and how I can help."
-          primaryLabel="BOOK_FREE_REVIEW"
-          primaryTo="/contact"
-          secondaryLabel="VIEW_ALL_INDUSTRIES"
-          secondaryTo="/industries"
-        />
-      </div>
     </article>
   )
 }

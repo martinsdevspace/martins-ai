@@ -74,7 +74,7 @@ export const AboutBlock: Block = {
     {
       name: 'label',
       type: 'text',
-      defaultValue: '// — ABOUT',
+      defaultValue: '// ABOUT',
     },
     {
       name: 'linkLabel',
@@ -91,7 +91,7 @@ export const WorksBlock: Block = {
     {
       name: 'label',
       type: 'text',
-      defaultValue: '// 02 — SELECTED_WORKS',
+      defaultValue: '// PORTFOLIO',
     },
     {
       name: 'heading',
@@ -117,7 +117,7 @@ export const ServicesBlock: Block = {
     {
       name: 'label',
       type: 'text',
-      defaultValue: '// 03 — SERVICES',
+      defaultValue: '// SERVICES',
     },
     {
       name: 'heading',
@@ -143,7 +143,7 @@ export const IndustriesBlock: Block = {
     {
       name: 'label',
       type: 'text',
-      defaultValue: '// 04 — INDUSTRIES',
+      defaultValue: '// INDUSTRIES',
     },
     {
       name: 'heading',
@@ -169,7 +169,7 @@ export const ProcessBlock: Block = {
     {
       name: 'label',
       type: 'text',
-      defaultValue: '// 06 — PROCESS',
+      defaultValue: '// PROCESS',
     },
     {
       name: 'heading',
@@ -206,7 +206,7 @@ export const TestimonialsBlock: Block = {
     {
       name: 'label',
       type: 'text',
-      defaultValue: '// 07 — TESTIMONIALS',
+      defaultValue: '// TESTIMONIALS',
     },
     {
       name: 'heading',
@@ -227,7 +227,7 @@ export const InsightsBlock: Block = {
     {
       name: 'label',
       type: 'text',
-      defaultValue: '// 08 — LATEST_INSIGHTS',
+      defaultValue: '// LATEST_INSIGHTS',
     },
     {
       name: 'heading',
